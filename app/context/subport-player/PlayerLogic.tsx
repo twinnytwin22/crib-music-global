@@ -6,11 +6,11 @@ interface PlayerStore {
     position: number;
     duration: number;
     isPlaying: boolean;
-    audio: HTMLAudioElement | null;
+    audio: HTMLAudioElement | null | undefined;
     volume: number;
     isMuted: boolean;
     prevVolume: number;
-    audioUrl?: string | null;
+    audioUrl?: string | null | undefined;
     imageUrl: string | null;
     metaData: any[] | null;
     ids: string[];
@@ -27,7 +27,7 @@ interface PlayerStore {
     setVolume: (volume: number) => void;
     setIsMuted: (isMuted: boolean) => void;
     setPrevVolume: (prevVolume: number) => void;
-    setAudioUrl: (audioUrl: string | null) => void;
+    setAudioUrl: (audioUrl: string | null | undefined) => void;
     setMetaData: (metaData: any[] | null) => void;
 
 }
@@ -89,7 +89,7 @@ export const usePlaybackTime = (audioRef: any) => {
     }, [audioRef]);
 };
 
-export const useAudio = (audioUrl: string | null, setAudio: (audio: HTMLAudioElement) => void) => {
+export const useAudio = (audioUrl: string | null |undefined, setAudio: (audio: HTMLAudioElement | null) => void) => {
     useEffect(() => {
         if (audioUrl) {
             setAudio(new Audio(audioUrl));
@@ -99,7 +99,7 @@ export const useAudio = (audioUrl: string | null, setAudio: (audio: HTMLAudioEle
 
 export const useSetupAudio = (
     audioRef: any | null,
-    audioUrl: string | null,
+    audioUrl: string | null | undefined,
     onLoadedData: () => void
 ) => {
     useEffect(() => {
