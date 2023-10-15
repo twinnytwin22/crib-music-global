@@ -1,9 +1,15 @@
 import { NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/site/constants";
 
 
 export const revalidate = 0;
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+}
+
 //export const dynamic = 'force-dynamic'
-import { supabaseAdmin } from "@/lib/site/constants";
 export async function POST(request: Request) {
 const updates = await request.json()
 try {
@@ -24,14 +30,14 @@ try {
              artist
           };
           await new Promise((resolve) => setTimeout(resolve, 500));
-          return  NextResponse.json(response);
+          return  NextResponse.json(response,{headers, status:200});
         }
         } catch (error) {
           console.error("Error adding artist:", error);
-          return NextResponse.json("Error: adding artist");
+          return NextResponse.json("Error: adding artist",{headers, status:400});
         }
 
-        return NextResponse.json('Error: Method not found')
+        return NextResponse.json('Error: Method not found',{headers, status:400})
       }
 
 

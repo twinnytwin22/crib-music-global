@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+}
 
 export const revalidate = 0;
 //export const dynamic = 'force-dynamic'
@@ -24,14 +29,14 @@ try {
              song
           };
           await new Promise((resolve) => setTimeout(resolve, 500));
-          return  NextResponse.json(response);
+          return  NextResponse.json(response, {headers, status: 200});
         }
         } catch (error) {
           console.error("Error adding song:", error);
-          return NextResponse.json("Error: adding song");
+          return NextResponse.json("Error: adding song",{headers, status:400});
         }
 
-        return NextResponse.json('Error: Method not found')
+        return NextResponse.json('Error: Method not found', {headers, status:400})
       }
 
 
