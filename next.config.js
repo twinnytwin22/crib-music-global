@@ -52,14 +52,14 @@ const nextConfig = {
  //   loaderFile: "./lib/providers/sanity/imageLoader.tsx",
   },
   reactStrictMode: true,
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/(.*)",
+  //       headers: securityHeaders,
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;
