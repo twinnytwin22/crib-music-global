@@ -23,7 +23,7 @@ const securityHeaders = [
   },
   {
     key: 'Access-Control-Allow-Origin',
-    value: 'https://cribnetwork.io', // Replace with the origin of cribnetwork.io
+    value: '*', // Replace with the origin of cribnetwork.io
   },
   {
     key: 'Access-Control-Allow-Methods',
