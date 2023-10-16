@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/site/constants";
+
+
 export const revalidate = 0;
 //export const dynamic = 'force-dynamic'
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-}
+import { supabaseAdmin } from "@/lib/site/constants";
 export async function GET(request: Request) {
 //  const { searchParams } = new URL(request.url);
 //  const userId = searchParams.get("userId");
@@ -26,14 +23,14 @@ try {
              artists
           };
           await new Promise((resolve) => setTimeout(resolve, 500));
-          return  NextResponse.json(response,{headers, status:200});
+          return  NextResponse.json(response);
         }
         } catch (error) {
           console.error("Error fetching metadata:", error);
-          return NextResponse.json("Error: fetching metadata",{headers, status:400});
+          return NextResponse.json("Error: fetching metadata");
         }
 
-        return NextResponse.json('Error: Method not found',{headers, status:400})
+        return NextResponse.json('Error: Method not found')
       }
 
 
