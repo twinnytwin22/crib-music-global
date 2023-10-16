@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/site/constants";
 
-export const dyanmic = 'force-dynamic'
+export const dynamic = 'force-dynamic'
 export const revalidate = 0;
 const headers = {
   'Access-Control-Allow-Origin': '*',
