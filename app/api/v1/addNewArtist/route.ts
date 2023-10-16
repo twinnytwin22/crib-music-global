@@ -12,7 +12,7 @@ try {
  if(request.method === 'POST') {
     const { data: artist, error } = await supabaseAdmin
     .from('artists')
-    .insert([updates])
+    .insert(updates)
     .select()
     .single()
     //.eq('student_id', userId)
