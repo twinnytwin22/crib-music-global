@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-
-
-export const revalidate = 0;
-//export const dynamic = 'force-dynamic'
 import { supabaseAdmin } from "@/lib/site/constants";
+export const revalidate = 0;
+export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
 //  const { searchParams } = new URL(request.url);
 //  const userId = searchParams.get("userId");
