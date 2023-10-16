@@ -3,11 +3,7 @@ import { supabaseAdmin } from "@/lib/site/constants";
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0;
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-}
+
 
 //export const dynamic = 'force-dynamic'
 export async function POST(request: Request) {
@@ -30,14 +26,14 @@ try {
              artist
           };
           await new Promise((resolve) => setTimeout(resolve, 500));
-          return  NextResponse.json(response,{headers, status:200});
+          return  NextResponse.json(response,{status:200});
         }
         } catch (error) {
           console.error("Error adding artist:", error);
-          return NextResponse.json("Error: adding artist",{headers, status:400});
+          return NextResponse.json("Error: adding artist",{status:400});
         }
 
-        return NextResponse.json('Error: Method not found',{headers, status:400})
+        return NextResponse.json('Error: Method not found',{status:400})
       }
 
 
