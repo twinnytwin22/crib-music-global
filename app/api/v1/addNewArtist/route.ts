@@ -11,12 +11,12 @@ const headers = {
 
 //export const dynamic = 'force-dynamic'
 export async function POST(request: Request) {
-const updates = await request.json()
+const { updates } = await request.json()
 try {
  if(request.method === 'POST') {
     const { data: artist, error } = await supabaseAdmin
     .from('artists')
-    .insert(updates)
+    .insert([updates])
     .select()
     .single()
     //.eq('student_id', userId)
