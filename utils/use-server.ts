@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 const host =
   process?.env.NODE_ENV === "development"
     ? "localhost:3000"
-    : "subport.vercel.app";
+    : "cribmusic.xyz";
 const protocol = process?.env.NODE_ENV === "development" ? "http" : "https";
 
 type FetchTypes = {
@@ -139,8 +139,10 @@ export const getAllSongs = async () => {
           cache: 'no-cache',
           headers: {
               "Content-Type": "application/json",
-             // "Access-Control-Allow-Origin": "*"
-           },
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                       },
       })
       
       if (res) {
