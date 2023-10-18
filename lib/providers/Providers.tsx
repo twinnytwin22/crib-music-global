@@ -14,8 +14,6 @@ const queryClient = new QueryClient()
 export const Providers = ({ children, }: { children: React.ReactNode }) => {
     return (
         <QueryClientProvider client={queryClient}>
-                                        <AuthContextProvider>
-
                     <Suspense>
                         <ThemeProvider enableSystem={true} attribute="class" defaultTheme="dark">
                             <SubportPlayer>
@@ -23,8 +21,6 @@ export const Providers = ({ children, }: { children: React.ReactNode }) => {
                                 </SubportPlayer>
                         </ThemeProvider>
                     </Suspense>
-                    </AuthContextProvider>
-
         </QueryClientProvider>
     );
 };

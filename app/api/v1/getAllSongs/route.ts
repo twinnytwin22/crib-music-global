@@ -22,7 +22,7 @@ try {
              songs
           };
           await new Promise((resolve) => setTimeout(resolve, 500));
-          return  NextResponse.json(response,{ status:200});
+          return  NextResponse.json(songs,{ status:200});
         }
         } catch (error) {
           console.error("Error fetching metadata:", error);

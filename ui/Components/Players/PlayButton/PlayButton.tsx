@@ -5,60 +5,67 @@ import { useSubportPlayer } from "app/context/subport-player";
 import React from "react";
 import { FaPlayCircle, FaStopCircle } from "react-icons/fa";
 
-function PlayButton({ song }: any) {
-    const { play, isPlaying, stop, updateAudioUrl, updateImageUrl, audioUrl, updateMetaData } =
-        useSubportPlayer();
-    //const { user } = useAuthProvider();
-    const newMetaData = song.metaData
-    const newAudioUrl = (song.animation_url)
-    const newImageUrl = (song.image);
-    const [mounted, setMounted] = React.useState(false);
-    React.useEffect(() => setMounted(true), []);
+function PlayButton({ song, audio }: any) {
+  const {
+    play,
+    isPlaying,
+    stop,
+    updateAudioUrl,
+    updateImageUrl,
+    audioUrl,
+    updateMetaData,
+  } = useSubportPlayer();
+  //const { user } = useAuthProvider();
+  const newMetaData = song.metaData;
+  const newAudioUrl = audio;
+  const newImageUrl = song.image;
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
 
-    const handlePlay = async () => {
-        if (audioUrl !== newAudioUrl) {
-            if (isPlaying) {
-                stop();
-            }
-            updateImageUrl(newImageUrl);
-            updateAudioUrl(newAudioUrl);
-            updateMetaData(newMetaData);
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            play();
-        } else {
-            play();
-        }
-    };
+  const handlePlay = async () => {
+    if (audioUrl !== newAudioUrl) {
+      if (isPlaying) {
+        stop();
+      }
+      updateImageUrl(newImageUrl);
+      updateAudioUrl(newAudioUrl);
+      updateMetaData(newMetaData);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      play();
+    } else {
+      play();
+    }
+  };
 
-    return (
-        mounted &&
-        //user &&
-        newAudioUrl && (
-            <>
-                {isPlaying && audioUrl === newAudioUrl ? (
-                    <div
-                        onClick={stop}
-                        className="hover:scale-110 duration-300 ease-in-out "
-                    >
-                        <FaStopCircle
-                            size={48}
-                            className="text-white opacity-80 cursor-pointer"
-                        />
-                    </div>
-                ) : (
-                    <div
-                        onClick={handlePlay}
-                        className="hover:scale-110 duration-300 ease-in-out transform "
-                    >
-                        <FaPlayCircle
-                            size={48}
-                            className="text-white opacity-80 cursor-pointer"
-                        />
-                    </div>
-                )}
-            </>
-        )
-    );
+  return (
+    mounted &&
+    //user &&
+    newAudioUrl && (
+      <>
+        {isPlaying && audioUrl === newAudioUrl ? (
+          <div
+            onClick={stop}
+            className="hover:scale-110 duration-300 ease-in-out "
+          >
+            <FaStopCircle
+              size={48}
+              className="text-white opacity-80 cursor-pointer"
+            />
+          </div>
+        ) : (
+          <div
+            onClick={handlePlay}
+            className="hover:scale-110 duration-300 ease-in-out transform "
+          >
+            <FaPlayCircle
+              size={48}
+              className="text-white opacity-80 cursor-pointer"
+            />
+          </div>
+        )}
+      </>
+    )
+  );
 }
 
 export default PlayButton;
