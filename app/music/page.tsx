@@ -12,7 +12,6 @@ async function page() {
   console.log(songs.songs)
   return (
     <div className='px-4'>
-      <MusicFilter songs={songs?.songs}/>
       <MusicList songs={songs?.songs}/></div>
   )
 }

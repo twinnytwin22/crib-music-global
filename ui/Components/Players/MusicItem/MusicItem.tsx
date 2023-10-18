@@ -40,7 +40,7 @@ const MusicItem = ({ song }: any) => {
         scope="row"
         className="flex items-center px-4 py-2 font-medium text-zinc-900 whitespace-nowrap dark:text-white"
       >
-        <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-red-100 w-fit mr-2">
+        <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
           {/* <Image
                         src={imageHash}
                         className="object-cover w-10 h-10 rounded-md"

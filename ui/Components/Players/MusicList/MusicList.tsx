@@ -5,7 +5,10 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { FiRefreshCcw } from "react-icons/fi";
 import useSongStore from "./store";
-
+import { useMusicFilterStore } from "./MusicFormStore";
+import { FaFilter } from "react-icons/fa";
+import MusicFilter from "ui/Components/MusicFilter";
+import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 
 const Pagination = dynamic(() => import("lib/hooks/pagination"), {
   ssr: false,
@@ -19,15 +22,66 @@ const MusicList = ({ songs }: any) => {
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
   const router = useRouter();
- const {setSongs, filteredSongs, songs: allSongs} = useSongStore()
- const currentSongs = filteredSongs?.slice(indexStart, indexEnd);
+  const currentSongs = songs?.slice(indexStart, indexEnd);
+  const [openFilterWindow, setOpenFilterWindow] = useState(false)
+  const [filtersSet, setFiltersSet] = useState(false); // Track if filters have been set
+  const handleOpenFilterWindow = () => setOpenFilterWindow(true)
 
   const handleRefresh = () => router.refresh();
- 
-  useEffect(() => { setSongs(songs) }, [songs, filteredSongs])
- 
+  const { setActiveFilters, setFilters, activeFilters, filters, handleClear } =
+    useMusicFilterStore();
+  useEffect(() => {
+    // Call the useLocationExtractor function asynchronously
+    async function fetchData() {
+      try {
+        // const locationDataArray = await useLocationExtractor(events.map((event: any) => event.location));
+        const genres: any = Array.from(
+          new Set(songs.map((song: any) => song?.genre))
+        ).filter(Boolean);
+        const artists: any = Array.from(
+          new Set(songs.map((song: any) => song?.artist_name))
+        ).filter(Boolean);
+        const keywords: any = Array.from(
+          new Set(songs.flatMap((song) => song?.keywords || []))
+        ).filter(Boolean);
+
+        if (songs.length > 0) {
+          if (!filtersSet) {
+            setFilters({ genres, artists, keywords });
+            setFiltersSet(true);
+            //  console.log(cities, states);
+          }
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    fetchData();
+  }, [songs, setFilters, setActiveFilters, filtersSet]);
+
+  const filteredSongs = songs.filter((song: any) => {
+    const { genre, artist_name } = song
+
+    const activeFilter = activeFilters.map(a => a)
+    // Check if any city or state is present in the location
+    const includesFilters = activeFilter.some((filteredGenre) => genre.includes(filteredGenre)) || activeFilter.some((artist) => artist_name.includes(artist));
+    console.log(activeFilter)
+    //   console.log(activeFilters)
+    return includesFilters || activeFilters.length === 0
+  });
+
+  useHandleOutsideClick(openFilterWindow, setOpenFilterWindow, 'filter-window')
   return (
     <div className=" -z-0">
+      {openFilterWindow && 
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center mx-8">
+        <div className="w-full h-full bg-black fixed z-0 opacity-80"></div>
+        <div className="z-[9999] w-full max-w-3xl filter-window">
+          <MusicFilter />
+        </div>
+      </div>}
+
       <section className="py-4  w-full max-w-screen-2xl mx-auto rounded-md justify-center">
         <div className=" z-20 overflow-hidden bg-white shadow-lg dark:bg-zinc-950 sm:rounded-md w-full border border-zinc-200 dark:border-zinc-800">
           <div className="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
@@ -43,14 +97,22 @@ const MusicList = ({ songs }: any) => {
                 <span className="dark:text-white">1</span>
               </h5>
             </div>
-            <div className="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
+            <div className=" flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
               <button
-                onClick={handleRefresh}
+                onClick={handleOpenFilterWindow}
+                type="button"
+                className="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-zinc-900 bg-white border border-zinc-200 rounded-md focus:outline-none hover:bg-zinc-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-zinc-200 dark:focus:ring-zinc-700 dark:bg-black dark:text-zinc-400 dark:border-zinc-800 dark:hover:text-white dark:hover:bg-zinc-700"
+              >
+                <FaFilter className="w-4 h-3 mr-2" />
+                Filter
+              </button>
+              <button
+                onClick={handleClear}
                 type="button"
                 className="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-zinc-900 bg-white border border-zinc-200 rounded-md focus:outline-none hover:bg-zinc-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-zinc-200 dark:focus:ring-zinc-700 dark:bg-black dark:text-zinc-400 dark:border-zinc-800 dark:hover:text-white dark:hover:bg-zinc-700"
               >
                 <FiRefreshCcw className="w-4 h-4 mr-2" />
-                Refresh
+                Reset
               </button>
             </div>
           </div>
@@ -75,8 +137,9 @@ const MusicList = ({ songs }: any) => {
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                {currentSongs?.map((song, index: number) => (
+
+              <tbody className=" overflow-y-scroll relative ">
+                {filteredSongs?.map((song, index: number) => (
                   <MusicItem key={index} song={song} />
                 ))}
               </tbody>
