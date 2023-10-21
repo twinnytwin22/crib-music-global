@@ -11,6 +11,11 @@ export function useImagePath(url: SupabaseImage) {
   return imagePath;
 }
 
+export const getCoverImage = (fileName: string) => {
+  const imagePath ='https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/song_covers/' + fileName
+  return imagePath
+}
+
 export function useBgImagePath(url: SupabaseImage) {
   const imagePath = `https://qjfdpaecmjljkboepipm.supabase.co/storage/v1/object/public/profile_backgrounds/${url}`;
   return imagePath;

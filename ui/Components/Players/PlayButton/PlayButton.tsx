@@ -15,13 +15,17 @@ function PlayButton({ song, audio }: any) {
     audioUrl,
     updateMetaData,
   } = useSubportPlayer();
+  const getCoverImage = (fileName: string) => {
+    const imagePath ='https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/song_covers/' + fileName
+    return imagePath
+  };
   //const { user } = useAuthProvider();
   const newMetaData = song.metaData;
   const newAudioUrl = audio;
-  const newImageUrl = song.image;
+  const newImageUrl = getCoverImage(song?.cover_art_url);
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
-
+  
   const handlePlay = async () => {
     if (audioUrl !== newAudioUrl) {
       if (isPlaying) {

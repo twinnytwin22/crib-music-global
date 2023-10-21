@@ -5,8 +5,8 @@ import PlayButton from "../PlayButton";
 import { downloadFile } from "@/utils/db";
 import { useQuery } from "@tanstack/react-query";
 import { BsThreeDots } from "react-icons/bs";
-//import { useIpfsImage } from "lib/constants";
-
+import { getCoverImage } from "@/lib/site/constants";
+import Image from "next/image";
 const MusicItem = ({ song }: any) => {
   //const imageHash = "image" || null;
   const router = useRouter();
@@ -30,7 +30,7 @@ const MusicItem = ({ song }: any) => {
   });
 
  // console.log(data, "SONG");
-
+const imageHash = getCoverImage(song?.cover_art_url)
   return (
     <tr
       key={song.title}
@@ -41,15 +41,15 @@ const MusicItem = ({ song }: any) => {
         className="flex items-center px-4 py-2 font-medium text-zinc-900 whitespace-nowrap dark:text-white"
       >
         <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
-          {/* <Image
+      <Image
                         src={imageHash}
                         className="object-cover w-10 h-10 rounded-md"
                         width={40}
                         height={40}
                         alt="Song"
                         placeholder="blur"
-                        blurDataURL="/images/stock/blur.png"
-                    /> */}
+                        blurDataURL="/images/blur.png"
+                    /> 
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-50">
             <PlayButton song={song} audio={data} />
           </div>
