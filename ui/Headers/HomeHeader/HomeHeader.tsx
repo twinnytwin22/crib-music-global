@@ -1,7 +1,7 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
 import ContactButton from '@/ui/Buttons/ContactButton/ContactButton';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 function HomeHeader() {
     const [scrollY, setScrollY] = useState(0);
@@ -32,7 +32,7 @@ function HomeHeader() {
             />
 
             <div>
-<div className='hidden'>
+            <div className='h-32 p-8'>
                 <Image
                     src={imageLight}
                     className=" block dark:hidden w-full h-full mx-auto"

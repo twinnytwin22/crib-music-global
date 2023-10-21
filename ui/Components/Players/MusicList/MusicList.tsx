@@ -1,14 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import MusicItem from "../MusicItem/MusicItem";
+import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { FiRefreshCcw } from "react-icons/fi";
-import useSongStore from "./store";
-import { useMusicFilterStore } from "./MusicFormStore";
+import { useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
+import { FiRefreshCcw } from "react-icons/fi";
 import MusicFilter from "ui/Components/MusicFilter";
-import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
+import MusicItem from "../MusicItem/MusicItem";
+import { useMusicFilterStore } from "./MusicFormStore";
 
 const Pagination = dynamic(() => import("lib/hooks/pagination"), {
   ssr: false,
@@ -73,7 +72,7 @@ const MusicList = ({ songs }: any) => {
 
   useHandleOutsideClick(openFilterWindow, setOpenFilterWindow, 'filter-window')
   return (
-    <div className=" -z-0">
+    <div className=" -z-0 relative mx-auto flex justify-center">
       {openFilterWindow && 
       <div className="fixed inset-0 z-[9999] flex items-center justify-center mx-8">
         <div className="w-full h-full bg-black fixed z-0 opacity-80"></div>
@@ -82,9 +81,9 @@ const MusicList = ({ songs }: any) => {
         </div>
       </div>}
 
-      <section className="py-4  w-full max-w-screen-2xl mx-auto rounded-md justify-center">
-        <div className=" z-20 overflow-hidden bg-white shadow-lg dark:bg-zinc-950 sm:rounded-md w-full border border-zinc-200 dark:border-zinc-800">
-          <div className="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
+      <section className="py-4 self-center w-full max-w-screen-2xl mx-auto rounded justify-center relative flex">
+        <div className=" z-20 overflow-hidden bg-white shadow dark:bg-zinc-950 sm:rounded w-full border border-zinc-200 dark:border-zinc-800">
+          <div className="flex flex-col px-4 py-3 space-y-3 md:flex-row md:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
             <div className="flex items-center flex-1 space-x-4 text-sm md:text-base">
               <h5>
                 <span className="text-zinc-500">All Sounds:</span>
@@ -97,11 +96,11 @@ const MusicList = ({ songs }: any) => {
                 <span className="dark:text-white">1</span>
               </h5>
             </div>
-            <div className=" flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
+            <div className=" flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center content-center h-fit md:justify-end md:space-y-0 md:space-x-3">
               <button
                 onClick={handleOpenFilterWindow}
                 type="button"
-                className="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-zinc-900 bg-white border border-zinc-200 rounded-md focus:outline-none hover:bg-zinc-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-zinc-200 dark:focus:ring-zinc-700 dark:bg-black dark:text-zinc-400 dark:border-zinc-800 dark:hover:text-white dark:hover:bg-zinc-700"
+                className="flex md:hidden items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-zinc-900 bg-white border border-zinc-200 rounded focus:outline-none hover:bg-zinc-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-zinc-200 dark:focus:ring-zinc-700 dark:bg-black dark:text-zinc-400 dark:border-zinc-800 dark:hover:text-white dark:hover:bg-zinc-700"
               >
                 <FaFilter className="w-4 h-3 mr-2" />
                 Filter
@@ -109,7 +108,7 @@ const MusicList = ({ songs }: any) => {
               <button
                 onClick={handleClear}
                 type="button"
-                className="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-zinc-900 bg-white border border-zinc-200 rounded-md focus:outline-none hover:bg-zinc-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-zinc-200 dark:focus:ring-zinc-700 dark:bg-black dark:text-zinc-400 dark:border-zinc-800 dark:hover:text-white dark:hover:bg-zinc-700"
+                className="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-zinc-900 bg-white border border-zinc-200 rounded focus:outline-none hover:bg-zinc-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-zinc-200 dark:focus:ring-zinc-700 dark:bg-black dark:text-zinc-400 dark:border-zinc-800 dark:hover:text-white dark:hover:bg-zinc-700"
               >
                 <FiRefreshCcw className="w-4 h-4 mr-2" />
                 Reset
@@ -131,6 +130,9 @@ const MusicList = ({ songs }: any) => {
                   </th>
                   <th scope="col" className="px-4 py-3">
                     Genre
+                  </th>
+                  <th scope="col" className="px-4 py-3 ">
+                    <span className="sr-only">License</span>
                   </th>
                   <th scope="col" className="px-4 py-3 ">
                     <span className="sr-only">Menu Dots</span>

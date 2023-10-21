@@ -1,5 +1,9 @@
 {
     "cSpell.words": [
         "zustand"
-    ]
+    ],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    
 }

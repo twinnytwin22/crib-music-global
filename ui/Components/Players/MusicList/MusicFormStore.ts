@@ -16,6 +16,7 @@ export interface Song {
   }
 
   export interface SongStore {
+    viewName: 'genres' | 'artists' | 'moods' | ''
     filters: {
         genres: string[];
         artists: string[];
@@ -28,9 +29,12 @@ export interface Song {
     handleClearItem: (filter: string) => void;
     handleFilterClick: (filter: string) => void;
     fetchInitialData: () => void;
+    filterWindowOpen: boolean,
+    setFilterWindowOpen: (filterWindowOpen: boolean, viewName: string) => void
   }
 
   export const useMusicFilterStore = create<SongStore>((set) => ({
+    viewName: '',
     filters: {
         genres: [],
         artists: [],
@@ -59,6 +63,9 @@ export interface Song {
                 return { activeFilters: newFilters };
             }
         }),
+    filterWindowOpen: false, 
+    setFilterWindowOpen: (filterWindowOpen: boolean, viewName: any) => set({ filterWindowOpen, viewName }),
+
     fetchInitialData: () => {
         // Use the filters from the state when cities and states length is greater than 0
         const initialArtists = useMusicFilterStore.getState().filters.artists.length > 0

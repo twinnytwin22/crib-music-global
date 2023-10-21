@@ -1,12 +1,12 @@
 "use client";
 //import CollectCardMenu from "ui/Cards/Collect/CollectCardMenu";
-import { useRouter } from "next/navigation";
-import PlayButton from "../PlayButton";
+import { getCoverImage } from "@/lib/site/constants";
 import { downloadFile } from "@/utils/db";
 import { useQuery } from "@tanstack/react-query";
-import { BsThreeDots } from "react-icons/bs";
-import { getCoverImage } from "@/lib/site/constants";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { BsThreeDots } from "react-icons/bs";
+import PlayButton from "../PlayButton";
 const MusicItem = ({ song }: any) => {
   //const imageHash = "image" || null;
   const router = useRouter();
@@ -34,7 +34,7 @@ const imageHash = getCoverImage(song?.cover_art_url)
   return (
     <tr
       key={song.title}
-      className="border-b dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-black text-xs md:text-sm min-w-full"
+      className="border-b dark:border-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs md:text-sm min-w-full font-work-sans"
     >
       <th
         scope="row"
@@ -71,6 +71,11 @@ const imageHash = getCoverImage(song?.cover_art_url)
         <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
           {song.genre}
         </span>
+      </td>
+      <td className="px-4 py-2">
+        <button className="bg-black hover:bg-zinc-950 text-primary-800 text-xs font-medium px-2 py-1.5 rounded dark:bg-primary-900 dark:text-primary-300">
+          License
+        </button>
       </td>
       <td className="">
         <BsThreeDots />
