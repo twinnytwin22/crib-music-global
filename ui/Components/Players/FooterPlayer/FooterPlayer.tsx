@@ -1,12 +1,11 @@
 "use client";
 //import { useAuthProvider } from "app/context/auth";
-import { FaPlay, FaPause, FaStop } from "react-icons/fa";
-import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import { useSubportPlayer } from "app/context/subport-player";
-import { useEffect, useState } from "react";
-import { ScrollingTruncatedText, truncateText } from "lib/hooks/truncateText";
-import Image from "next/image";
 import { useHandleOutsideClick } from "lib/hooks/handleOutsideClick";
+import Image from "next/image";
+import { useState } from "react";
+import { FaPause, FaPlay, FaStop } from "react-icons/fa";
+import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 const FooterPlayer = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   useHandleOutsideClick(isDrawerOpen, setIsDrawerOpen, "player-drawer");
@@ -20,28 +19,28 @@ const FooterPlayer = () => {
     }
   };
 
-  const closeDrawer = () => {
-    setIsDrawerOpen(false);
-  };
-  const [screenWidth, setScreenWidth] = useState(0);
+  // const closeDrawer = () => {
+  //   setIsDrawerOpen(false);
+  // };
+  // const [screenWidth, setScreenWidth] = useState(0);
 
-  // Step 2: Create a function to update the screen width state
-  const updateScreenWidth = () => {
-    setScreenWidth(window.innerWidth);
-  };
+  // // Step 2: Create a function to update the screen width state
+  // const updateScreenWidth = () => {
+  //   setScreenWidth(window.innerWidth);
+  // };
 
-  useEffect(() => {
-    // Update the screen width state when the component mounts
-    updateScreenWidth();
+  // useEffect(() => {
+  //   // Update the screen width state when the component mounts
+  //   updateScreenWidth();
 
-    // Attach an event listener to window resize to update the screen width state
-    window.addEventListener("resize", updateScreenWidth);
+  //   // Attach an event listener to window resize to update the screen width state
+  //   window.addEventListener("resize", updateScreenWidth);
 
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", updateScreenWidth);
-    };
-  }, []);
+  //   // Clean up the event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener("resize", updateScreenWidth);
+  //   };
+  // }, []);
   //  const { user } = useAuthProvider();
   const {
     audioUrl,
@@ -65,14 +64,14 @@ const FooterPlayer = () => {
 
   //  console.log(imageUrl, "IMAGE FROM FOOTER")
 
-  const truncatedTitle = truncateText({
-    text: metaData?.name?.toString(),
-    maxLength: 12,
-  });
-  const truncatedArtistName = truncateText({
-    text: metaData?.artist_name?.toString(),
-    maxLength: 12,
-  });
+  // const truncatedTitle = truncateText({
+  //   text: metaData?.name?.toString(),
+  //   maxLength: 12,
+  // });
+  // const truncatedArtistName = truncateText({
+  //   text: metaData?.artist_name?.toString(),
+  //   maxLength: 12,
+  // });
 
   return (
     <footer className="cursor-pointer sm:cursor-default">
@@ -83,7 +82,7 @@ const FooterPlayer = () => {
       >
         <div className="z-[300] w-full px-6 py-2.5  mx-auto relative  items-center place-items-center h-12">
           {audioRef && audioUrl && (
-            <div className="player-drawer flex items-center justify-between max-w-screen-xl mx-auto w-full">
+            <div className="player-drawer flex items-center justify-between max-w-screen-2xl mx-auto w-full">
               <audio
                 ref={audioRef}
                 id="music-player"

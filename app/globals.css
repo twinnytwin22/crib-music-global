@@ -21,7 +21,13 @@ h1 {
   line-height: 90px !important;
 }
 
-
+input[type="range"] .tracking {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100vw;
+}
 
 .center {
   display: flex;

@@ -1,12 +1,16 @@
 'use client'
-import React, { createContext, useContext, useMemo, useRef, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getUserData, handleAuthChangeEvent } from "./actions";
 import { supabaseAuth } from "lib/site/constants";
 import { useRouter } from "next/navigation";
+import React, { createContext, useContext, useMemo, useRef } from "react";
+import { getUserData, handleAuthChangeEvent } from "./actions";
 
-export const refresh = () => {
+export const refresh = (router) => {
+  if(typeof window !== 'undefined'){
  window.location.reload();
+  } else {
+    router.refresh()
+  }
 };
 
 interface AuthState {
@@ -37,7 +41,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
     try {
       // Perform any necessary cleanup or log-out actions
       await supabaseAuth.auth.signOut();
-      refresh();
+      refresh(router);
     } catch (error) {
       console.error("Error signing out:", error);
     }

@@ -7,20 +7,19 @@ import {
     useRef,
 } from "react";
 import {
-    usePlaybackTime,
-    useAudio,
-    useSetupAudio,
-    handleVolumeChange,
-    handlePlay,
-    handlePause,
-    handleStop,
     formatTime,
-    useInterval,
-    handleTimeUpdate,
     handleLoadedData,
+    handlePause,
+    handlePlay,
     handleSeekChange,
+    handleStop,
+    handleTimeUpdate,
+    handleVolumeChange,
+    useAudio,
+    useInterval,
+    usePlaybackTime,
     usePlayerStore,
-
+    useSetupAudio,
 } from "./PlayerLogic";
 
 // Create the player context
@@ -54,7 +53,8 @@ export const SubportPlayer = ({ children
         metaData
     } = usePlayerStore();
     const audioRef = useRef<any>(audio);
-
+   // const audioContext = new (window.AudioContext)();
+ 
 
     useAudio(audioUrl, setAudio);
 

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BsThreeDots } from "react-icons/bs";
 import PlayButton from "../PlayButton";
+
 const MusicItem = ({ song }: any) => {
   //const imageHash = "image" || null;
   const router = useRouter();
@@ -22,11 +23,21 @@ const MusicItem = ({ song }: any) => {
       throw error;
     }
   };
+  // if(typeof window !== 'undefined'){
+  // window.AudioContext = window.AudioContext // || window.webkitAudioContext;
+  // }
+  // const audioContext = new AudioContext();
+  // let currentBuffer = null;
+
 
   const { data } = useQuery({
     queryKey: ["data", song],
     queryFn: () => getSong(song),
     enabled: !!song.music_file_url,
+    refetchOnMount: false, 
+    onSuccess: (data) => {
+
+    }
   });
 
  // console.log(data, "SONG");

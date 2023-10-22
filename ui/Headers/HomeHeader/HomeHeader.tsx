@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 function HomeHeader() {
     const [scrollY, setScrollY] = useState(0);
     useEffect(() => {
+        if(typeof window !== 'undefined'){
         const handleScroll = () => {
             setScrollY(window.scrollY);
         };
@@ -15,7 +16,7 @@ function HomeHeader() {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }}, []);
     const image = '/images/globe-big_logo.svg'
     const imageLight = '/images/globe-big_logo-black.svg'
     const bgImage = '/images/globe-dot-bg.svg'

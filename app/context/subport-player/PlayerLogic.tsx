@@ -78,7 +78,7 @@ export const usePlaybackTime = (audioRef: any) => {
                 musicPlayer.currentTime = parseFloat(playbackTime);
             }
         };
-
+        if(typeof window !== 'undefined'){
         window.addEventListener('beforeunload', savePlaybackTime);
         window.addEventListener('load', loadPlaybackTime);
 
@@ -86,7 +86,7 @@ export const usePlaybackTime = (audioRef: any) => {
             window.removeEventListener('beforeunload', savePlaybackTime);
             window.removeEventListener('load', loadPlaybackTime);
         };
-    }, [audioRef]);
+    }}, [audioRef]);
 };
 
 export const useAudio = (audioUrl: string | null |undefined, setAudio: (audio: HTMLAudioElement | null) => void) => {
