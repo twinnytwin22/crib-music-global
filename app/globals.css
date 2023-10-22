@@ -18,6 +18,8 @@ p {
 }
 
 h1 {
+  font-family: 'owners', sans-serif;
+
   line-height: 90px !important;
 }
 

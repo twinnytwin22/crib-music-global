@@ -1,5 +1,6 @@
 "use client";
 import { Suspense } from "react";
+import LoadingContainer from "ui/Components/Loading/Loading";
 import SideBarAndFilter from "ui/Components/MusicFilter/SideBarAndFilter";
 import ArtistsPane from "ui/Components/MusicFilter/SideBarAndFilter/ArtistsPane";
 import GenrePane from "ui/Components/MusicFilter/SideBarAndFilter/GenrePane";
@@ -38,7 +39,7 @@ function layout({ children }) {
           filterWindowOpen ? "md:ml-72" : "md:ml-24"
         } relative overflow-hidden`}
       >
-        <Suspense fallback={'loading...'}>
+        <Suspense fallback={<LoadingContainer/>}>
         {children}
         </Suspense>
       </div>
