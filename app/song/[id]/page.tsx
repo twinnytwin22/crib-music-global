@@ -30,7 +30,7 @@ async function page({ params, searchParams }: { params: { id: string | number },
         </div>
         <div className="bg-white dark:bg-black opacity-80 flex fixed h-screen w-screen justify-center items-center" />
 
-        <SongPage song={song} image={image}/>
+        <SongPage song={song} image={image} songs={songs}/>
       </div>
     );
   } else {

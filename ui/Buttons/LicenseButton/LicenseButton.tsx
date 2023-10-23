@@ -2,13 +2,12 @@
 
 import { useLicensingStore } from "./LicenseButtonStore"
 
-function LicenseButton({id}) {
-const {licenseWindowOpen, setLicenseWindowOpen, } = useLicensingStore()
+function LicenseButton({id, song}) {
 
 const handleSetId = () => {
-    useLicensingStore.setState({ licenseWindowOpen: true, id})
+    useLicensingStore.setState({ licenseWindowOpen: true, id, song})
     const setId = useLicensingStore.getState().id
-    console.log(setId, 'SET ID')
+    console.log(song, 'SET ID')
 }
 
 

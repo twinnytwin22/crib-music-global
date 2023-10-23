@@ -51,7 +51,7 @@ const MusicItem = ({ song }: any) => {
         </span>
       </td>
       <td className="px-4 py-2">
-      <LicenseButton id={song.song_id}/>
+      <LicenseButton song={song} id={song.song_id}/>
       </td>
       <td className="">
         <BsThreeDots />

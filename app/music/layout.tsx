@@ -14,7 +14,7 @@ function layout({ children }) {
   const genres = useMusicFilterStore((state) => state.filters.genres);
   const artists = useMusicFilterStore((state) => state.filters.artists);
   const keywords = useMusicFilterStore((state) => state.filters.keywords);
-const {licenseWindowOpen, setLicenseWindowOpen} = useLicensingStore()
+const {licenseWindowOpen, setLicenseWindowOpen, song} = useLicensingStore()
   const paneProps = {
     genres,
     artists,

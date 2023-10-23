@@ -7,7 +7,8 @@ import { Fragment } from 'react';
 import LicenseButton from 'ui/Buttons/LicenseButton/LicenseButton';
 import AudioVisualizer from 'ui/Components/AudioVisualizer/Visualizer';
 import PlayButton from 'ui/Components/Players/PlayButton';
-function SongPage({ song, image }) {
+import RelatedMusicList from './RelatedSongs';
+function SongPage({ song, image, songs }) {
     const { data } = useQuery({
         queryKey: ["data", song],
         queryFn: () => getSong(song),
@@ -30,7 +31,7 @@ function SongPage({ song, image }) {
                         <div className='w-full flex items-center justify-between'>
 
                             <h2 className="text-3xl font-semibold">{song?.title}</h2>
-                            <LicenseButton id={song.song_id} />
+                            <LicenseButton song={song} id={song.song_id} />
 
                         </div>
                         <p>{song.artist_name}</p>
@@ -45,8 +46,8 @@ function SongPage({ song, image }) {
                     </div>
                 </div>
                 <div className='w-full border-t border-zinc-300 dark:border-zinc-800 my-4' />
-                <div className='p-4 w-full flex'>
-                    <div className='w-1/3 border-r border-zinc-300 dark:border-zinc-800 pr-8' >
+                <div className='p-4 w-full md:flex space-y-4 md:space-y-0'>
+                    <div className='md:w-1/3 md:border-r border-zinc-300 dark:border-zinc-800 pr-8' >
 
                         {/* DETAILS */}
                         <Fragment>
@@ -54,7 +55,16 @@ function SongPage({ song, image }) {
                                 Details
                             </h2>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-
+                            Genre: {song.genre}
+                            </p>
+                            <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
+                            Instrumental: {song.instrumental ? 'Yes' : 'No'}
+                            </p>
+                            <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
+                            Lyrics: {song.has_lyrics? 'Yes' : 'No'}
+                            </p>
+                            <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
+                            Stems, wav, mp3, aif formats available with license
                             </p>
                         </Fragment>
                         {/* LYRICS */}
@@ -68,10 +78,11 @@ function SongPage({ song, image }) {
                                 </p>
                             </Fragment>}
                     </div>
-                    <div className='w-2/3 pl-8' >
+                    <div className='md:w-2/3  md:pl-8' >
                         <h2 className='font-semibold text-lg'>
                             More Sounds
                         </h2>
+                        <RelatedMusicList songs={songs}/>
                     </div>
 
                 </div>
