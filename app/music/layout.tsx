@@ -26,11 +26,11 @@ const {licenseWindowOpen, setLicenseWindowOpen, song} = useLicensingStore()
   return (
     <div className="flex relative left-0 right-0 overflow-hidden">
       <SideBarAndFilter />
-      {licenseWindowOpen && <LicenseModal handleClose={() => setLicenseWindowOpen(false)}/>}
+      {licenseWindowOpen && <LicenseModal/>}
 
       {filterWindowOpen && (
         <div className="mt-32 relative right-0">
-          <div className="w-48 bg-zinc-50 dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800  h-screen fixed left-24 top-0 right-0 overflow-y-auto hidden md:block mt-20">
+          <div className={`w-48 bg-zinc-50 dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800  h-screen fixed left-24 top-0 right-0 overflow-y-auto hidden md:block mt-20`}>
             {viewName === "genres" && <GenrePane {...paneProps} />}
             {viewName === "artists" && <ArtistsPane {...paneProps} />}
             {viewName === "moods" && <MoodsPane {...paneProps} />}

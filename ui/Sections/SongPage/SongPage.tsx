@@ -26,10 +26,11 @@ function SongPage({ song, image, songs }) {
                 <div className="flex mx-auto items-center p-4">
                     <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
                         <Image className="rounded" alt={song?.title} src={image} width={220} height={220} />
-                        <div className="absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-50">
+                        <div className="absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  scale-150">
                             <PlayButton audio={data} song={song} className="scale-150" />
                         </div>
-                    </div>  <div className='w-full'>
+                    </div>  
+                    <div className='pl-4 w-full relative max-w-2xl  lg:max-w-4xl  xl:max-w-6xl ml-auto'>
                         <div className='w-full flex items-center justify-between'>
 
                             <h2 className="text-3xl font-semibold">{song?.title}</h2>
@@ -37,7 +38,7 @@ function SongPage({ song, image, songs }) {
 
                         </div>
                         <p>{song.artist_name}</p>
-                        <div className='w-full h-16 overflow-hidden flex justify-between py-4  items-center'>
+                        <div className='w-full h-16 overflow-hidden flex justify-between py-4 re items-center'>
                             <AudioVisualizer audioFile={data} />
                             <div>
                                 <p>

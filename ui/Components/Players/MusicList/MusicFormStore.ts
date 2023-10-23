@@ -64,7 +64,10 @@ export interface Song {
             }
         }),
     filterWindowOpen: false, 
-    setFilterWindowOpen: (filterWindowOpen: boolean, viewName: any) => set({ filterWindowOpen, viewName }),
+    setFilterWindowOpen: (filterWindowOpen: boolean, viewName: any) =>  set((state) => ({
+        viewName,
+        filterWindowOpen: state.viewName === viewName ? filterWindowOpen : true,
+      })),
 
     fetchInitialData: () => {
         // Use the filters from the state when cities and states length is greater than 0

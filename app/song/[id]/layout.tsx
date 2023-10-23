@@ -1,14 +1,11 @@
 "use client";
 import { Suspense } from "react";
-import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
 import LicenseModal from "ui/Components/LicenseModal/LicenseModal";
 import LoadingContainer from "ui/Components/Loading/Loading";
 function layout({ children }) {
-const {licenseWindowOpen, setLicenseWindowOpen, song} = useLicensingStore()
- console.log(song)
   return (
     <div className="relative h-full overflow-y-visible">
-      {licenseWindowOpen && <LicenseModal handleClose={() => setLicenseWindowOpen(false)}/>}
+      <LicenseModal/>
         <Suspense fallback={<LoadingContainer/>}>
         {children}
         </Suspense>

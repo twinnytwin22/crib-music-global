@@ -1,23 +1,27 @@
+import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
-export const LicenseModal = ({ handleClose }) => {
-  const { song } = useLicensingStore();
+export const LicenseModal = () => {
+  const {licenseWindowOpen, setLicenseWindowOpen, song} = useLicensingStore()
+  useHandleOutsideClick(licenseWindowOpen, setLicenseWindowOpen, 'license-modal')
+
   const sampleText = 'For Businesses: Enterprises seeking the perfect musical backdrop for their commercial needs.'
   const forBusinessList = 'Production Company, Agency, Brand, Non-Profit'
   const forCreatorsSub = 'Creators: Individuals and artists looking to enhance their projects with our music.'
   const forCreatorsList = 'Freelancers, YouTubers, Filmmakers, Podcasters, Social Media Influencers, Dancers and Choreographers, Educators'
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center mx-8">
-      <div className="fixed inset-0 max-w-screen w-full  bg-black opacity-50"></div>
-      <div className="bg-zinc-50 right-0 fixed dark:bg-black max-w-sm md:max-w-lg h-full  top-20 w-full mx-auto border rounded border-zinc-200 dark:border-zinc-800 p-4 ">
+    <div className={`fixed inset-0 z-[9999] flex items-center justify-center  ${licenseWindowOpen ? "translate-x-0 " : "translate-x-full"} `}>
+      <div className={`fixed inset-0 max-w-screen w-full  bg-black opacity-50 ${licenseWindowOpen ? "visible " : "invisible"}`}></div>
+      <div className={`license-modal bg-zinc-50 right-0 fixed dark:bg-black max-w-sm md:max-w-lg h-full  top-20 w-full mx-auto border rounded border-zinc-200 dark:border-zinc-800 p-4 duration-300 ease-in-out ${
+    licenseWindowOpen ? "translate-x-0 " : "translate-x-full"} `}>
         <div
-          onClick={handleClose}
+          onClick={() => setLicenseWindowOpen(false)}
           className="w-6 absolute top-3 left-3 z-[99999] text-black dark:text-white"
         >
           <AiOutlineCloseCircle />
         </div>
         <div className="mx-auto w-full relative">
-          <h2 className="text-xl font-semibold text-center mt-4">{song.title}</h2>
+          <h2 className="text-xl font-semibold text-center mt-4">{song?.title}</h2>
           <div className="relative top-32 space-y-4">
             <div className="h-fit w-full flex flex-col space-y-4 p-4 border  border-zinc-200 dark:border-zinc-800 rounded">
               <h2 className="text-lg font-semibold text-center">

@@ -18,12 +18,6 @@ async function page({ params, searchParams }: { params: { id: string | number },
 
   if (artist) {
     const data = await getSong(artist)
-    const getUrl = (path) => {
-      const url =  "https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/artist_images/" +
-        path;
-        return url
-      }
-  
     console.log(data)
 
     return (
