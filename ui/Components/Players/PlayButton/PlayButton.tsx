@@ -1,7 +1,7 @@
 "use client";
-//import { useAuthProvider } from "app/context/auth";
+import { getSong } from "@/utils/db";
+import { useQuery } from "@tanstack/react-query";
 import { useSubportPlayer } from "app/context/subport-player";
-//import { useIpfsImage, useIpfsUrl } from "lib/constants";
 import React from "react";
 import { FaPlayCircle, FaStopCircle } from "react-icons/fa";
 
@@ -21,11 +21,21 @@ function PlayButton({ song, audio }: any) {
   };
   //const { user } = useAuthProvider();
   const newMetaData = song.metaData;
-  const newAudioUrl = audio;
   const newImageUrl = getCoverImage(song?.cover_art_url);
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);
-  
+  const { data } = useQuery({
+    queryKey: ["data", song],
+    queryFn: () => getSong(song),
+    enabled: !!song.music_file_url && !audio,
+    refetchOnMount: false, 
+    onSuccess: (data) => {
+
+    }
+  });
+
+  const newAudioUrl = data || audio;
+
   const handlePlay = async () => {
     if (audioUrl !== newAudioUrl) {
       if (isPlaying) {
@@ -42,11 +52,9 @@ function PlayButton({ song, audio }: any) {
   };
 
   return (
-    mounted &&
-    //user &&
-    newAudioUrl && (
+  (
       <>
-        {isPlaying && audioUrl === newAudioUrl ? (
+        {mounted && isPlaying && audioUrl === newAudioUrl ? (
           <div
             onClick={stop}
             className="hover:scale-110 duration-300 ease-in-out "

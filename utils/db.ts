@@ -1,7 +1,17 @@
-import { supabaseAdmin } from '@/lib/providers/supabase/supabase-lib-admin'
-import { supabase } from '@/lib/site/constants'
-import { v4 as uuid } from 'uuid'
+import { supabaseAdmin } from '@/lib/providers/supabase/supabase-lib-admin';
+import { v4 as uuid } from 'uuid';
 
+export const getSong = async (song) => {
+  try {
+    const songFile = await downloadFile({
+      path: song?.music_file_url,
+      bucket: "tracks",
+    });
+    return songFile;
+  } catch (error) {
+    throw error;
+  }
+};
 export const getAllArtists = async () => {
   try {
     const res = await fetch(`/api/v1/music/getAllArtists/`, {
