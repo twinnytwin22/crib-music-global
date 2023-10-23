@@ -2,16 +2,19 @@
 import DarkModeSwitch from '@/ui/Components/DarkModeSwitch/DarkModeSwitch';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 function NavBar() {
   const image = '/images/crib-logo.png'
   const isHidden = false
   const isMobileMenuOpen = false
- 
+  const pathName = usePathname()
+  const isMusicPage = pathName.startsWith('/music')
+  console.log(isMusicPage)
 
   return (
     <nav className="bg-white dark:bg-black fixed w-full z-50 top-0 left-0 border-b border-zinc-200 dark:border-zinc-700 mx-auto">
-      <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto px-8 p-4 ">
+      <div className={`${isMusicPage ? 'xl:pl-20' : 'pl-0'} max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto px-4  xl:px-8 py-4 `}>
         <Link href="/" className="flex flex-col ">
           <Image
             src={image}
