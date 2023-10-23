@@ -7,7 +7,7 @@ function layout({ children }) {
 const {licenseWindowOpen, setLicenseWindowOpen, song} = useLicensingStore()
  console.log(song)
   return (
-    <div className="relative">
+    <div className="relative h-full overflow-y-visible">
       {licenseWindowOpen && <LicenseModal handleClose={() => setLicenseWindowOpen(false)}/>}
         <Suspense fallback={<LoadingContainer/>}>
         {children}

@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/site/constants";
+import { NextRequest, NextResponse } from "next/server";
 export const revalidate = 0;
 export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
@@ -21,7 +21,7 @@ try {
              artists
           };
           await new Promise((resolve) => setTimeout(resolve, 500));
-          return  NextResponse.json(response);
+          return  NextResponse.json(artists);
         }
         } catch (error) {
           console.error("Error fetching metadata:", error);

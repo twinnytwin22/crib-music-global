@@ -24,11 +24,11 @@ async function page({ params, searchParams }: { params: { id: string | number },
     console.log(data)
 
     return (
-      <div className="relative min-h-screen overflow-hidden">
-        <div className="absolute inset-0">
+      <div className="relative h-full overflow-x-hidden">
+        <div className="absolute inset-0 z-0">
           <Image alt={song?.title} src={image} fill className=" object-cover scale-150 blur" />
         </div>
-        <div className="bg-white dark:bg-black opacity-80 flex fixed h-screen w-screen justify-center items-center" />
+        <div className="bg-white dark:bg-black opacity-80 flex fixed h-full w-screen justify-center items-center touch-auto" />
 
         <SongPage song={song} image={image} songs={songs}/>
       </div>

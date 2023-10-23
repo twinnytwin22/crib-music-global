@@ -57,7 +57,7 @@ function NavBar() {
           id="navbar-sticky"
         >
           {!isHidden && (
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium font-work-sans rounded-sm md:flex-row md:space-x-12 md:mt-0 md:border-0 md:ml-12 select-none">
+            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium font-work-sans rounded-sm md:flex-row md:space-x-12 md:mt-0 md:border-0 md:-ml-4 select-none">
               <li>
                 {/* Existing menu item */}
                 <Link

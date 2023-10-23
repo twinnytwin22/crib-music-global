@@ -20,7 +20,7 @@ function SongPage({ song, image, songs }) {
     });
     return (
         <div className="bg-white dark:bg-black bg-opacity-80 flex justify-center items-center px-4">
-            <div className="bg-white dark:bg-black mx-auto p-4 rounded border border-zinc-200 dark:border-zinc-800 relative top-48 max-w-screen-xl w-full">
+            <div className="bg-white dark:bg-black mx-auto p-4 rounded border border-zinc-200 dark:border-zinc-800 relative top-32 max-w-screen-2xl w-full">
                 <div className="flex mx-auto items-center p-4">
                     <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
                         <Image className="rounded" alt={song?.title} src={image} width={220} height={220} />

@@ -109,7 +109,7 @@ const fetchProfileForEvent = async (id: any) => {
 
 export const getAllArtists = async () => {
   try {
-      const res = await fetch(`${protocol}://${host}/api/v1/music/getAllArtists/`, {
+      const res = await fetch(`https://cribnetwork.io/api/v1/music/getAllArtists/`, {
           method: 'GET',
           cache: 'no-cache',
           headers: {
