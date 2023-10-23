@@ -1,15 +1,10 @@
-import { getCoverImage } from "@/lib/site/constants";
 import { getSong } from "@/utils/db";
 import { getAllSongs } from "@/utils/use-server";
 import Image from "next/image";
 import SongPage from "ui/Sections/SongPage/SongPage";
 
-export async function generateStaticParams() {
-  const { songs } = await getAllSongs();
-  return songs.map((song: any) => ({
-    id: song.song_id.toString(),
-  }));
-}
+export const dynamic = 'force-dynamic' 
+
 
 async function page({ params, searchParams }: { params: { id: string | number }, searchParams: any }) {
   const { id } = params;
@@ -20,7 +15,7 @@ async function page({ params, searchParams }: { params: { id: string | number },
 
   if (song) {
     const data = await getSong(song)
-    const image = getCoverImage(song.cover_art_url);
+    const image = '/song_covers/'+ song.cover_art_url;
     console.log(data)
 
     return (

@@ -30,6 +30,9 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
+    loader: 'custom',
+    loaderFile: './utils/supabase-image-loader.ts',
+
     remotePatterns: [
       {
         protocol:'https',

@@ -2,11 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 function ArtistRowHeader({artists}) {
-    const getUrl = (path) => {
-        const url =  "https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/artist_images/" +
-          path;
-          return url
-        }
+ 
   return (
     <div>
          <div className="flex gap-4 max-w-screen-2xl mx-auto w-full">
@@ -18,7 +14,7 @@ function ArtistRowHeader({artists}) {
           ><Link href={'/artist/' + artist.artist_id}>
             <Image
               alt={artist.artist_name}
-              src={getUrl(artist?.image_url)}
+              src={'/artist_images/' + artist.image_url}
               className=" object-cover hover:scale-110 duration-300 ease-in-out"
               fill
             />

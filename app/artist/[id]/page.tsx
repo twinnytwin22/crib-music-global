@@ -29,7 +29,7 @@ async function page({ params, searchParams }: { params: { id: string | number },
     return (
       <div className="relative min-h-screen overflow-y-visible overflow-x-hidden">
         <div className="absolute inset-0">
-          <Image alt={artist?.artist_name} src={getUrl(artist?.image_url)} fill className=" object-cover scale-150 blur" />
+          <Image alt={artist?.artist_name} src={'/artist_images/'+artist?.image_url} fill className=" object-cover scale-150 blur" />
         </div>
         <div className="bg-white dark:bg-black opacity-80 flex fixed h-screen w-screen justify-center items-center" />
 

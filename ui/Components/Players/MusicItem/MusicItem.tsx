@@ -1,5 +1,4 @@
 "use client";
-import { getCoverImage } from "@/lib/site/constants";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { BsThreeDots } from "react-icons/bs";
@@ -8,7 +7,6 @@ import PlayButton from "../PlayButton";
 
 const MusicItem = ({ song }: any) => {
   const router = useRouter();
-  const imageHash = getCoverImage(song?.cover_art_url);
   return (
     <tr
       key={song.title}
@@ -20,7 +18,7 @@ const MusicItem = ({ song }: any) => {
       >
         <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
           <Image
-            src={imageHash}
+            src={'/song_covers/'+song.cover_art_url}
             className="object-cover w-10 h-10 rounded-md"
             width={40}
             height={40}

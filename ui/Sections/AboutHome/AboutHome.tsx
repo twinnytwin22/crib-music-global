@@ -1,9 +1,8 @@
-import React from 'react'
 import Image from 'next/image'
 
 function AboutHome() {
-    const image = '/images/globe-big_logo.svg'
-    const imageLight = '/images/globe-big_logo-black.svg'
+    const image = '/site_images/globe-big_logo.svg'
+    const imageLight = '/site_images/globe-big_logo-black.svg'
     return (
         <section className="bg-white dark:bg-black">
             <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">

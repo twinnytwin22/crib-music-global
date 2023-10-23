@@ -16,7 +16,7 @@ function PlayButton({ song, audio }: any) {
     updateMetaData,
   } = useSubportPlayer();
   const getCoverImage = (fileName: string) => {
-    const imagePath ='https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/song_covers/' + fileName
+    const imagePath ='/song_covers/' + fileName
     return imagePath
   };
   //const { user } = useAuthProvider();

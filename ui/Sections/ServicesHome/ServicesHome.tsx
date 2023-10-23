@@ -1,7 +1,6 @@
-import React from 'react';
-import { services } from './lib';
-import ContactButton from 'ui/Buttons/ContactButton/ContactButton';
 import Image from 'next/image';
+import ContactButton from 'ui/Buttons/ContactButton/ContactButton';
+import { services } from './lib';
 function ServiceSection({ icon, title, description }) {
   return (
     <div>
@@ -37,7 +36,7 @@ function ServicesHome() {
         className='object-cover w-full h-32 rounded-xl grayscale hover:grayscale-0 duration-300 ease-in-out'
         width={450}
         height={60}
-        src={'/images/studio.jpg'}
+        src={'/site_images/studio.jpg'}
         alt='studio'/>
         </div>
         </div>

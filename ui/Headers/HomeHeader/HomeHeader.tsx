@@ -17,9 +17,9 @@ function HomeHeader() {
             window.removeEventListener('scroll', handleScroll);
         };
     }}, []);
-    const image = '/images/globe-big_logo.svg'
-    const imageLight = '/images/globe-big_logo-black.svg'
-    const bgImage = '/images/globe-dot-bg.svg'
+    const image = '/site_images/globe-big_logo.svg'
+    const imageLight = '/site_images/globe-big_logo-black.svg'
+    const bgImage = '/site_images/globe-dot-bg.svg'
     return (
         <section className='min-h-[600px] h-full bg-white dark:bg-black flex items center overflow-hidden'>
             <Image

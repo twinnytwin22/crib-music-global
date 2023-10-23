@@ -72,6 +72,7 @@ const FooterPlayer = () => {
   //   text: metaData?.artist_name?.toString(),
   //   maxLength: 12,
   // });
+ // console.log(imageUrl)
 
   return (
     <footer className="cursor-pointer sm:cursor-default">
@@ -108,7 +109,7 @@ const FooterPlayer = () => {
                     alt="song-image"
                     width={30}
                     height={30}
-                    blurDataURL={"/images/stock/blur.png"}
+                    blurDataURL={"/site_images/stock/blur.png"}
                     className="aspect-square object-cover rounded-md"
                   />
                 )}
