@@ -50,7 +50,7 @@ function SongPage({ song, image }) {
 
                         {/* DETAILS */}
                         <Fragment>
-                            <h2 className='font-semibold text-xl'>
+                            <h2 className='font-semibold text-lg'>
                                 Details
                             </h2>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
@@ -60,7 +60,7 @@ function SongPage({ song, image }) {
                         {/* LYRICS */}
                         {song.lyrics &&
                             <Fragment>
-                                <h2 className='font-semibold text-xl'>
+                                <h2 className='font-semibold text-lg'>
                                     Lyrics
                                 </h2>
                                 <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
@@ -69,7 +69,7 @@ function SongPage({ song, image }) {
                             </Fragment>}
                     </div>
                     <div className='w-2/3 pl-8' >
-                        <h2 className='font-semibold text-xl'>
+                        <h2 className='font-semibold text-lg'>
                             More Sounds
                         </h2>
                     </div>

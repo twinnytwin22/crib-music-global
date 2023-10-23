@@ -1,5 +1,7 @@
 "use client";
 import { Suspense } from "react";
+import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
+import LicenseModal from "ui/Components/LicenseModal/LicenseModal";
 import LoadingContainer from "ui/Components/Loading/Loading";
 import SideBarAndFilter from "ui/Components/MusicFilter/SideBarAndFilter";
 import ArtistsPane from "ui/Components/MusicFilter/SideBarAndFilter/ArtistsPane";
@@ -12,7 +14,7 @@ function layout({ children }) {
   const genres = useMusicFilterStore((state) => state.filters.genres);
   const artists = useMusicFilterStore((state) => state.filters.artists);
   const keywords = useMusicFilterStore((state) => state.filters.keywords);
-
+const {licenseWindowOpen, setLicenseWindowOpen} = useLicensingStore()
   const paneProps = {
     genres,
     artists,
@@ -24,6 +26,7 @@ function layout({ children }) {
   return (
     <div className="flex relative left-0 right-0 overflow-hidden">
       <SideBarAndFilter />
+      {licenseWindowOpen && <LicenseModal handleClose={() => setLicenseWindowOpen(false)}/>}
 
       {filterWindowOpen && (
         <div className="mt-32 relative right-0">

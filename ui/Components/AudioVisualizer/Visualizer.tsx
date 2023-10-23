@@ -7,6 +7,7 @@ import WaveSurfer from 'wavesurfer.js';
 function AudioVisualizer({ audioFile }) {
   const waveformRef = useRef<any>(null);
   const wavesurferRef = useRef<any>(null);
+  //const [audio, setAudio] = useState<any>(null)
 
   // Access the player store state and actions
   const {
@@ -55,9 +56,9 @@ function AudioVisualizer({ audioFile }) {
     return () => {
       // Stop and destroy the Wavesurfer instance on unmount
       wavesurferRef.current.stop();
-      wavesurferRef.current.destroy();
+      wavesurfer.destroy();
     };
-  }, [audioFile]);
+  }, [audioFile, setCurrentTime, setDuration, isPlaying]);
 
   return (
     <div ref={waveformRef} className='w-full max-w-2xl h-fit'>

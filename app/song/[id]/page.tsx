@@ -26,7 +26,7 @@ async function page({ params, searchParams }: { params: { id: string | number },
     return (
       <div className="relative min-h-screen overflow-hidden">
         <div className="absolute inset-0">
-          <Image alt={song?.title} src={image} layout="fill" className=" object-cover scale-150 blur" />
+          <Image alt={song?.title} src={image} fill className=" object-cover scale-150 blur" />
         </div>
         <div className="bg-white dark:bg-black opacity-80 flex fixed h-screen w-screen justify-center items-center" />
 
