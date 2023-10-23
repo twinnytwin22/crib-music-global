@@ -26,8 +26,8 @@ const RelatedMusicList = ({ songs }: any) => {
       <section className="py-4 self-center w-full max-w-screen-2xl mx-auto rounded justify-center relative flex">
         <div className=" z-20 overflow-hidden bg-white shadow dark:bg-zinc-950 sm:rounded w-full border border-zinc-200 dark:border-zinc-800">
       
-          <div className="overflow-x-clip">
-            <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
+          <div className="overflow-x-scroll">
+            <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400 overflow-x-scroll relative">
               <thead className="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-400">
                 <tr>
                   <th scope="col" className="px-4 py-3">

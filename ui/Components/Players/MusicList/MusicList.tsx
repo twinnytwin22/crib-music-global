@@ -115,8 +115,8 @@ const MusicList = ({ songs }: any) => {
               </button>
             </div>
           </div>
-          <div className="overflow-x-clip">
-            <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
+          <div className="overflow-x-scroll">
+            <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400 overflow-x-scroll relative">
               <thead className="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-400">
                 <tr>
                   <th scope="col" className="px-4 py-3">
