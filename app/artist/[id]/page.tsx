@@ -1,6 +1,6 @@
-import { getSong } from "@/utils/db";
 import { getAllArtists } from "@/utils/use-server";
 import Image from "next/image";
+import ArtistPage from "ui/Sections/ArtistPage/ArtistPage";
 
 export async function generateStaticParams() {
   const { artists } = await getAllArtists();
@@ -17,17 +17,17 @@ async function page({ params, searchParams }: { params: { id: string | number },
   const artist = artists.find((artist: any) => artist.artist_id.toString() === id);
 
   if (artist) {
-    const data = await getSong(artist)
-    console.log(data)
+   // const data = await getSong(artist)≈≈
+   // console.log(data)
 
     return (
-      <div className="relative min-h-screen overflow-y-visible overflow-x-hidden">
-        <div className="absolute inset-0">
-          <Image alt={artist?.artist_name} src={'/artist_images/'+artist?.image_url} fill className=" object-cover scale-150 blur" />
-        </div>
-        <div className="bg-white dark:bg-black opacity-80 flex fixed h-screen w-screen justify-center items-center" />
+      <div className="relative min-h-full bottom-0 overflow-x-hidden z-10">
+        <div className="absolute h-screen inset-0 overflow-visible bg-white dark:bg-black opacity-30 ">
+          <Image alt={artist?.artist_name} src={'/artist_images/'+artist?.image_url} fill className=" object-cover scale-150 blur -z-0" />
 
-        {/* <SongPage artist={artist} image={image} artists={artists}/> */}
+        </div>
+
+      <ArtistPage artist={artist} image={'/artist_images/'+artist?.image_url} />
       </div>
     );
   } else {
