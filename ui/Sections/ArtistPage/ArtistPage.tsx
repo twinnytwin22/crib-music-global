@@ -1,11 +1,13 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 import {
-    FaInstagram,
-    FaSoundcloud,
-    FaSpotify,
-    FaTwitter,
+  FaGlobe,
+  FaInstagram,
+  FaSoundcloud,
+  FaSpotify,
+  FaTwitter,
 } from "react-icons/fa";
 import { SiApplemusic } from "react-icons/si";
 import RelatedMusicList from "../SongPage/RelatedSongs";
@@ -35,11 +37,37 @@ function ArtistPage({ image, artist, songs }) {
               <p className="hidden">{artist?.artist_name}</p>
             </div>
             <div className="flex  items-center space-x-2 md:space-x-4 w-full">
-              <FaSpotify />
-              <FaSoundcloud />
-              <SiApplemusic />
-              <FaTwitter />
-              <FaInstagram />
+              {artist?.social_media_links?.spotify_url && (
+                <Link href={artist.social_media_links.spotify_url}>
+                  <FaSpotify />
+                </Link>
+              )}
+              {artist?.social_media_links?.applemusic_url && (
+                <Link href={artist.social_media_links.applemusic_url}>
+                  <SiApplemusic />
+                </Link>
+              )}
+              {artist?.social_media_links?.soundcloud_url && (
+                <Link href={artist.social_media_links.soundcloud_url}>
+                  <FaSoundcloud />
+                </Link>
+              )}
+              {artist?.social_media_links?.instagram_url && (
+                <Link href={artist.social_media_links.instagram_url}>
+                  <FaInstagram />
+
+                </Link>
+              )}
+              {artist?.social_media_links?.x_url && (
+                <Link href={artist.social_media_links.x_url}>
+                  <FaTwitter />
+                </Link>
+              )}
+              {artist?.social_media_links?.website_url && (
+                <Link href={artist.social_media_links.website_url}>
+                  <FaGlobe />
+                </Link>
+              )}
             </div>
           </div>
         </div>
