@@ -10,8 +10,7 @@ function LicenseButton({id, song}) {
   const url = createQueryString(searchParams)
 const handleSetId = () => {
     useLicensingStore.setState({ licenseWindowOpen: true, id, song})
-    const setId = useLicensingStore.getState().id
-    console.log(song, 'SET ID')
+    useLicensingStore.getState().id
     router.push(pathname + '?' + url('license', 'song'))
 
 }
