@@ -38,7 +38,7 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
     duration: 0,
     isPlaying: false,
     audio: null,
-    volume: 100,
+    volume: 65,
     isMuted: false,
     prevVolume: 100,
     audioUrl: null,
