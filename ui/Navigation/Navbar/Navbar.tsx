@@ -10,7 +10,7 @@ function NavBar() {
   const isMobileMenuOpen = false
   const pathName = usePathname()
   const isMusicPage = pathName.startsWith('/music')
-  console.log(isMusicPage)
+  ///console.log(isMusicPage)
 
   return (
     <nav className="bg-white dark:bg-black fixed w-full z-50 top-0 left-0 border-b border-zinc-200 dark:border-zinc-700 mx-auto">
@@ -18,7 +18,7 @@ function NavBar() {
         <Link href="/" className="flex flex-col ">
           <Image
             src={image}
-            className="h-12 mr-3 invert dark:invert-0 w-auto"
+            className="h-12  mx-3 xl:mx-auto invert dark:invert-0 w-auto"
             alt="Crib Logo"
             width={145}
             height={100}

@@ -1,7 +1,10 @@
 'use client'
 import Image from 'next/image';
 import { Fragment } from 'react';
-function ArtistPage({ image, artist }) {
+import { FaInstagram, FaSoundcloud, FaSpotify, FaTwitter } from 'react-icons/fa';
+import { SiApplemusic } from 'react-icons/si';
+import RelatedMusicList from '../SongPage/RelatedSongs';
+function ArtistPage({ image, artist, songs }) {
 
     console.log(image)
     return (
@@ -10,26 +13,22 @@ function ArtistPage({ image, artist }) {
                 <div className="flex mx-auto items-center p-4">
                     <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
                         <Image className="rounded" alt={artist?.artist_name} src={image} width={220} height={220} />
-                        {/* <div className="absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  scale-150">
-                            <PlayButton audio={data} song={song} className="scale-150" />
-                        </div> */}
+                    
                     </div>  
-                    <div className='pl-4 w-full relative max-w-2xl  lg:max-w-4xl  xl:max-w-6xl ml-auto'>
+                    <div className='w-fit md:flex justify-start items-center space-x-8  space-y-2 md:space-y-0'>
+                    <div className='pl-4 w-fit relative ml-auto'>
                         {/* <div className='w-full flex items-center justify-between'>
 
-                    */} <h2 className="text-3xl font-semibold">{artist?.artist_name}</h2> {/*
-                            <LicenseButton song={song} id={song.song_id} />
-
-                        </div> */}
+                    */} <h2 className="text-2xl md:text-3xl font-semibold">{artist?.artist_name}</h2> 
                         <p>{artist?.artist_name}</p>
-                        {/* <div className='w-full h-16 overflow-hidden flex justify-between py-4 re items-center'>
-                            <AudioVisualizer audioFile={data} />
-                            <div>
-                                <p>
-                                    {formatDuration(song.duration)}
-                                </p>
-                            </div>
-                        </div> */}
+                    </div>
+                    <div className='flex  items-center space-x-2 md:space-x-4 w-full'>
+                    <FaSpotify/>
+                    <FaSoundcloud/>
+<SiApplemusic/>
+                    <FaTwitter/>
+                    <FaInstagram/>
+                    </div>
                     </div>
                 </div>
                 <div className='w-full border-t border-zinc-300 dark:border-zinc-800 my-4' />
@@ -42,34 +41,23 @@ function ArtistPage({ image, artist }) {
                                 Details
                             </h2>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Genre: {artist?.genres}
+                            Genres: {artist?.genres}
                             </p>
-                            {/* <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Instrumental: {song.instrumental ? 'Yes' : 'No'}
-                            </p>
-                            <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Lyrics: {song.has_lyrics? 'Yes' : 'No'}
+                            <p className='max-w-md text-sm italic font-semibold text-zinc-700 dark:text-zinc-300'>
+                            About {artist.artist_name}: 
                             </p>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Stems, wav, mp3, aif formats available with license
-                            </p> */}
+                                {artist?.biography}
+                            </p>
+                      
                         </Fragment>
-                        {/* LYRICS */}
-                        {/* {song.lyrics &&
-                            <Fragment>
-                                <h2 className='font-semibold text-lg'>
-                                    Lyrics
-                                </h2>
-                                <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                                    {song?.lyrics}
-                                </p>
-                            </Fragment>} */}
+
                     </div>
                     <div className='md:w-2/3  md:pl-8' >
                         <h2 className='font-semibold text-lg'>
-                            More Sounds
+                            More Sounds from {artist.artist_name}
                         </h2>
-                        {/* <RelatedMusicList songs={songs}/> */}
+                        <RelatedMusicList songs={songs}/> 
                     </div>
 
                 </div>

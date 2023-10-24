@@ -1,4 +1,4 @@
-import { getAllArtists } from "@/utils/use-server";
+import { getAllArtists, getAllSongs } from "@/utils/use-server";
 import Image from "next/image";
 import ArtistPage from "ui/Sections/ArtistPage/ArtistPage";
 
@@ -19,7 +19,8 @@ async function page({ params, searchParams }: { params: { id: string | number },
   if (artist) {
    // const data = await getSong(artist)≈≈
    // console.log(data)
-
+   const {songs} = await getAllSongs()
+   const currentSongs = songs.filter((song) => song.artist_name === artist.artist_name)
     return (
       <div className="relative min-h-full bottom-0 overflow-x-hidden z-10">
         <div className="absolute h-screen inset-0 overflow-visible bg-white dark:bg-black opacity-30 ">
@@ -27,7 +28,7 @@ async function page({ params, searchParams }: { params: { id: string | number },
 
         </div>
 
-      <ArtistPage artist={artist} image={'/artist_images/'+artist?.image_url} />
+      <ArtistPage songs={currentSongs} artist={artist} image={'/artist_images/'+artist?.image_url} />
       </div>
     );
   } else {

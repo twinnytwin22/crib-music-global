@@ -65,7 +65,7 @@ const MusicList = ({ songs }: any) => {
     const activeFilter = activeFilters.map(a => a)
     // Check if any city or state is present in the location
     const includesFilters = activeFilter.some((filteredGenre) => genre.includes(filteredGenre)) || activeFilter.some((artist) => artist_name.includes(artist));
-    console.log(activeFilter)
+   // console.log(activeFilter)
     //   console.log(activeFilters)
     return includesFilters || activeFilters.length === 0
   });

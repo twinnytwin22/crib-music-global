@@ -1,13 +1,19 @@
 'use client'
-
+import { createQueryString } from "@/lib/hooks/createQueryString"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useLicensingStore } from "./LicenseButtonStore"
 
 function LicenseButton({id, song}) {
-
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+  const url = createQueryString(searchParams)
 const handleSetId = () => {
     useLicensingStore.setState({ licenseWindowOpen: true, id, song})
     const setId = useLicensingStore.getState().id
     console.log(song, 'SET ID')
+    router.push(pathname + '?' + url('license', 'song'))
+
 }
 
 

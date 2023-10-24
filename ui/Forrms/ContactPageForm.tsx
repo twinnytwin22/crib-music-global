@@ -1,8 +1,6 @@
 'use client'
 //import { bookingUrl } from "@/lib/site/constants";
-import Link from "next/link";
-import React, { FormEvent } from "react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { useContactButtonStore } from "../Buttons/ContactButton/contactButtonStore";
 
@@ -15,7 +13,7 @@ const ContactForm = () => {
     last_name: "",
     phone_number: "",
   });
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<string | null>("");
   const store = useContactButtonStore()
 
   const handleChange = (e) => {
