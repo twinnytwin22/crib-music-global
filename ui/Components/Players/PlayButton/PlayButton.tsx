@@ -35,7 +35,7 @@ function PlayButton({ song, audio }: any) {
   });
 
   const newAudioUrl = data || audio;
-
+//console.log(newAudioUrl)
   const handlePlay = async () => {
     if (audioUrl !== newAudioUrl) {
       if (isPlaying) {

@@ -143,15 +143,15 @@ export async function downloadFile ({
   bucket: string
 }) {
   try {
-    const { data, error } = await supabaseAdmin.storage
+    const { data:url, error } = await supabaseAdmin.storage
       .from(bucket)
-      .download(path)
+      .createSignedUrl(path, 3600)
     if (error) {
       throw error
     }
 
-    const url = URL.createObjectURL(data)
-    return url
+   // const url = URL.createObjectURL(data)
+    return url?.signedUrl
   } catch (error) {
     console.log('Error downloading image: ', error)
   }

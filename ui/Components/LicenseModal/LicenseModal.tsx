@@ -12,7 +12,7 @@ export const LicenseModal = () => {
   // const url = createQueryString(searchParams);
   const getParam = (param: string) => searchParams.get(param);
   const license = getParam("license");
-  console.log(license);
+  //console.log(license);
 
   return (
     <ModalWrapper>
@@ -32,7 +32,7 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
   const removeParams = searchParams.delete
   const getParam = (param: string) => searchParams.get(param);
   const license = getParam("license");
-  console.log(license);
+  //console.log(license);
   const open = licenseWindowOpen || license === 'custom'
   useHandleOutsideClick(
     licenseWindowOpen,

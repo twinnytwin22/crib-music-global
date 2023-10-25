@@ -215,13 +215,13 @@ export const addMewSong = async ({updates}: any) => {
 
 export async function downloadItem({path, bucket}: {path: string, bucket: string}) {
   try {
-    const { data, error } = await supabaseAdmin.storage.from(bucket).download(path)
+    const { data:url, error } = await supabaseAdmin.storage.from(bucket).createSignedUrl(path, 3600)
     if (error) {
       throw error
     }
 
-    const url = URL.createObjectURL(data)
-    return url
+//const url = URL.createObjectURL(data)
+    return url?.signedUrl
   } catch (error) {
     console.log('Error downloading image: ', error)
   }
