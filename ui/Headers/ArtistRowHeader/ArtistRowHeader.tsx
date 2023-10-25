@@ -11,10 +11,10 @@ function ArtistRowHeader({artists}) {
           <div
             key={i}
             className=" aspect-video bg-zinc-500 h-full object-cover w-full overflow-hidden rounded relative  border border-zinc-200 dark:border-zinc-800"
-          ><Link href={'/artist/' + artist.artist_id}>
+          ><Link href={`/artist/${artist?.artist_id}`}>
             <Image
               alt={artist.artist_name}
-              src={'/artist_images/' + artist.image_url}
+              src={`/artist_images/${artist?.image_url}`}
               className=" object-cover hover:scale-110 duration-300 ease-in-out"
               fill
             />
