@@ -19,11 +19,11 @@ function ArtistPage({ image, artist, songs }) {
         <div className="flex mx-auto items-center p-4">
           <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
             <Image
-              className="rounded"
+              className="rounded aspect-square object-cover"
               alt={artist?.artist_name}
               src={image}
-              width={220}
-              height={220}
+              width={200}
+              height={200}
             />
           </div>
           <div className="w-fit md:flex justify-start items-center space-x-8  space-y-2 md:space-y-0">
