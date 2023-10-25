@@ -2,7 +2,6 @@
 import { createQueryString } from "@/lib/hooks/createQueryString";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
 import LicenseModal from "ui/Components/LicenseModal/LicenseModal";
 import LoadingContainer from "ui/Components/Loading/Loading";
 import SideBarAndFilter from "ui/Components/MusicFilter/SideBarAndFilter";
@@ -10,13 +9,13 @@ import ArtistsPane from "ui/Components/MusicFilter/SideBarAndFilter/ArtistsPane"
 import GenrePane from "ui/Components/MusicFilter/SideBarAndFilter/GenrePane";
 import MoodsPane from "ui/Components/MusicFilter/SideBarAndFilter/MoodsPane";
 import { useMusicFilterStore } from "ui/Components/Players/MusicList/MusicFormStore";
+import SearchBar from "ui/Components/SearchBar/SearchBar";
 function layout({ children }) {
   const { filterWindowOpen, viewName, handleFilterClick, activeFilters } =
     useMusicFilterStore();
   const genres = useMusicFilterStore((state) => state.filters.genres);
   const artists = useMusicFilterStore((state) => state.filters.artists);
   const keywords = useMusicFilterStore((state) => state.filters.keywords);
-  const { licenseWindowOpen, setLicenseWindowOpen, song } = useLicensingStore();
   const paneProps = {
     genres,
     artists,
@@ -39,12 +38,7 @@ function layout({ children }) {
         } relative `}
       >
         <div className={`flex justify-between w-full relative right-0 left-0 items-center `}>
-        <form className="block lg:pl-2 w-72 md:w-96">
-        <div className="relative z-0">
-        <input type="text" id="default_standard" className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-300 focus:outline-none focus:ring-0 focus:border-red-300 peer" placeholder=" " />
-        <label htmlFor="default_standard" className="absolute text-sm text-zinc-500 dark:text-zinc-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-300 peer-focus:dark:text-red-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Search Sounds</label>
-    </div>
-        </form>
+     <SearchBar/>
        
         <div className={`absolute border-l border-zinc-300 dark:border-zinc-700 h-full p-0 flex px-8 items-center  right-0 ${filterWindowOpen ? "md:right-72" : "md:right-24"}`}>
         <p onClick={() => {
