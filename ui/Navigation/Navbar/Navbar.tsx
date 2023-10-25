@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 function NavBar() {
-  const image = 'site_images/crib-logo.png'
+  const image = '/site_images/crib-logo.png'
   const isHidden = false
   const isMobileMenuOpen = false
   const pathName = usePathname()
