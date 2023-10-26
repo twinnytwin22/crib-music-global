@@ -14,9 +14,7 @@ function SongPage({ song, image, songs }) {
         queryFn: () => getSong(song),
         enabled: !!song.music_file_url,
         refetchOnMount: false,
-        onSuccess: (data) => {
-
-        }
+       
     });
 
     console.log(image)
