@@ -29,9 +29,7 @@ function PlayButton({ song, audio }: any) {
     queryFn: () => getSong(song),
     enabled: !!song.music_file_url && !audio,
     refetchOnMount: false, 
-    onSuccess: (data) => {
-
-    }
+    
   });
 
   const newAudioUrl = data || audio;

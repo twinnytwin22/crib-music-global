@@ -3,9 +3,8 @@ import * as React from "react";
 import { Suspense } from "react";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "next-themes";
 import { SubportPlayer } from "app/context/subport-player";
-import { AuthContextProvider } from "app/context/auth";
+import { ThemeProvider } from "next-themes";
 const queryClient = new QueryClient()
 
 
