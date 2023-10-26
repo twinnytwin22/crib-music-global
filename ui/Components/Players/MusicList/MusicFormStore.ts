@@ -11,7 +11,7 @@ export interface Song {
     duration?: number | null;
     music_file_url?: string;
     cover_art_url?: string | null;
-    keywords?: string[];
+    moods?: string[];
     artist_name?: string | null;
   }
 
@@ -20,14 +20,17 @@ export interface Song {
     filters: {
         genres: string[];
         artists: string[];
-        keywords: string[];
+        moods: string[];
+        hasLyrics: boolean | null
+        instrumental: boolean | null
     };
-    setFilters: ({ genres, artists, keywords }: {   genres: string[]; artists: string[]; keywords: string[];}) => void;
+    setFilters: ({ genres, artists, moods, hasLyrics, instrumental }: {   genres: string[]; artists: string[]; moods: string[]; hasLyrics: boolean; instrumental: boolean}) => void;
     activeFilters: string[];
     setActiveFilters: (newFilters: string[]) => void;
     handleClear: () => void;
     handleClearItem: (filter: string) => void;
     handleFilterClick: (filter: string) => void;
+    handleSongTypeFilter: (filter: any) => void
     fetchInitialData: () => void;
     filterWindowOpen: boolean,
     setFilterWindowOpen: (filterWindowOpen: boolean, viewName: string) => void
@@ -38,11 +41,14 @@ export interface Song {
     filters: {
         genres: [],
         artists: [],
-        keywords: []
+        moods: [],
+        hasLyrics: null, 
+        instrumental: null, 
+
     },
-    setFilters: ({ genres, artists, keywords }) => {
+    setFilters: ({ genres, artists, moods, hasLyrics, instrumental }) => {
         set((state) => ({
-            filters: { genres, artists, keywords},
+            filters: { genres, artists, moods, hasLyrics, instrumental},
             activeFilters: state.activeFilters,
         }));
     },
@@ -63,6 +69,22 @@ export interface Song {
                 return { activeFilters: newFilters };
             }
         }),
+        handleSongTypeFilter: (filter) => {
+            set((state) => {
+              // Create a copy of the current filters object
+              const updatedFilters = { ...state.filters };
+          
+              if (filter === 'instrumental' || filter === 'hasLyrics') {
+                // Toggle the boolean value for the selected filter
+                updatedFilters[filter] = !updatedFilters[filter];
+              }
+              console.log(updatedFilters)
+              return { filters: updatedFilters, activeFilters: state.activeFilters };
+            });
+          }
+          
+          
+        ,
     filterWindowOpen: false, 
     setFilterWindowOpen: (filterWindowOpen: boolean, viewName: any) =>  set((state) => ({
         viewName,
@@ -78,14 +100,16 @@ export interface Song {
             && useMusicFilterStore.getState().filters.genres;
 
 
-        const initialKeywords = useMusicFilterStore.getState().filters.keywords.length > 0
-        && useMusicFilterStore.getState().filters.keywords;
+        const initialKeywords = useMusicFilterStore.getState().filters.moods.length > 0
+        && useMusicFilterStore.getState().filters.moods;
         if (initialKeywords && initialGenres && initialArtists)
             set(() => ({
                 filters: {
                     genres: initialGenres,
                     artists: initialArtists,
-                    keywords: initialKeywords
+                    moods: initialKeywords, 
+                    hasLyrics: null, 
+                    instrumental: null
                 },
                 activeFilters: [],
             }));

@@ -15,11 +15,11 @@ function layout({ children }) {
     useMusicFilterStore();
   const genres = useMusicFilterStore((state) => state.filters.genres);
   const artists = useMusicFilterStore((state) => state.filters.artists);
-  const keywords = useMusicFilterStore((state) => state.filters.keywords);
+  const moods = useMusicFilterStore((state) => state.filters.moods);
   const paneProps = {
     genres,
     artists,
-    keywords,
+    moods,
     handleFilterClick,
     activeFilters,
   };
@@ -44,7 +44,7 @@ function layout({ children }) {
         <p onClick={() => {
     // <pathname>?sort=asc
     router.push(pathname + '?' + url('license', 'custom'))
-  }}className="font-semibold text-black dark:text-white hover:text-red-400 hover:dark:text-red-300 ease-in-out duration-300 cursor-pointer">
+  }}className="font-semibold text-black text-sm dark:text-white hover:text-red-400 hover:dark:text-red-300 ease-in-out duration-300 cursor-pointer">
         Custom Music
         </p>
         </div>

@@ -7,7 +7,7 @@ function MusicFilter() {
   //console.log(activeFilters)
   const genres = useMusicFilterStore((state) => state.filters.genres);
   const artists = useMusicFilterStore((state) => state.filters.artists);
-  const keywords = useMusicFilterStore((state) => state.filters.keywords);
+  const moods = useMusicFilterStore((state) => state.filters.moods);
 
   return (
     <section className="py-4 pt-8 w-full max-w-screen-2xl mx-auto rounded-md justify-center">
@@ -61,8 +61,8 @@ function MusicFilter() {
             <div>
               <p className="font-owners tracking-wide ">Filter Keywords:</p>
               <ul className="flex flex-wrap space-x-2">
-                {keywords.length > 0 &&
-                  keywords.map((keyword, i) => (
+                {moods.length > 0 &&
+                  moods.map((keyword, i) => (
                     <li
                       key={i}
                       className={`bg-blue-100 space-y-2 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-zinc-700 dark:text-blue-300 border border-blue-400 ${

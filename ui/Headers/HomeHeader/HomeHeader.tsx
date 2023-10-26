@@ -22,7 +22,7 @@ function HomeHeader() {
     const imageLight = '/site_images/globe-big_logo-black.svg'
     const bgImage = '/site_images/globe-dot-bg.svg'
     return (
-        <section className='min-h-[600px] h-full bg-white dark:bg-black flex items center overflow-hidden border-b border-zinc-200 dark:border-zinc-800 mt-20 relative'>
+        <section className='min-h-[600px] h-full bg-white dark:bg-black flex items center overflow-hidden border-b border-zinc-200 dark:border-zinc-800 relative'>
             <Image
                 priority
                 src={bgImage}

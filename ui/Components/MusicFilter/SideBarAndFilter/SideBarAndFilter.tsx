@@ -2,7 +2,7 @@
 import { useMusicFilterStore } from "ui/Components/Players/MusicList/MusicFormStore";
 
 function SideBarAndFilter() {
-    const { filterWindowOpen, setFilterWindowOpen } =
+    const { filterWindowOpen, setFilterWindowOpen, handleSongTypeFilter, filters } =
     useMusicFilterStore();
 
   return (
@@ -22,15 +22,30 @@ function SideBarAndFilter() {
       </ul>
       </div>
       <div className='text-center text-xs w-full font-work-sans'>
-      <div className='flex-col  flex items-center justify-around  border-b border-zinc-200 dark:border-zinc-800 w-full aspect-video  '>
-        <input id='instrumental' type='checkbox' value={'Instrumental'} className='w-5 h-5 accent-red-300'/>
-        <label htmlFor='instrumental'>Instrumental</label>
-      </div>
-      <div className='flex-col flex items-center justify-around border-b border-zinc-200 dark:border-zinc-800 aspect-video'>
-        <input id='lyrics' type='checkbox' value={'Lyrics'} className='w-5 h-5 accent-red-300'/>
-        <label htmlFor='lyrics'>Lyrics</label>
-      </div>
-    </div>
+  <div className='flex-col flex items-center justify-around border-b border-zinc-200 dark:border-zinc-800 w-full aspect-video'>
+    <input
+      onChange={() => handleSongTypeFilter('instrumental')}
+      id='instrumental'
+      type='checkbox'
+      name='song-type'
+      checked={filters.instrumental === true}
+      className='w-5 h-5 accent-red-300'
+    />
+    <label htmlFor='instrumental'>Instrumental</label>
+  </div>
+  <div className='flex-col flex items-center justify-around border-b border-zinc-200 dark:border-zinc-800 aspect-video'>
+    <input
+      onChange={() => handleSongTypeFilter('hasLyrics')}
+      id='has_lyrics'
+      type='checkbox'
+      name='song-type'
+      checked={filters.hasLyrics === true}
+      className='w-5 h-5 accent-red-300'
+    />
+    <label htmlFor='Has_lyrics'>Lyrics</label>
+  </div>
+</div>
+
     </div>
 
   </div>

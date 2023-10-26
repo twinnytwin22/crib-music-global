@@ -29,24 +29,30 @@ const MusicList = ({ songs }: any) => {
   const handleRefresh = () => router.refresh();
   const { setActiveFilters, setFilters, activeFilters, filters, handleClear } =
     useMusicFilterStore();
+
+
   useEffect(() => {
     // Call the useLocationExtractor function asynchronously
     async function fetchData() {
       try {
         // const locationDataArray = await useLocationExtractor(events.map((event: any) => event.location));
         const genres: any = Array.from(
-          new Set(songs.map((song: any) => song?.genre))
+          new Set(songs.flatMap((song: any) => song?.genres || [].flat()))
         ).filter(Boolean);
         const artists: any = Array.from(
           new Set(songs.map((song: any) => song?.artist_name))
         ).filter(Boolean);
-        const keywords: any = Array.from(
-          new Set(songs.flatMap((song) => song?.keywords || []))
+        const moods: any = Array.from(
+          new Set(songs.flatMap((song) => song?.moods || []))
         ).filter(Boolean);
 
+        const instrumentalOnly: any = new Set(songs.flatMap((song) => song?.instrumental)
+        )
+        const hasLyrics: any = new Set(songs.flatMap((song) => song?.has_lyrics)
+        )
         if (songs.length > 0) {
           if (!filtersSet) {
-            setFilters({ genres, artists, keywords });
+            setFilters({ genres, artists, moods, instrumental: instrumentalOnly, hasLyrics });
             setFiltersSet(true);
             //  console.log(cities, states);
           }
@@ -60,12 +66,15 @@ const MusicList = ({ songs }: any) => {
   }, [songs, setFilters, setActiveFilters, filtersSet]);
 
   const filteredSongs = songs.filter((song: any) => {
-    const { genre, artist_name } = song
+    const { genres, artist_name, moods, has_lyrics, instrumental } = song
 
     const activeFilter = activeFilters.map(a => a)
     // Check if any city or state is present in the location
-    const includesFilters = activeFilter.some((filteredGenre) => genre.includes(filteredGenre)) || activeFilter.some((artist) => artist_name.includes(artist));
-   // console.log(activeFilter)
+    const includesFilters = 
+    activeFilter.some((filteredGenre) => genres.includes(filteredGenre)) 
+    || activeFilter.some((artist) => artist_name.includes(artist)) 
+    || activeFilter.some((filteredMood) => moods.includes(filteredMood)) 
+   /// activeFilter.map((song) => song.has_lyrics === true)
     //   console.log(activeFilters)
     return includesFilters || activeFilters.length === 0
   });
