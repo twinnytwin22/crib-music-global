@@ -33,9 +33,9 @@ function layout({ children }) {
     <div className="relative overflow-x-hidden  right-0 left-0 mx-auto">
       {/** BEGIN TOP BAR */}
       <div
-        className={`bg-zinc-50 dark:bg-zinc-950 w-screen flex right-0 mx-auto p-4  border-b border-zinc-200 dark:border-zinc-800  ${
+        className={`bg-zinc-50 dark:bg-zinc-950 w-screen flex right-0 mx-auto p-4  border-b border-zinc-200 dark:border-zinc-800 z-50  ${
           filterWindowOpen ? "md:left-72" : "md:left-24"
-        } relative `}
+        } fixed`}
       >
         <div className={`flex justify-between w-full relative right-0 left-0 items-center `}>
      <SearchBar/>
@@ -68,9 +68,9 @@ function layout({ children }) {
         )}
 
         <div
-          className={`w-full left-0 right-0 mx-auto p-4 md:p-8 ${
+          className={`w-full bottom-0 z-0 left-0 right-0 mx-auto mt-8 p-4 md:p-8 max-h-screen h-full min-h-[85vh] ${
             filterWindowOpen ? "md:ml-72" : "md:ml-24"
-          } relative overflow-hidden`}
+          } relative overflow-x-hidden`}
         >
           <Suspense fallback={<LoadingContainer />}>{children}</Suspense>
         </div>
