@@ -33,7 +33,6 @@ function ArtistRowHeader({artists}) {
           </div>
        
         )})}
-        <div className="aspect-video bg-zinc-500 h-full w-full rounded  border border-zinc-200 dark:border-zinc-800"></div>
       </div>
     </div>
   )
