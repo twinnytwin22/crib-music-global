@@ -68,11 +68,12 @@ function layout({ children }) {
         )}
 
         <div
-          className={`w-full bottom-0 z-0 left-0 right-0 mx-auto mt-8 p-4 md:p-8 max-h-screen h-full ${
+          className={`relative overflow-hidden mb-10 w-full top-0 z-0 left-0 right-0 mx-auto mt-8 p-4 md:p-8 h-screen ${
             filterWindowOpen ? "md:ml-72" : "md:ml-24"
-          } relative overflow-hidden mb-4`}
+          } `}
         >
-          <Suspense fallback={<LoadingContainer />}>{children}</Suspense>
+          <Suspense fallback={<LoadingContainer />}>
+            <div className="relative pb-10">{children}</div></Suspense>
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ export default function RootLayout({
       <body className='relative bg-white dark:bg-black overflow-hidden'>
         <Providers>
           <Navbar />
-          <div className='relative top-20  pb-28 h-screen overflow-y-auto max-h-screen '>
+          <div className='relative top-20 bottom-0 pb-28 min-h-full h-screen overflow-y-auto max-h-screen '>
             {children}
           </div>
           <FooterPlayer />
