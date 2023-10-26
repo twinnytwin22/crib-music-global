@@ -10,7 +10,7 @@ async function page() {
 
 
   return (
-    <div className="w-full mt-8 h-full">
+    <div className="w-full mt-8 h-full overflow-y-visible">
     <Suspense>
      <ArtistRowHeader artists={artists}/>
       <MusicList songs={songs?.songs} />
