@@ -22,8 +22,9 @@ const formWaveSurferOptions = (ref: any) => ({
 function AudioVisualizer({ audioFile }) {
   const {
     isPlaying,
+    currentTime
   } = usePlayerStore();
-  const { audioRef } = useSubportPlayer();
+  const { audioRef, audioUrl } = useSubportPlayer();
  const waveformRef = useRef<any>(null);
   const wavesurfer = useRef<any>(null);
   const create = async () => {
@@ -35,23 +36,28 @@ function AudioVisualizer({ audioFile }) {
 
     return wavesurfer?.current
   };
-
+  console.log("audioFile:", audioFile, 'audioUrl:', audioUrl, 'waveformRef:', waveformRef, 'audioRef:', audioRef)
 
   useEffect(() => {
-    create();
+    if(audioFile !== audioUrl){
+    create();}
     return () => {
         wavesurfer.current?.destroy();
     };
   }, [audioFile]); // Listen to changes in audioFile
 
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && audioFile === audioUrl) {
       wavesurfer.current?.play();
     } else {
       wavesurfer.current?.stop();
     }
- 
-  }, [isPlaying]);
+    if(wavesurfer.current && audioFile === audioUrl){
+      wavesurfer.current.setTime(currentTime)
+    }
+
+   
+  }, [isPlaying, currentTime, audioUrl, audioFile]);
  
   return (
     <div ref={waveformRef} className='w-full max-w-2xl '>
