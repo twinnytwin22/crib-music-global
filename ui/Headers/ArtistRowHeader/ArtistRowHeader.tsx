@@ -5,7 +5,7 @@ function ArtistRowHeader({artists}) {
  
   return (
     <div>
-         <div className="flex gap-4 max-w-screen-2xl mx-auto w-full">
+         <div className="flex mt-2 md:mt-0 gap-4 max-w-screen-2xl mx-auto w-full">
         {artists?.artists.map((artist, i) => { 
           const url = `/artist_images/${artist.image_url!}`.trim()
           const  href= `/artist/${artist.artist_id!}`
