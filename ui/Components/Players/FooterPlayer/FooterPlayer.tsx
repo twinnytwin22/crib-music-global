@@ -75,7 +75,7 @@ const FooterPlayer = () => {
  // console.log(imageUrl)
 
   return (
-    <footer className="cursor-pointer sm:cursor-default">
+    <footer className="cursor-pointer sm:cursor-default font-work-sans">
       <div
         className={`fixed bottom-0 left-0 right-0 z-[250] border-zinc-200 dark:border-zinc-800 md:px-6 py-2.5 border-t w-full bg-white dark:bg-black ${
           audioRef && audioUrl ? "block" : "hidden md:block"
