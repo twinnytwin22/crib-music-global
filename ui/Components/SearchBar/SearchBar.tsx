@@ -1,5 +1,4 @@
 "use client";
-
 import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import { getAllArtists, getAllSongs } from "@/utils/use-server";
 import { useQuery } from "@tanstack/react-query";
@@ -22,10 +21,7 @@ function SearchBar() {
     const [isInputFocused, setIsInputFocused] = useState(false); // New state variable to track input focus
     const searchInputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
-        // This function will be called whenever searchTerm or isInputFocused changes
         if (searchTerm?.length >= 2 && searchInputRef?.current) {
-            //  console.log('Search Active', searchResults, searchTerm);
-            // Call the search function here
             search();
         } else {
             setSearchResults({ artists: [], songs: [] });
@@ -57,9 +53,6 @@ function SearchBar() {
         setIsOpen((prevState) => !prevState);
     };
 
-    const handleInputBlur = () => {
-        setIsOpen(false);
-    };
     useHandleOutsideClick(isOpen, setIsOpen, "search-results");
 
     const handleLink = (href: string) => {
@@ -77,7 +70,7 @@ function SearchBar() {
                         autoComplete="off"
                         type="text"
                         id="default_standard"
-                        className="block py-2.5 px-0 w-full text-sm text-zinc-950 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-300 focus:outline-none focus:ring-0 focus:border-red-300 peer"
+                        className="block py-2.5 px-0 w-48 md:w-full text-sm text-zinc-950 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-800 dark:focus:border-red-300 focus:outline-none focus:ring-0 focus:border-red-300 peer"
                         placeholder=" "
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -88,7 +81,7 @@ function SearchBar() {
                     />
                     <label
                         htmlFor="default_standard"
-                        className="absolute text-sm text-zinc-500 dark:text-zinc-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-300 peer-focus:dark:text-red-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                        className="absolute text-xs font-work-sans md:text-sm text-zinc-500 dark:text-zinc-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-300 peer-focus:dark:text-red-300 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                         Search Sounds
                     </label>

@@ -26,7 +26,7 @@ function ArtistRowHeader({artists}) {
               objectFit: 'cover',
             }}
             />
-            <h2 className="text-white absolute bottom-4 left-4 font-semibold text-lg0">
+            <h2 className="text-white absolute bottom-4 left-4 font-bold text-xs md:text-sm lg:text-lg font-owners">
               {artist.artist_name}
             </h2>  
              </Link>

@@ -15,13 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className='relative bg-white dark:bg-black overflow-hidden'>
+      <body className=' bg-white dark:bg-black overflow-hidden'>
         <Providers>
           <Navbar />
-          <div className='relative min-h-full h-full overflow-y-auto'>
+          <div className='relative min-h-full  overflow-y-auto'>
             {children}
           </div>
-          <div className='p-8'/>
           <div className='relative'>
           <FooterPlayer />
           </div>
