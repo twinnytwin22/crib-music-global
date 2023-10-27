@@ -25,7 +25,7 @@ function NavBar() {
   return (
     <nav className="bg-white dark:bg-black fixed w-full z-[9000] top-0 left-0 border-b border-zinc-200 dark:border-zinc-700 mx-auto">
       <div
-        className={` max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto px-4  xl:px-8 py-4 `}
+        className={` max-w-screen flex flex-wrap items-center justify-between mx-auto px-4  xl:px-8 py-4 `}
       >
         <Link href="/" className="flex flex-col ">
           <Image

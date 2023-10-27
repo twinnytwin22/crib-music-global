@@ -1,10 +1,13 @@
 'use client'
 import { formatDuration } from '@/lib/hooks/formatDuration';
+import { useHandleOutsideClick } from '@/lib/hooks/handleOutsideClick';
 import { getSong } from '@/utils/db';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import { BsShareFill } from 'react-icons/bs';
 import LicenseButton from 'ui/Buttons/LicenseButton/LicenseButton';
+import ShareButton from 'ui/Buttons/ShareButton/ShareButton';
 import AudioVisualizer from 'ui/Components/AudioVisualizer/Visualizer';
 import PlayButton from 'ui/Components/Players/PlayButton';
 import RelatedMusicList from './RelatedSongs';
@@ -14,12 +17,21 @@ function SongPage({ song, image, songs }) {
         queryFn: () => getSong(song),
         enabled: !!song.music_file_url,
         refetchOnMount: false,
-       
-    });
 
-    console.log(image)
+    });
+    const [isOpen, setIsOpen] = useState(false)
+    // console.log(image)
+    useHandleOutsideClick(isOpen, setIsOpen, 'blog-button')
     return (
         <div className="bg-white dark:bg-black bg-opacity-80 flex justify-center items-center px-4">
+            {isOpen && (
+                <React.Fragment>
+                    <div className="fixed z-50 inset-0 bg-black opacity-50 w-screen h-screen "></div>
+                    <div className="absolute z-50 w-full max-w-lg right-0 top-0 left-0 mx-auto blog-button">
+                        <ShareButton title={song.title} />
+                    </div>
+                </React.Fragment>
+            )}
             <div className="bg-white dark:bg-black mx-auto p-4 rounded border border-zinc-200 dark:border-zinc-800 relative top-32 max-w-screen-2xl w-full">
                 <div className="flex mx-auto items-center p-4">
                     <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
@@ -27,13 +39,17 @@ function SongPage({ song, image, songs }) {
                         <div className="absolute z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  scale-150">
                             <PlayButton audio={data} song={song} className="scale-150" />
                         </div>
-                    </div>  
+                    </div>
                     <div className='pl-4 w-full relative max-w-2xl  lg:max-w-4xl  xl:max-w-6xl ml-auto'>
                         <div className='w-full flex items-center justify-between'>
 
-                            <h2 className="text-3xl font-semibold">{song?.title}</h2>
-                            <LicenseButton song={song} id={song.song_id} />
+                            <h2 className="text-3xl font-bold font-owners">{song?.title}</h2>
+                            <div className='flex items-center space-x-4'>
+                                <BsShareFill className='relative' onClick={() => setIsOpen(true)} />
 
+                                <LicenseButton song={song} id={song.song_id} />
+                                {/* <ShareButton title={song.title}/> */}
+                            </div>
                         </div>
                         <p>{song.artist_name}</p>
                         <div className='w-full h-16 overflow-hidden flex justify-between py-4 re items-center'>
@@ -56,16 +72,19 @@ function SongPage({ song, image, songs }) {
                                 Details
                             </h2>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Genre: {song.genre}
+                                <span className='font-bold'>Genre:</span> {song.genres.toString()}
                             </p>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Instrumental: {song.instrumental ? 'Yes' : 'No'}
+                                <span className='font-bold'> Moods:</span> {song.moods.toString()}
                             </p>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Lyrics: {song.has_lyrics? 'Yes' : 'No'}
+                                Instrumental: {song.instrumental ? 'Yes' : 'No'}
                             </p>
                             <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
-                            Stems, wav, mp3, aif formats available with license
+                                Lyrics: {song.has_lyrics ? 'Yes' : 'No'}
+                            </p>
+                            <p className='max-w-md text-sm italic text-zinc-700 dark:text-zinc-300'>
+                                Stems, wav, mp3, aif formats available with license
                             </p>
                         </Fragment>
                         {/* LYRICS */}
@@ -83,7 +102,7 @@ function SongPage({ song, image, songs }) {
                         <h2 className='font-semibold text-lg'>
                             More Sounds
                         </h2>
-                        <RelatedMusicList songs={songs}/>
+                        <RelatedMusicList songs={songs} />
                     </div>
 
                 </div>
