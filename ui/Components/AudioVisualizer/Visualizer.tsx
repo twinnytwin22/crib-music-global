@@ -36,7 +36,7 @@ function AudioVisualizer({ audioFile }) {
 
     return wavesurfer?.current
   };
-  console.log("audioFile:", audioFile, 'audioUrl:', audioUrl, 'waveformRef:', waveformRef, 'audioRef:', audioRef)
+  console.log("audioFile:", audioFile, 'audioUrl:', audioUrl)
 
   useEffect(() => {
     if(audioFile !== audioUrl){
