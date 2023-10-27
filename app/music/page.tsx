@@ -3,7 +3,8 @@ import { Suspense } from "react";
 import MusicList from "ui/Components/Players/MusicList";
 import ArtistRowHeader from "ui/Headers/ArtistRowHeader/ArtistRowHeader";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "auto";
+export const revalidate = 600
 
 async function page() {
   const [songs, artists] = await Promise.all([getAllSongs(), getAllArtists()]);

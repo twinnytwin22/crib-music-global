@@ -2,6 +2,10 @@ import { getAllArtists, getAllSongs } from "@/utils/use-server";
 import Image from "next/image";
 import ArtistPage from "ui/Sections/ArtistPage/ArtistPage";
 
+export const fetchCache = 'force-cache'
+export const dynamic = 'force-static'
+
+
 export async function generateStaticParams() {
   const { artists } = await getAllArtists();
   return artists.map((artist: any) => ({
