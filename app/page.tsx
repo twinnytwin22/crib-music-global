@@ -4,7 +4,7 @@ import ServicesHome from '@/ui/Sections/ServicesHome/ServicesHome'
 
 function page() {
   return (
-    <div className='relative '>
+    <div className='relative h-screen '>
     <HomeHeader/>  
     <AboutHome/>
     <ServicesHome/>
