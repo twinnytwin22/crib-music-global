@@ -89,7 +89,7 @@ function SearchBar() {
             </form>
 
             {isOpen && (
-                <div className="absolute max-w-md w-full top-10 left-0  mt-6  bg-white max-h-[300px] overflow-y-scroll dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-2xl rounded-md z-[99990] shadow-zinc-300 dark:shadow-black search-results mx-auto">
+                <div className="absolute max-w-md w-full top-10 left-0  mt-4  bg-white max-h-[300px] overflow-y-scroll dark:bg-zinc-950  border-zinc-200 dark:border-zinc-800 shadow-2xl rounded-md z-[99990] shadow-zinc-300 dark:shadow-black search-results mx-auto">
                     {searchResults?.artists?.length > 0 && (
                         <div className="relative">
                             <div className="p-1 pl-4 bg-zinc-100 dark:bg-black w-full">
