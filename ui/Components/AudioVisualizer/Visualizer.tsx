@@ -23,8 +23,8 @@ function AudioVisualizer({ audioFile }) {
   const {
     isPlaying,
   } = usePlayerStore();
-  const { audioRef:waveformRef } = useSubportPlayer();
- // const waveformRef = useRef<any>(null);
+  const { audioRef } = useSubportPlayer();
+ const waveformRef = useRef<any>(null);
   const wavesurfer = useRef<any>(null);
   const create = async () => {
     const WaveSurfer = (await import("wavesurfer.js")).default;
