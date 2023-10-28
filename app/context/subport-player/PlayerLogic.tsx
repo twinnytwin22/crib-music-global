@@ -202,4 +202,4 @@ export const formWaveSurferOptions = (ref: any) => ({
     
    // normalize: true,
    // partialRender: true
-  });
+  }); 
