@@ -13,6 +13,7 @@ import {
     handleLoadedData,
     handlePause,
     handlePlay,
+    handlePlayPause,
     handleSeekChange,
     handleStop,
     handleTimeUpdate,
@@ -84,6 +85,9 @@ export const SubportPlayer = ({ children
         handlePause(audioRef, setIsPlaying);
     };
 
+    const playPause = () => {
+        handlePlayPause(audioRef, setIsPlaying)
+    }
     // Event handler for stop button
     const stop = () => {
         handleStop(audioRef, setIsPlaying);
@@ -179,7 +183,7 @@ export const SubportPlayer = ({ children
         pause,
         stop, 
         wavesurfer, 
-        contextWaveFormRef, createWaveSurfer
+        contextWaveFormRef, createWaveSurfer, playPause
         // Other context values...
     };
 

@@ -97,6 +97,8 @@ export const useAudio = (audioUrl: string | null |undefined, setAudio: (audio: H
     }, [audioUrl, setAudio]);
 };
 
+
+
 export const useSetupAudio = (
     audioRef: any | null,
     audioUrl: string | null | undefined,
@@ -131,6 +133,22 @@ export const handlePause = (
     audioRef.current?.pause();
     setIsPlaying(false);
 };
+
+export const handlePlayPause = (    
+    audioRef: React.RefObject<HTMLAudioElement>,
+    setIsPlaying: (isPlaying: boolean) => void) => {
+    if (audioRef.current) {
+      if (audioRef.current.paused) {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        });
+      } else {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+  
 
 export const handleStop = (
     audioRef: React.RefObject<HTMLAudioElement>,
