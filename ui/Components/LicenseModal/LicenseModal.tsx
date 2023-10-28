@@ -2,15 +2,12 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
-import CustomMusicForm from "ui/Forrms/CustomMusicForm";
-import SongLicenseForm from "ui/Forrms/SongLicenseForm";
+import CustomMusicForm from "ui/Forms/CustomMusicForm";
+import SongLicenseForm from "ui/Forms/SongLicenseForm";
 export const LicenseModal = () => {
   const { song } = useLicensingStore();
 
   const searchParams = useSearchParams();
-  // const pathname = usePathname();
-  // const router = useRouter();
-  // const url = createQueryString(searchParams);
   const getParam = (param: string) => searchParams.get(param);
   const license = getParam("license");
   //console.log(license);
@@ -30,16 +27,9 @@ export default LicenseModal;
 const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
   const { licenseWindowOpen, setLicenseWindowOpen, song } = useLicensingStore();
   const searchParams = useSearchParams();
-  const removeParams = searchParams.delete
   const getParam = (param: string) => searchParams.get(param);
   const license = getParam("license");
-  //console.log(license);
   const open = licenseWindowOpen || license === 'custom'
-  // useHandleOutsideClick(
-  //   licenseWindowOpen,
-  //   setLicenseWindowOpen,
-  //   "license-modal"
-  // );
   const router = useRouter();
 
   return (
@@ -63,7 +53,7 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
           setLicenseWindowOpen(false);
           router.back()
     
-        }} className="w-6 absolute top-3 left-3 z-[99999] text-black dark:text-white">
+        }} className="w-6 absolute top-3 left-3 z-[99999] text-black dark:text-white scale-150">
           <AiOutlineCloseCircle />
         </div>
         {children}

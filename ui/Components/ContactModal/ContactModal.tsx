@@ -1,5 +1,4 @@
-import React from 'react'
-import ContactForm from '@/ui/Forrms/ContactPageForm';
+import ContactForm from 'ui/Forms/ContactPageForm';
 
 export const ContactModal = ({ handleClose }) => {
     return (
