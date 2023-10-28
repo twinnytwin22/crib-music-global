@@ -1,18 +1,36 @@
+import React from "react";
 
-const SongLicenseForm = ({song}) => {
-    const sampleText =
-    "For Businesses: Enterprises seeking the perfect musical backdrop for their commercial needs.";
+const SongLicenseForm = ({ song }) => {
+  const sampleText = "For Businesses: Enterprises seeking the perfect musical backdrop for their commercial needs.";
   const forBusinessList = "Production Company, Agency, Brand, Non-Profit";
-  const forCreatorsSub =
-    "Creators: Individuals and artists looking to enhance their projects with our music.";
-  const forCreatorsList =
-    "Freelancers, YouTubers, Filmmakers, Podcasters, Social Media Influencers, Dancers and Choreographers, Educators";
-  
-    return (
-      <div className="py-8 lg:py-16 px-4 mx-auto max-w-full">
-          <h2 className="mb-4 text-2xl tracking-tight font-extrabold text-center text-zinc-900 dark:text-white">
-        {song?.title}
+  const forCreatorsSub = "Creators: Individuals and artists looking to enhance their projects with our music.";
+  const forCreatorsList = "Freelancers, YouTubers, Filmmakers, Podcasters, Social Media Influencers, Dancers and Choreographers, Educators";
+
+  return (
+    <div className="py-8 lg:py-16 px-4 mx-auto max-w-full">
+      <h2 className="mb-4 text-2xl tracking-tight font-extrabold text-center text-zinc-900 dark:text-white">
+        {song?.title} - {song?.artist_name}
       </h2>
+      <h2 className="text-center font-bold">
+        Genres:
+      </h2>
+      <div className="flex space-x-2 mx-auto text-center w-full justify-center ">
+        {song?.genres.map((genre, index) => (
+          <React.Fragment key={genre}>
+            <p>{genre}{index !== song.genres.length - 1 ? ',' : ''}</p>
+          </React.Fragment>
+        ))}
+      </div>
+      <h2 className="text-center font-bold">
+        Moods:
+      </h2>
+      <div className="flex space-x-2 mx-auto text-center w-full justify-center ">
+        {song?.moods.map((mood, index) => (
+          <React.Fragment key={mood}>
+            <p>{mood}{index !== song.moods.length - 1 ? ',' : ''}</p>
+          </React.Fragment>
+        ))}
+      </div>
       <div className="relative  space-y-4">
         <div className="h-fit w-full flex flex-col space-y-4 p-4 border  border-zinc-200 dark:border-zinc-800 rounded">
           <h2 className="text-lg font-semibold text-center">
@@ -24,7 +42,7 @@ const SongLicenseForm = ({song}) => {
           <p className="text-xs text-center max-w-sm mx-auto">
             {forCreatorsList}
           </p>
-  
+
           <button className="bg-zinc-100 mx-auto dark:hover:bg-zinc-950 dark:bg-black hover:bg-zinc-200 border border-zinc-200 dark:border-zinc-700 text-primary-800 ease-in-out duration-300 text-xs font-medium px-2 py-1.5 rounded">
             Boy Now
           </button>
@@ -39,14 +57,14 @@ const SongLicenseForm = ({song}) => {
           <p className="text-xs text-center max-w-sm mx-auto">
             {forBusinessList}
           </p>
-  
+
           <button className="bg-zinc-100 mx-auto dark:hover:bg-zinc-950 dark:bg-black hover:bg-zinc-200 border border-zinc-200 dark:border-zinc-700 text-primary-800 ease-in-out duration-300 text-xs font-medium px-2 py-1.5 rounded">
             Contact Us
           </button>
         </div>
       </div>
     </div>
-    )
-  }
+  )
+}
 
 export default SongLicenseForm

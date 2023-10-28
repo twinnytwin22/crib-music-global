@@ -148,7 +148,7 @@ function SearchBar() {
                                         />
                                         <div>
                                             <p className="text-black dark:text-white font-medium text-sm">
-                                                {song.title}
+                                                {song.title} - <span className="text-[10px] text-zinc-700 dark:text-zinc-300">{song.artist_name}</span>
                                             </p>
                                             <div className="text-zinc-500 dark:text-zinc-400 text-sm">
                                                 {song?.location}
