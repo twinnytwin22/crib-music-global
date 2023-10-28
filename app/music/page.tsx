@@ -1,7 +1,7 @@
 import { getAllArtists, getAllSongs } from "@/utils/use-server";
 import { Suspense } from "react";
 import MusicList from "ui/Components/Players/MusicList";
-import ArtistRowHeader from "ui/Headers/ArtistRowHeader/ArtistRowHeader";
+import ArtistRowHeader from "ui/Headers/ArtistRowHeader";
 
 export const dynamic = "auto";
 export const revalidate = 600

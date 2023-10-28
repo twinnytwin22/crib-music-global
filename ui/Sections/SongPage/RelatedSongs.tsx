@@ -1,5 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import MusicItem from "ui/Components/Players/MusicItem/MusicItem";
 
@@ -9,7 +10,10 @@ const Pagination = dynamic(() => import("lib/hooks/pagination"), {
 
 const RelatedMusicList = ({ songs }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const pathname = usePathname()
+  const maxItems = pathname.startsWith('/song') ? 5 : 10
+
+  const [itemsPerPage] = useState(maxItems);
   const indexEnd = currentPage * itemsPerPage;
   const indexStart = indexEnd - itemsPerPage;
   const paginateFront = () => setCurrentPage(currentPage + 1);

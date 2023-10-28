@@ -1,6 +1,7 @@
 import { getAllArtists, getAllSongs } from "@/utils/use-server";
 import Image from "next/image";
-import ArtistPage from "ui/Sections/ArtistPage/ArtistPage";
+import Footer from "ui/Navigation/Footer";
+import ArtistPage from "ui/Sections/ArtistPage";
 
 export const fetchCache = 'force-cache'
 export const dynamic = 'force-static'
@@ -44,21 +45,21 @@ async function page({
     }
     //const href = `/artist/${artist.artist_id!}`;
     return (
-      <div className="relative h-screen bottom-0  z-10">
-        <div className="absolute h-screen inset-0 overflow-visible bg-white dark:bg-black opacity-30 ">
+      <div className='relative h-screen'>
+      <div className="absolute inset-0 overflow-hidden bg-white dark:bg-black opacity-30">
           <Image
             alt={artist?.artist_name}
             src={imageUrl}
-            style={{
-              objectFit: "cover",
-            }}
-            fill
-            sizes="100vh, 100vw"
-            className=" object-cover scale-150 blur -z-0 relative w-auto h-auto"
+            fill className="object-cover scale-150 blur"
           />
         </div>
+        <div className='p-16'/>
 
         <ArtistPage {...artistPageProps} />
+        <div className='p-8'/>
+
+<Footer/>
+<div className='p-8'/>
       </div>
     );
   } else {

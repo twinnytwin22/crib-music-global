@@ -1,20 +1,17 @@
-"use client";
-import { Suspense } from "react";
+// layout.tsx
+import React, { Suspense } from "react";
 import LicenseModal from "ui/Components/LicenseModal/LicenseModal";
 import LoadingContainer from "ui/Components/Loading/Loading";
-export const dynamic = 'auto'
-export const dynamicParams = true
-export const revalidate = 600
 
-function layout({ children }) {
+function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative h-full overflow-y-visible overflow-x-hidden">
-      <LicenseModal/>
-        <Suspense fallback={<LoadingContainer/>}>
-        {children}
+    <div className="">
+      <LicenseModal />
+        <Suspense fallback={<LoadingContainer />}>
+          {children}
         </Suspense>
-      </div>
+    </div>
   );
 }
 
-export default layout;
+export default Layout;

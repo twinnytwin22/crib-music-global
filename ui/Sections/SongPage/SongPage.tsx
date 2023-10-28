@@ -23,7 +23,7 @@ function SongPage({ song, image, songs }) {
     // console.log(image)
     useHandleOutsideClick(isOpen, setIsOpen, 'blog-button')
     return (
-        <div className="bg-white dark:bg-black bg-opacity-80 flex justify-center items-center px-4">
+        <div className="bg-white dark:bg-black bg-opacity-80 flex justify-center items-center px-4  ">
             {isOpen && (
                 <React.Fragment>
                     <div className="fixed z-50 inset-0 bg-black opacity-50 w-screen h-screen "></div>
@@ -32,7 +32,7 @@ function SongPage({ song, image, songs }) {
                     </div>
                 </React.Fragment>
             )}
-            <div className="bg-white dark:bg-black mx-auto p-4 rounded border border-zinc-200 dark:border-zinc-800 relative top-32 max-w-screen-2xl w-full">
+            <div className="bg-white dark:bg-black mx-auto p-4 rounded border border-zinc-200 dark:border-zinc-800 relative  max-w-screen-2xl w-full">
                 <div className="flex mx-auto items-center p-4">
                     <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
                         <Image className="rounded" alt={song?.title} src={image} width={220} height={220} />

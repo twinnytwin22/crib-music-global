@@ -10,6 +10,7 @@ import GenrePane from "ui/Components/MusicFilter/SideBarAndFilter/GenrePane";
 import MoodsPane from "ui/Components/MusicFilter/SideBarAndFilter/MoodsPane";
 import { useMusicFilterStore } from "ui/Components/Players/MusicList/MusicFormStore";
 import SearchBar from "ui/Components/SearchBar/SearchBar";
+import Footer from "ui/Navigation/Footer/Footer";
 function layout({ children }) {
   const { filterWindowOpen, viewName, handleFilterClick, activeFilters } =
     useMusicFilterStore();
@@ -73,6 +74,8 @@ function layout({ children }) {
           <Suspense fallback={<LoadingContainer />}>
             {children}
             </Suspense>
+            <Footer/>
+            <div className="p-8"/>
         </div>
       </div>
     </div>

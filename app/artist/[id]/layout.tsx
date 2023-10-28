@@ -3,7 +3,7 @@ import LicenseModal from "ui/Components/LicenseModal/LicenseModal";
 import LoadingContainer from "ui/Components/Loading/Loading";
 function layout({ children }) {
   return (
-    <div className="relative h-full overflow-y-visible overflow-x-hidden">
+    <div className="">
       <LicenseModal/>
         <Suspense fallback={<LoadingContainer/>}>
         {children}

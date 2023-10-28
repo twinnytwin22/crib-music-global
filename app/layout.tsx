@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className=' bg-white dark:bg-black overflow-hidden'>
         <Providers>
           <Navbar />
-          <div className='relative min-h-full  overflow-y-auto'>
+          <div className='relative min-h-full overflow-y-auto'>
             {children}
             <ToastContainer theme="dark" />
 

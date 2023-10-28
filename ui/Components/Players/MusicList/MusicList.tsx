@@ -1,7 +1,7 @@
 "use client";
 import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { FiRefreshCcw } from "react-icons/fi";
@@ -15,6 +15,8 @@ const Pagination = dynamic(() => import("lib/hooks/pagination"), {
 
 const MusicList = ({ songs }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const pathname = usePathname()
+  
   const [itemsPerPage] = useState(10);
   const indexEnd = currentPage * itemsPerPage;
   const indexStart = indexEnd - itemsPerPage;
