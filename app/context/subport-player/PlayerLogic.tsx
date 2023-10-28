@@ -188,3 +188,18 @@ export const handleLoadedData = (
 export const handleSeekChange = (event: any, audioRef: any) => {
     audioRef.current!.currentTime = Number(event?.target?.value);
 };
+
+export const formWaveSurferOptions = (ref: any) => ({
+    container: ref,
+    waveColor: "#eee",
+    progressColor: "#FCA5A5",
+    cursorColor: "Red",
+    barWidth: 3,
+    barRadius: 3,
+   // responsive: true,
+    height: 35,
+    interact: false, 
+    
+   // normalize: true,
+   // partialRender: true
+  });

@@ -4,9 +4,12 @@ import {
     createContext,
     useCallback,
     useContext,
+    useEffect,
     useRef,
 } from "react";
+import WaveSurfer from "wavesurfer.js";
 import {
+    formWaveSurferOptions,
     formatTime,
     handleLoadedData,
     handlePause,
@@ -21,7 +24,6 @@ import {
     usePlayerStore,
     useSetupAudio,
 } from "./PlayerLogic";
-
 // Create the player context
 export const SubportPlayerContext = createContext<any>(null);
 
@@ -54,8 +56,26 @@ export const SubportPlayer = ({ children
     } = usePlayerStore();
     const audioRef = useRef<any>(audio);
    // const audioContext = new (window.AudioContext)();
- 
+   const wavesurfer = useRef<any>(null);
+   const contextWaveFormRef = useRef<any>(null);
+   const create = () => {
+    const options = formWaveSurferOptions(contextWaveFormRef?.current);
+    wavesurfer.current = WaveSurfer.create(options);
+    wavesurfer.current.load(audioUrl);
+    wavesurfer.current.setMuted(true); // Set volume to 1 (full volume)
+    return wavesurfer?.current
+  };
+//  console.log("audioFile:", audioFile, 'audioUrl:', audioUrl)
 
+  useEffect(() => {
+    if(wavesurfer.current && audioUrl){
+    create();}  
+  }, [audioUrl]); 
+
+
+  
+
+  
     useAudio(audioUrl, setAudio);
 
     const onLoadedData = useCallback(() => {
@@ -167,7 +187,9 @@ export const SubportPlayer = ({ children
         seekChange,
         play,
         pause,
-        stop
+        stop, 
+        wavesurfer, 
+        contextWaveFormRef
         // Other context values...
     };
 
