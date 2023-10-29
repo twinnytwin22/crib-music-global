@@ -11,8 +11,7 @@ function LicenseButton({id, song}) {
 const handleSetId = () => {
     useLicensingStore.setState({ licenseWindowOpen: true, id, song})
     useLicensingStore.getState().id
-    router.push(pathname + '?' + url('license', 'song'))
-
+    router.push(pathname + '?' + url('license', 'song') + '&' + url('id', id))
 }
 
 
