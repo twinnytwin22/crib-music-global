@@ -53,7 +53,7 @@ async function page({
             fill className="object-cover scale-150 blur"
           />
         </div>
-        <div className='p-16'/>
+        <div className='p-20'/>
 
         <ArtistPage {...artistPageProps} />
         <div className='p-8'/>

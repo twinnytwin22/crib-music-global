@@ -11,12 +11,14 @@ import {
     formWaveSurferOptions,
     formatTime,
     handleLoadedData,
+    handleMute,
     handlePause,
     handlePlay,
     handlePlayPause,
     handleSeekChange,
     handleStop,
     handleTimeUpdate,
+    handleUnMute,
     handleVolumeChange,
     useAudio,
     useInterval,
@@ -52,7 +54,7 @@ export const SubportPlayer = ({ children
         imageUrl,
         setSongImage,
         setMetaData,
-        metaData
+        metaData,
     } = usePlayerStore();
     const audioRef = useRef<any>(audio);
    // const audioContext = new (window.AudioContext)();
@@ -67,12 +69,14 @@ export const SubportPlayer = ({ children
 //  console.log("audioFile:", audioFile, 'audioUrl:', audioUrl)
   
 
-  
+    const mute = () => {
+        handleMute(0, audioRef, setVolume)
+    }
     useAudio(audioUrl, setAudio);
     const onLoadedData = useCallback(() => {
         // Set the duration or perform any necessary audio setup
     }, []);
-    useSetupAudio(audioRef, audioUrl, onLoadedData);
+    useSetupAudio(audioRef, audioUrl, onLoadedData, prevVolume, volume, setPrevVolume);
 
     usePlaybackTime(audioRef);
 
@@ -110,13 +114,16 @@ export const SubportPlayer = ({ children
 
     const setMute = () => {
         if (isMuted) {
-            setVolume(prevVolume); // Unmute: set volume to previous volume
+           handleUnMute(prevVolume, audioRef, setVolume) //ute: set volume to previous volume
         } else {
-            setPrevVolume(volume); // Save the current volume before muting
-            setVolume(0); // Mute: set volume to 0
+            setPrevVolume(volume)
+            handleMute(0, audioRef, setVolume)
+           // setPrevVolume(volume); // Save the current volume before muting
+           // setVolume(0); // Mute: set volume to 0
         }
         setIsMuted(!isMuted); // Toggle the mute state
     };
+    
 
     usePlaybackTime(audioRef);
     useInterval(audioRef, setCurrentTime, isPlaying);
@@ -182,6 +189,7 @@ export const SubportPlayer = ({ children
         play,
         pause,
         stop, 
+        mute,
         wavesurfer, 
         contextWaveFormRef, createWaveSurfer, playPause
         // Other context values...

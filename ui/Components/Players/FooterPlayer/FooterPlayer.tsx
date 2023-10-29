@@ -19,6 +19,7 @@ const FooterPlayer = () => {
     }
   };
 
+
   // const closeDrawer = () => {
   //   setIsDrawerOpen(false);
   // };
@@ -59,9 +60,13 @@ const FooterPlayer = () => {
     play,
     pause,
     stop,
-    metaData,
+    metaData,prevVolume, setVolume,
+    mute
   } = useSubportPlayer();
 
+  const handleMute = () => {
+      setMute();
+  }
   //  console.log(imageUrl, "IMAGE FROM FOOTER")
 
   // const truncatedTitle = truncateText({
@@ -164,12 +169,12 @@ const FooterPlayer = () => {
                   {isMuted ? (
                     <HiSpeakerXMark
                       className="text-black dark:text-white text-2xl"
-                      onClick={setMute}
+                      onClick={handleMute}
                     />
                   ) : (
                     <HiSpeakerWave
                       className="text-black dark:text-white text-2xl"
-                      onClick={setMute}
+                      onClick={handleMute}
                     />
                   )}
                 </div>

@@ -40,7 +40,7 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
     audio: null,
     volume: 65,
     isMuted: false,
-    prevVolume: 100,
+    prevVolume: 65,
     audioUrl: null,
     imageUrl: null,
     metaData: null,
@@ -102,16 +102,22 @@ export const useAudio = (audioUrl: string | null |undefined, setAudio: (audio: H
 export const useSetupAudio = (
     audioRef: any | null,
     audioUrl: string | null | undefined,
-    onLoadedData: () => void
+    onLoadedData: () => void, 
+    prevVolume: number,
+    volume: number, 
+    setPrevVolume: any
 ) => {
     useEffect(() => {
         if (audioUrl) {
             audioRef.current = new Audio(audioUrl);
+            audioRef.current!.volume = volume / 100
+
             audioRef.current.addEventListener('loadeddata', onLoadedData);
         }
 
         return () => {
             if (audioRef.current) {
+                setPrevVolume(audioRef.current!.volume )
                 audioRef.current.removeEventListener('loadeddata', onLoadedData);
             }
         };
@@ -191,16 +197,35 @@ export const handleVolumeChange = (
     audioRef.current!.volume = Number(event.target.value) / 100;
 };
 
+export const handleMute= (
+    volume: number,
+    audioRef: React.RefObject<HTMLAudioElement>,
+    setVolume: (volume: number) => void
+) => {
+    setVolume(Number(volume));
+    audioRef.current!.volume = Number(0) / 100;
+};
+
+export const handleUnMute= (
+    prevVolume: number,
+    audioRef: React.RefObject<HTMLAudioElement>,
+    setVolume: (volume: number) => void
+) => {
+    setVolume(Number(prevVolume));
+    audioRef.current!.volume = Number(prevVolume) / 100;
+};
+
 export const handleTimeUpdate = (audioRef: React.RefObject<HTMLAudioElement>, setPosition: (position: number) => void) => {
     setPosition(audioRef.current?.currentTime || 0);
 };
 
 export const handleLoadedData = (
     audioRef: React.RefObject<HTMLAudioElement>,
-    setDuration: (duration: number) => void
+    setDuration: (duration: number) => void, 
 ) => {
     audioRef.current!.load();
     setDuration(audioRef.current?.duration || 0);
+    
 };
 
 export const handleSeekChange = (event: any, audioRef: any) => {
