@@ -4,7 +4,7 @@ import { getAllSongs } from "@/utils/db";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
-import BuildGrantForm from "../BuildGrantForm";
+import BusinessLicenseForm from "./BusinessLicenseForm";
 import { forBusinessList, forCreatorsList, forCreatorsSub, sampleText } from "./lib";
 
 const SongLicenseForm = () => {
@@ -109,7 +109,7 @@ const renderBusinessStep1 = () => {
         <h2 className="mb-4 text-2xl tracking-tight font-extrabold text-center text-zinc-900 dark:text-white">
         {song?.title} - {song?.artist_name}
       </h2>
-       <BuildGrantForm/>
+       <BusinessLicenseForm song={song}/>
     </div>
   </section>
   )

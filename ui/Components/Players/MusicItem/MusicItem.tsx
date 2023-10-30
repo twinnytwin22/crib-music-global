@@ -1,12 +1,22 @@
 "use client";
+import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import LicenseButton from "ui/Buttons/LicenseButton/LicenseButton";
 import PlayButton from "../PlayButton";
+import MenuItemMenu from "./MenuItemMenu";
 
 const MusicItem = ({ song }: any) => {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.song_id}`);
+
+  const handleMenuClick = () => {
+    setIsOpen((prevState) => !prevState);
+   // console.log(open)
+  };
   return (
     <tr
       key={song.title}
@@ -51,8 +61,10 @@ const MusicItem = ({ song }: any) => {
       <td className="px-4 py-2">
       <LicenseButton song={song} id={song.song_id}/>
       </td>
-      <td className="">
-        <BsThreeDots />
+      <td className={`collect-menu${song.song_id}`} onClick={handleMenuClick}>
+        <BsThreeDots/>
+        {isOpen && <MenuItemMenu song={song}/>}
+
       </td>
     </tr>
   );
