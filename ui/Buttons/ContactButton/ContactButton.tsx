@@ -7,7 +7,7 @@ const ContactButton = () => {
   const pathname = usePathname()
 
   return (
-    <Link className="" href={pathname + '/?contact=true'}>
+    <Link className="" href={pathname + '/?contact=inquiry'}>
       <button
         type="button"
       //  onClick={handleOpenModal}

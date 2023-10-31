@@ -1,9 +1,11 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 function Footer() {
   const image = "/site_images/crib-logo.png";
-
+  const pathname = usePathname()
   return (
     <section className="p-4 bg-white sm:p-6 dark:bg-black relative border-t border-zinc-300 dark:border-zinc-800">
       <div className="mx-auto max-w-screen-2xl">
@@ -28,18 +30,18 @@ function Footer() {
               <ul className="text-zinc-600 dark:text-zinc-400">
                 <li className="mb-4">
                   <Link
+                    href={pathname + '/?contact=artist-submission'}
+                    className="hover:underline"
+                  >
+                    Submit Music
+                    </Link>
+                </li>
+                <li>
+                <Link
                     href="https://cribnetwork.io"
                     className="hover:underline"
                   >
                     Crib Network
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://tailwindcss.com/"
-                    className="hover:underline"
-                  >
-                    Business Tips
                   </Link>
                 </li>
               </ul>
