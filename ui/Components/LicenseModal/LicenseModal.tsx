@@ -49,7 +49,7 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
         }`}
       ></div>
       <div
-        className={`license-modal bg-zinc-50 right-0 fixed dark:bg-black max-w-sm md:max-w-lg h-full  top-20 w-full mx-auto border rounded border-zinc-200 dark:border-zinc-800 p-4 duration-300 ease-in-out ${
+        className={`license-modal bg-zinc-50 right-0 fixed dark:bg-black max-w-sm md:max-w-lg h-full  xl:top-20 w-full mx-auto border rounded border-zinc-200 dark:border-zinc-800 p-4 duration-300 ease-in-out ${
           open ? "translate-x-0 " : "translate-x-full"
         } `}
       >
