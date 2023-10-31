@@ -20,9 +20,9 @@ function Footer() {
               />
             </Link>
           </div>
-          <div className="grid grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-3 font-work-sans">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white font-owners">
                 Resources
               </h2>
               <ul className="text-zinc-600 dark:text-zinc-400">
@@ -39,13 +39,13 @@ function Footer() {
                     href="https://tailwindcss.com/"
                     className="hover:underline"
                   >
-                    Tailwind CSS
+                    Business Tips
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white font-owners">
                 Follow us
               </h2>
               <ul className="text-zinc-600 dark:text-zinc-400">
@@ -59,7 +59,7 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="https://discord.gg/4eeurUVvTy"
+                    href="https://discord.com/invite/2kRJmu3RYS"
                     className="hover:underline"
                   >
                     Discord
@@ -68,7 +68,7 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white  font-owners">
                 Legal
               </h2>
               <ul className="text-zinc-600 dark:text-zinc-400">

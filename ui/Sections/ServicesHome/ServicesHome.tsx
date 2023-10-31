@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import ContactButton from 'ui/Buttons/ContactButton/ContactButton';
+import Button from 'ui/Buttons/Button/Button';
 import GoToMusicButton from 'ui/Buttons/GoToMusicButton';
 import { services } from './lib';
 function ServiceSection({ icon, title, shortDescription }) {
@@ -48,7 +48,7 @@ function ServicesHome() {
         </div>
         <div className='mx-auto flex space-x-4 justify-center w-full relative z-20 py-8'>
           <GoToMusicButton />
-          <ContactButton />
+          <Button href={'/services'} text={'Learn More'}/>
         </div>
       </div>
     </section>

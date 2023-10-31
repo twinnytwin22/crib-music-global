@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ContactButton from 'ui/Buttons/ContactButton'
+import Button from 'ui/Buttons/Button/Button'
 import GoToMusicButton from 'ui/Buttons/GoToMusicButton'
 
 function AboutHome() {
@@ -30,7 +30,7 @@ function AboutHome() {
                     <p className="mb-6 font-light text-zinc-500 md:text-lg dark:text-zinc-300">{introP}</p>
                     <div className='mx-auto flex space-x-4  w-full relative z-20 py-8'>
                     <GoToMusicButton/>
-                    <ContactButton />
+                    <Button href={'/services'} text={'Learn More'}/>
                 </div>
                 </div>
             </div>

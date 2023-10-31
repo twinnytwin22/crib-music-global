@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu } from "react-icons/fi";
+import ContactButton from "ui/Buttons/ContactButton/ContactButton";
 import { create } from "zustand";
 const useMobileMenuStore = create((set: any) => ({
   isMobileMenuOpen: false,
@@ -20,7 +21,6 @@ function NavBar() {
   const isMusicPage = pathName.startsWith("/music");
   ///console.log(isMusicPage)
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore();
-  //useHandleOutsideClick(isSubMenuOpen, setIsSubMenuOpen, "drop-dizzle");
 
   return (
     <nav className="bg-white dark:bg-black fixed w-full z-[9000] top-0 left-0 border-b border-zinc-200 dark:border-zinc-700 mx-auto">
@@ -38,9 +38,13 @@ function NavBar() {
           />
         </Link>
         <div className="flex md:order-2 gap-4 items-center w-auto">
-          <div className="">
+        <div className="">
             <DarkModeSwitch />
           </div>
+        <div className="">
+            <ContactButton/>
+          </div>
+       
           {/* <ContactButton /> */}
           <button
             data-collapse-toggle="navbar-sticky"
@@ -60,14 +64,14 @@ function NavBar() {
           }`}
           id="navbar-sticky"
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium font-work-sans rounded-sm md:flex-row md:space-x-12 md:mt-0 md:border-0 md:-ml-4 select-none">
+          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium font-work-sans rounded-sm md:flex-row md:space-x-12 md:mt-0 md:border-0 ml-24 select-none">
             <li>
               {/* Existing menu item */}
               <Link
-                href="/about"
+                href="/"
                 className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
               >
-                About
+              Home
               </Link>
             </li>
             <li className="relative">

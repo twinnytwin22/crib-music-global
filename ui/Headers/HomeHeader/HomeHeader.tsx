@@ -1,7 +1,7 @@
 'use client'
-import ContactButton from '@/ui/Buttons/ContactButton/ContactButton';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import Button from 'ui/Buttons/Button/Button';
 import GoToMusicButton from 'ui/Buttons/GoToMusicButton/GoToMusicButton';
 
 function HomeHeader() {
@@ -58,7 +58,7 @@ function HomeHeader() {
                 
                 <div className='mx-auto flex space-x-4 justify-center w-full relative z-20 py-8'>
                     <GoToMusicButton/>
-                    <ContactButton />
+                    <Button href={'/services'} text={'Learn More'}/>
                 </div>
             </div>
         </section>
