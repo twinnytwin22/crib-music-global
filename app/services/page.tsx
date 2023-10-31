@@ -14,22 +14,22 @@ async function page() {
   const musicSupH = `Music Supervision`;
 
   // SUBHEADINGS
-  const techSupportSub = `Empowering Businesses for Success`;
-  const debuggingCodeReviewSub = `Enhancing Code Quality and Performance`;
-  const systemAdminSub = `Efficient System Management and Maintenance`;
-  const troubleshootingSupportSub = `Rapid Resolution of Technical Issues`;
-  const techTrainingSub = `Building Technical Proficiency and Expertise`;
-
+  const techSupportSub = `Discover Our Comprehensive Services`;
+  const musicSupSub = `Elevate Your Music in Every Frame`;
+  const musicAdminSub = `Hassle-Free Administrative Support`;
+  const musicPubSub = `Maximize Your Music's Earning Potential`;
+  const musicLicenseSub = `Licensing Expertise at Your Fingertips`;
+  const musicMasteringSub = `Elevate Your Sound to Perfection`
   // PARAGRAPHS
   const techSupportP = `At CRIB, we are dedicated to empowering businesses for success. Unlock your full potential with our transformative multichannel services and innovative technology. Enhance customer experiences, drive revenue growth, and achieve sustainable success with our seamless solutions.`;
 
-  const debuggingCodeReviewP = `Code quality and performance are critical to your software's success. Our experts specialize in debugging and code review for Javascript, Typescript, React, and Solidity. We ensure your code is efficient, secure, and error-free.`;
+  const musicSupP = `Code quality and performance are critical to your software's success. Our experts specialize in debugging and code review for Javascript, Typescript, React, and Solidity. We ensure your code is efficient, secure, and error-free.`;
 
-  const systemAdminP = `Efficient system administration is the backbone of a stable IT environment. Our team excels at managing and maintaining your systems, ensuring they run smoothly and securely, so you can focus on core business activities.`;
+  const musicAdminP = `Efficient system administration is the backbone of a stable IT environment. Our team excels at managing and maintaining your systems, ensuring they run smoothly and securely, so you can focus on core business activities.`;
 
-  const troubleshootingSupportP = `Technical issues can disrupt operations. With our troubleshooting support, you can count on rapid problem resolution. We're here to get your systems back on track, minimizing downtime and maximizing productivity.`;
+  const musicPubP = `Technical issues can disrupt operations. With our troubleshooting support, you can count on rapid problem resolution. We're here to get your systems back on track, minimizing downtime and maximizing productivity.`;
 
-  const techTrainingP = `Building technical proficiency and expertise is essential. We offer comprehensive technical training programs that equip your team with the knowledge and skills they need to excel in today's tech-driven landscape.`;
+  const musicLicenseP = `Building technical proficiency and expertise is essential. We offer comprehensive technical training programs that equip your team with the knowledge and skills they need to excel in today's tech-driven landscape.`;
 
   const whyUs = `Why Choose Us
   At CRIB, we are committed to excellence in every aspect of web design. Here's why you should choose us:
@@ -57,7 +57,7 @@ async function page() {
             <p className="max-w-2xl mb-6 font-light text-zinc-600 lg:mb-8 md:text-lg lg:text-xl dark:text-zinc-300 italic">
               {techSupportSub}
             </p>
-            <p className="font-light text-zinc-500 sm:text-lg dark:text-zinc-400 mb-4">
+            <p className="font-light text-zinc-500 sm:text-lg dark:text-zinc-300 mb-4">
               {techSupportP}
             </p>
             <ContactButton />
@@ -75,15 +75,15 @@ async function page() {
       </section>
       <section className="bg-white dark:bg-black  border-b border-zinc-300 dark:border-zinc-800 py-16">
         <div className="gap-16 flex flex-col items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-          <div className="font-light  text-zinc-500 sm:text-lg dark:text-zinc-400 order-last lg:order-first">
+          <div className="font-light  text-zinc-500 sm:text-lg dark:text-zinc-300 order-last lg:order-first">
             <h2 className="mb-4 text-4xl tracking-tight font-semibold text-zinc-900 dark:text-white  font-owners">
               {musicLicenseH}
             </h2>
             <p className="max-w-2xl mb-6 font-light text-zinc-600 lg:mb-8 md:text-lg lg:text-xl dark:text-zinc-300 italic">
-              {techTrainingSub}
+              {musicLicenseSub}
             </p>
 
-            <p className="mb-4">{techTrainingP}</p>
+            <p className="mb-4">{musicLicenseP}</p>
             <ContactButton />
           </div>
           <div className="mx-auto object-cover max-w-lg w-full relative order-first lg:order-last">
@@ -108,30 +108,30 @@ async function page() {
               className="my-8 rounded-2xl object-cover w-max h-max"
             />
           </div>
-          <div className="font-light text-zinc-500 sm:text-lg dark:text-zinc-400">
+          <div className="font-light text-zinc-500 sm:text-lg dark:text-zinc-300">
             <h2 className="mb-4 text-4xl tracking-tight font-semibold text-zinc-900 dark:text-white  font-owners">
               {musicPubH}
             </h2>
             <p className="max-w-2xl mb-6 font-light text-zinc-600 lg:mb-8 md:text-lg lg:text-xl dark:text-zinc-300 italic">
-              {troubleshootingSupportSub}
+              {musicPubSub}
             </p>
 
-            <p className="mb-4">{troubleshootingSupportP}</p>
+            <p className="mb-4">{musicPubP}</p>
             <ContactButton />
           </div>
         </div>
       </section>
       <section className="bg-white dark:bg-black  border-b border-zinc-300 dark:border-zinc-800 py-16">
         <div className="gap-16 flex flex-col items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-          <div className="font-light  text-zinc-500 sm:text-lg dark:text-zinc-400 order-last lg:order-first">
+          <div className="font-light  text-zinc-500 sm:text-lg dark:text-zinc-300 order-last lg:order-first">
             <h2 className="mb-4 text-4xl tracking-tight font-semibold text-zinc-900 dark:text-white  font-owners">
               {musicAdminH}
             </h2>
             <p className="max-w-2xl mb-6 font-light text-zinc-600 lg:mb-8 md:text-lg lg:text-xl dark:text-zinc-300 italic">
-              {systemAdminSub}
+              {musicAdminSub}
             </p>
 
-            <p className="mb-4">{systemAdminP}</p>
+            <p className="mb-4">{musicAdminP}</p>
             <ContactButton />
           </div>
           <div className="mx-auto object-cover max-w-lg w-full relative order-first lg:order-last">
@@ -159,15 +159,15 @@ async function page() {
               className="my-8 rounded-2xl object-cover w-max h-max"
             />
           </div>
-          <div className="font-light text-zinc-500 sm:text-lg dark:text-zinc-400">
+          <div className="font-light text-zinc-500 sm:text-lg dark:text-zinc-300">
             <h2 className="mb-4 text-4xl tracking-tight font-semibold text-zinc-900 dark:text-white  font-owners">
               {musicSupH}
             </h2>
             <p className="max-w-2xl mb-6 font-light text-zinc-600 lg:mb-8 md:text-lg lg:text-xl dark:text-zinc-300 italic">
-              {debuggingCodeReviewSub}
+              {musicSupSub}
             </p>
 
-            <p className="mb-4">z{debuggingCodeReviewP}</p>
+            <p className="mb-4">z{musicSupP}</p>
             <ContactButton />
           </div>
         </div>

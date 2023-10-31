@@ -26,11 +26,10 @@ function ServicesHome() {
         <div className='md:flex justify-between items-start md:space-x-8'>
           <div className="max-w-screen-md mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-medium font-owners text-zinc-900 dark:text-white">
-              Ready to take on your music needs.
+            Let's craft something extraordinary, together.
             </h2>
             <p className="text-zinc-500 sm:text-xl dark:text-zinc-300 font-light">
-              Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
-            </p>
+            We offer music licensing, administration, and supervision services, connecting both musicians and content creators to global success. .</p>
           </div>
           <div className='w-full h-40 '>
             <Image
