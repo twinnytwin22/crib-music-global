@@ -7,7 +7,7 @@ function Footer() {
   const image = "/site_images/crib-logo.png";
   const pathname = usePathname()
   return (
-    <section className="p-4 bg-white sm:p-6 dark:bg-black relative border-t border-zinc-300 dark:border-zinc-800">
+    <section className="p-4 bg-white sm:p-6 text-sm dark:bg-black relative border-t border-zinc-300 dark:border-zinc-800">
       <div className="mx-auto max-w-screen-2xl">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
