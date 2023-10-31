@@ -40,17 +40,9 @@ export async function POST(req: Request) {
     return NextResponse.json("error: Method Not Allowed", { status: 405 });
   }
   if (req.method === "POST") {
-    const { subject, email, message, first_name, last_name, phone_number } =
-      await req.json();
-    const updates = {
-      subject,
-      email,
-      message,
-      first_name,
-      last_name,
-      phone_number,
-      form_type: "Inquiry",
-    };
+    const updates = await req.json();
+      const { subject, email, message, first_name, last_name, phone_number } = updates
+  
     if (!email) {
       return NextResponse.json("error: Email is required");
     }

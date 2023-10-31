@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { toast } from "react-toastify";
@@ -32,7 +32,7 @@ function BuildGrantForm() {
     "What is a primary goal you have for your company? List 1-3",
   ];
   const router = useRouter();
-
+  const pathname = usePathname()
   const initialState: FormProps = {
     email: "",
     subject: "",
@@ -77,10 +77,10 @@ function BuildGrantForm() {
       try {
         const updates: FormProps = {
           ...formData,
-          form_type: "Build Grant",
-          subject: "Build Grant",
+          form_type: "Custom Music Request",
+          subject: "Custom Music Request",
         };
-        const res = await fetch("/api/submissions/general", {
+        const res = await fetch("/api/contact/requests/custom-music", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updates),
@@ -94,6 +94,8 @@ function BuildGrantForm() {
       } catch (err) {
         setStatus("error");
         console.log("Error sending email. Please try again later.");
+      } finally {
+        router.push(pathname)
       }
     }
   };

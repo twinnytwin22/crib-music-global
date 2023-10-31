@@ -21,6 +21,7 @@ function HomeHeader() {
     const image = '/site_images/globe-big_logo.svg'
     const imageLight = '/site_images/globe-big_logo-black.svg'
     const bgImage = '/site_images/globe-dot-bg.svg'
+    const introP =`Welcome to Crib Music Global, where music finds its global stage. We are your one-stop destination for music licensing, administration, and supervision services. At Crib Music Global, we harmonize your creative journey with the modern world, opening doors to endless opportunities.`
     return (
         <section className='min-h-[600px] h-full bg-white dark:bg-black flex items center overflow-hidden border-b border-zinc-200 dark:border-zinc-800 relative'>
             <Image
@@ -29,7 +30,7 @@ function HomeHeader() {
                 alt="Background"
                 fill
                 quality={75}
-                className='-z-0 grayscale contrast-125 brightness-125 object-cover opacity-20 dark:opacity-30'
+                className='-z-0 grayscale contrast-125 brightness-125 object-cover opacity-10 dark:opacity-30'
                 style={{ transform: `translateY(${scrollY * 0.5}px)` }}
             />
 
@@ -53,7 +54,7 @@ function HomeHeader() {
                 />
                 </div>
                 <h1 className='relative text-4xl md:text-5xl lg:text-7xl font-medium font-owners text-center tracking-wider '>Your<span className='text-transparent bg-clip-text bg-gradient-to-r to-red-400 from-red-200'> Global Music</span> Partner.</h1>
-                <p className=' px-4 max-w-2xl mx-auto text-center justify-center py-8'>Flowbite helps you connect with friends and communities of people who share your interests. Connecting with your friends and family as well as discovering new ones is easy with features like Groups.</p>
+                <p className=' px-4 max-w-2xl mx-auto text-center justify-center py-8 sm:text-lg font-light text-zinc-500 md:text-xl dark:text-zinc-300'>{introP}</p>
                 
                 <div className='mx-auto flex space-x-4 justify-center w-full relative z-20 py-8'>
                     <GoToMusicButton/>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import ContactButton from 'ui/Buttons/ContactButton/ContactButton';
 import GoToMusicButton from 'ui/Buttons/GoToMusicButton';
 import { services } from './lib';
-function ServiceSection({ icon, title, description }) {
+function ServiceSection({ icon, title, shortDescription }) {
   return (
     <div>
       <div className='flex items-center -ml-4'>
@@ -12,7 +12,7 @@ function ServiceSection({ icon, title, description }) {
         <h3 className="mb-2 text-xl font-medium font-owners dark:text-white">{title}</h3>
 
       </div>
-      <p className="text-zinc-500 dark:text-zinc-400">{description}</p>
+      <p className="text-zinc-500 dark:text-zinc-300 font-light">{shortDescription}</p>
     </div>
   );
 }
@@ -21,14 +21,14 @@ function ServicesHome() {
 
 
   return (
-    <section className="bg-zinc-100 dark:bg-zinc-950 w-full">
+    <section className="bg-zinc-100 dark:bg-zinc-950 w-full ">
       <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <div className='md:flex justify-between items-start md:space-x-8'>
           <div className="max-w-screen-md mb-8 lg:mb-16">
             <h2 className="mb-4 text-4xl tracking-tight font-medium font-owners text-zinc-900 dark:text-white">
-              Designed for business teams like yours
+              Ready to take on your music needs.
             </h2>
-            <p className="text-zinc-500 sm:text-xl dark:text-zinc-400">
+            <p className="text-zinc-500 sm:text-xl dark:text-zinc-300 font-light">
               Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
             </p>
           </div>
