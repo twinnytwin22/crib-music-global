@@ -64,12 +64,12 @@ function NavBar() {
           }`}
           id="navbar-sticky"
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium font-work-sans rounded-sm md:flex-row md:space-x-12 md:mt-0 md:border-0 ml-24 select-none">
+          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium font-work-sans rounded-sm md:flex-row md:space-x-12 md:mt-0 md:border-0 md:ml-24 select-none">
             <li>
               {/* Existing menu item */}
               <Link
                 href="/"
-                className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
+                className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
               >
               Home
               </Link>
@@ -81,7 +81,7 @@ function NavBar() {
                 //  onMouseEnter={() => setIsSubMenuOpen(true)}
                 //   onMouseLeave={() => setIsSubMenuOpen(false)}
               >
-                <Link href={'/services'} className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300">
+                <Link href={'/services'} className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300">
                   Services
                 </Link>
                 {/* Submenu */}
@@ -99,7 +99,7 @@ function NavBar() {
             <li className="">
               <Link
                 href="/music"
-                className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
+                className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
               >
                 Music
               </Link>

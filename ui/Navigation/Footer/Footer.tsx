@@ -51,10 +51,10 @@ function Footer() {
               <ul className="text-zinc-600 dark:text-zinc-400">
                 <li className="mb-4">
                   <Link
-                    href="https://github.com/themesberg/flowbite"
+                    href="https://instagram.com/cribmusicglobal"
                     className="hover:underline "
                   >
-                    Github
+                    Instagram
                   </Link>
                 </li>
                 <li>
@@ -97,19 +97,19 @@ function Footer() {
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
             <Link
-              href="#"
+            href="https://facebook.com"
               className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
             >
               <FaFacebook />{" "}
             </Link>
             <Link
-              href="#"
+               href="https://instagram.com/cribmusicglobal"
               className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
             >
               <FaInstagram />{" "}
             </Link>
             <Link
-              href="#"
+                href="https://x.com/"
               className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
             >
               <FaTwitter />{" "}

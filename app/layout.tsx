@@ -2,6 +2,7 @@ import Providers from '@/lib/providers/Providers'
 import Navbar from '@/ui/Navigation/Navbar'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
+import LicenseModal from 'ui/Components/LicenseModal/LicenseModal'
 import FooterPlayer from 'ui/Components/Players/FooterPlayer'
 import './globals.css'
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           <div className='relative min-h-full overflow-y-auto'>
+            <LicenseModal/>
             {children}
             <ToastContainer theme="dark" />
 

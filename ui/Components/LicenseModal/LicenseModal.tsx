@@ -2,6 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
+import ContactForm from "ui/Forms/ContactPageForm";
 import CustomMusicForm from "ui/Forms/CustomMusicForm";
 import SongLicenseForm from "ui/Forms/SongLicenseForm";
 export const LicenseModal = () => {
@@ -10,6 +11,7 @@ export const LicenseModal = () => {
   const searchParams = useSearchParams();
   const getParam = (param: string) => searchParams.get(param);
   const license = getParam("license");
+  const contact = getParam('contact')
   //console.log(license);
 
   return (
@@ -18,6 +20,7 @@ export const LicenseModal = () => {
        <SongLicenseForm/>
       )}
       {license === 'custom' && <CustomMusicForm/>}
+      {contact &&<ContactForm/>}
     </ModalWrapper>
   );
 };
@@ -30,7 +33,8 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname()
   const getParam = (param: string) => searchParams.get(param);
   const license = getParam("license");
-  const open = licenseWindowOpen || license
+  const contact = getParam('contact')
+  const open = licenseWindowOpen || license || contact
   const router = useRouter();
 
   return (
