@@ -5,7 +5,7 @@ import GoToMusicButton from 'ui/Buttons/GoToMusicButton'
 function AboutHome() {
     const image = '/site_images/globe-big_logo.svg'
     const imageLight = '/site_images/globe-big_logo-black.svg'
-    const introP = `Our mission at Crib Music Global is simple: to empower musicians and creators by simplifying music licensing, administration, and supervision. We're dedicated to streamlining the music industry's complexities, safeguarding your rights, and propelling your music to a global audience, ensuring you receive the recognition and compensation you deserve.`
+    const introP = `Our mission is clear: to empower musicians and creators, bridging the gap between the artistic and the visual. We simplify the intricacies of music licensing, administration, and supervision, ensuring that both musicians and film/video content creators have a seamless path to success. We're dedicated to safeguarding your rights and making your work resonate on a global stage, whether it's the music that sets the scene or the scene that elevates the music. We're here to help`
     return (
         <section className="bg-white dark:bg-black border-b border-zinc-200 dark:border-zinc-800">
             <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
@@ -26,7 +26,7 @@ function AboutHome() {
                     priority
                 />
                 <div className="mt-4 md:mt-0">
-                    <h2 className="mb-4 text-4xl tracking-tight font-medium font-owners text-zinc-900 dark:text-white">Let's create more tools and ideas that brings us together.</h2>
+                    <h2 className="mb-4 text-4xl tracking-tight font-medium font-owners text-zinc-900 dark:text-white">Providing quality music services.</h2>
                     <p className="mb-6 font-light text-zinc-500 md:text-lg dark:text-zinc-300">{introP}</p>
                     <div className='mx-auto flex space-x-4  w-full relative z-20 py-8'>
                     <GoToMusicButton/>
