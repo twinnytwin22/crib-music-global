@@ -91,7 +91,7 @@ function Footer() {
         <hr className="my-6 border-zinc-200 sm:mx-auto dark:border-zinc-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-zinc-500 sm:text-center dark:text-zinc-400">
-            © 2022{" "}
+            © 2023{" "}
             <a href="https://cribnetwork.io" className="hover:underline">
               CRIB Music Global™, CRIB LLC, Crib Network
             </a>

@@ -104,9 +104,9 @@ const renderBusinessStep1 = () => {
       
     <div className="py-8  px-4 mx-auto max-w-full">
         <h2 className="mb-4 text-2xl tracking-tight font-extrabold text-center text-zinc-900 dark:text-white">Business License Inquiry</h2>
-        <p className="mb-8  font-light text-center text-zinc-500 dark:text-zinc-400 ">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
+        <p className="mb-8 font-light text-center text-zinc-500 dark:text-zinc-300 ">Fill out the following information and our team with reach out with a quote within 24 hours.</p>
        
-        <h2 className="mb-4 text-2xl tracking-tight font-extrabold text-center text-zinc-900 dark:text-white">
+        <h2 className="mb-4 text-xl tracking-tight font-extrabold text-center text-zinc-900 dark:text-white">
         {song?.title} - {song?.artist_name}
       </h2>
        <BusinessLicenseForm song={song}/>

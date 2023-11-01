@@ -186,24 +186,6 @@ function BusinessLicenseForm({song}) {
             Your website URL
           </label>
         </div>
-        <div className="relative z-0 w-full mb-6 group">
-          <input
-            value={formData.linkedin_profile}
-            onChange={handleChange}
-            type="url"
-            name="linkedin_profile"
-            id="linkedin_profile"
-            className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            htmlFor="linkedin_profile"
-            className="peer-focus:font-medium absolute text-sm text-zinc-500 dark:text-zinc-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-300 peer-focus:dark:text-red-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            LinkedIn Profile
-          </label>
-        </div>
 
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 w-full mb-6 group">
