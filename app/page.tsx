@@ -6,7 +6,7 @@ import Footer from 'ui/Navigation/Footer'
 export const fetchCache = 'force-cache'
 export const dynamic = 'force-static'
 
-const metaImage = 'https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/site_images/crib-logo-big.png'
+const metaImage = 'https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/site_images/CribArtboard%201%20copy@4x.png'
 export const metadata: Metadata = {
   openGraph: {
     title: "CRIB Music Global",
