@@ -1,4 +1,5 @@
 "use client";
+import { ScrollingTruncatedText, truncateText } from "@/lib/hooks/truncateText";
 //import { useAuthProvider } from "app/context/auth";
 import { useSubportPlayer } from "app/context/subport-player";
 import { useHandleOutsideClick } from "lib/hooks/handleOutsideClick";
@@ -10,15 +11,8 @@ const FooterPlayer = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   useHandleOutsideClick(isDrawerOpen, setIsDrawerOpen, "player-drawer");
   const toggleDrawer = () => {
-    if (!isDrawerOpen) {
-      setIsDrawerOpen(true);
-      return;
-    } else {
-      setIsDrawerOpen(false);
-      return;
-    }
+    setIsDrawerOpen(!isDrawerOpen);
   };
-
 
   // const closeDrawer = () => {
   //   setIsDrawerOpen(false);
@@ -60,24 +54,28 @@ const FooterPlayer = () => {
     play,
     pause,
     stop,
-    metaData,prevVolume, setVolume,
-    mute
+    metaData,
+    prevVolume,
+    setVolume,
+    mute,
   } = useSubportPlayer();
 
   const handleMute = () => {
-      setMute();
-  }
+    setMute();
+  };
   //  console.log(imageUrl, "IMAGE FROM FOOTER")
 
-  // const truncatedTitle = truncateText({
-  //   text: metaData?.name?.toString(),
-  //   maxLength: 12,
-  // });
-  // const truncatedArtistName = truncateText({
-  //   text: metaData?.artist_name?.toString(),
-  //   maxLength: 12,
-  // });
- // console.log(imageUrl)
+  const truncatedTitle = truncateText({
+    text: metaData?.title?.toString(),
+    maxLength: 12,
+  });
+  const truncatedArtistName = truncateText({
+    text: metaData?.artist_name?.toString(),
+    maxLength: 15,
+  });
+  // console.log(imageUrl)
+
+  //console.log(metaData)
 
   return (
     <footer className="cursor-pointer sm:cursor-default font-work-sans text-xs md:text-sm">
@@ -86,7 +84,7 @@ const FooterPlayer = () => {
           audioRef && audioUrl ? "block" : "hidden md:block"
         }`}
       >
-        <div className="z-[300] w-full px-6 py-2.5  mx-auto relative  items-center place-items-center h-12">
+        <div className="z-[300] w-full px-2.5 md:px-6 py-2.5  mx-auto relative  items-center place-items-center h-12">
           {audioRef && audioUrl && (
             <div className="player-drawer flex items-center justify-between max-w-screen-2xl mx-auto w-full">
               <audio
@@ -98,11 +96,23 @@ const FooterPlayer = () => {
                 <source src={audioUrl} type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
-              {/* <div className="px-4 text-xs w-full flex flex-col md:w-40 min-w-[150px] relative">
-                                    <ScrollingTruncatedText text={metaData.name.toString()} maxLength={12} />
-                                    <h3 className={`scrolling-text-div ${metaData?.artist_name?.length > 12 ? 'scrolling-text-effect' : ''}`}>  {metaData ? truncatedArtistName : ''}</h3>
-                                </div> */}
-              <div className="mx-auto w-full space-x-4 relative flex items-center ">
+              <div className="px-4 text-xs w-fit flex flex-col md:w-40 md:min-w-[150px] relative">
+                <ScrollingTruncatedText
+                  text={metaData?.title.toString()}
+                  maxLength={12}
+                />
+                <p
+                  className={`scrolling-text-div w-fit ${
+                    metaData && metaData?.artist_name?.length > 15
+                      ? "scrolling-text-effect"
+                      : ""
+                  }`}
+                >
+                  {" "}
+                  {metaData ? truncatedArtistName : ""}
+                </p>
+              </div>
+              <div className="mx-auto w-full space-x-2 md:space-x-4 relative flex items-center ">
                 {!imageUrl ? (
                   <div
                     onClick={toggleDrawer}
@@ -140,9 +150,7 @@ const FooterPlayer = () => {
                 >
                   <FaStop />
                 </button>
-                <div className="block ">
-                  {formatTime(currentTime)}
-                </div>
+                <div className="block ">{formatTime(currentTime)}</div>
                 <div className="sm:w-full block ">
                   <input
                     readOnly

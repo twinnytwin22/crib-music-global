@@ -17,8 +17,8 @@ const useMobileMenuStore = create((set: any) => ({
 function NavBar() {
   const image = "/site_images/crib-logo.png";
   //const isHidden = false
-  const pathName = usePathname();
-  const isMusicPage = pathName.startsWith("/music");
+  const pathname = usePathname();
+  const isMusicPage = pathname.startsWith("/music");
   ///console.log(isMusicPage)
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore();
 
@@ -38,10 +38,10 @@ function NavBar() {
           />
         </Link>
         <div className="flex md:order-2 gap-4 items-center w-auto">
-        <div className="">
+        <div className="hidden md:block">
             <DarkModeSwitch />
           </div>
-        <div className="">
+        <div className="hidden md:block">
             <ContactButton/>
           </div>
        
@@ -103,6 +103,19 @@ function NavBar() {
               >
                 Music
               </Link>
+            </li>
+            <li className="block md:hidden">
+            <Link  href={pathname + '/?contact=inquiry'}
+                className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
+              >
+                Contact
+              </Link>
+            </li>
+            <li className="flex md:hidden py-2 pl-3 pr-4 items-center justify-start w-fit gap-3 ">
+              
+              Color Mode: 
+            <DarkModeSwitch />
+
             </li>
           </ul>
         </div>

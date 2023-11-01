@@ -13,9 +13,9 @@ export const ScrollingTruncatedText: React.FC<TruncatedText> = ({ text, maxLengt
     // const truncatedText = text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
 
     return (
-        <div className="scrolling-text-container w-40 pr-4">
+        <div className="scrolling-text-container md:w-40 pr-4 whitespace-nowrap">
 
-            <div className={`scrolling-text w-40 pr-8 max-w-[160px] whitespace-nowrap overflow-hidden  mx-auto  ${text.length > maxLength ? 'scroll-text' : ''}`}>
+            <div className={`scrolling-text flex flex-nowrap w-24 md:w-40 md:pr-8 max-w-[160px] whitespace-nowrap overflow-hidden  mx-auto  ${text.length > maxLength ? 'scroll-text' : ''}`}>
                 {text}
             </div>
         </div>

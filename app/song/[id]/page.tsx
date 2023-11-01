@@ -1,5 +1,4 @@
-import { getSong } from "@/utils/db";
-import { getAllSongs } from "@/utils/use-server";
+import { getAllArtists, getAllSongs } from "@/utils/use-server";
 import Image from "next/image";
 import Footer from 'ui/Navigation/Footer';
 import SongPage from "ui/Sections/SongPage";
@@ -9,24 +8,38 @@ export const dynamic = 'force-dynamic';
 
 async function page({ params, searchParams }: { params: { id: string | number }, searchParams: any }) {
   const { id } = params;
-  const { songs } = await getAllSongs();
+
+  const [{songs}, {artists}] = await Promise.all([
+    getAllSongs(),
+    getAllArtists()
+  ])
 
   // Check if there is a matching song_id for the given id
   const song = songs.find((song: any) => song.song_id.toString() === id);
 
   if (song) {
-    const data = await getSong(song);
+    //const data = await getSong(song);
     const image = '/song_covers/' + song.cover_art_url;
-    console.log(data);
+    const artist = artists.find(
+      (artist: any) => artist.artist_name.toString() === song.artist_name
+    );
+  
+   // console.log(data);
 
+    const songPageProps = {
+      song, 
+      image, 
+      songs, 
+      artist
+    }
     return (
       <div className='relative h-screen'>
-      <div className="absolute inset-0 overflow-hidden bg-white dark:bg-black opacity-30">
+      <div className="absolute inset-0 overflow-visible bg-white dark:bg-black opacity-30">
           <Image alt={song?.title} src={image} fill className="object-cover scale-150 blur" />
         </div>
         <div className='p-16'/>
 
-        <SongPage song={song} image={image} songs={songs} />
+        <SongPage {...songPageProps} />
         <div className='p-8'/>
 
     <Footer/>

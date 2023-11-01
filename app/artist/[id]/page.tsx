@@ -3,9 +3,8 @@ import Image from "next/image";
 import Footer from "ui/Navigation/Footer";
 import ArtistPage from "ui/Sections/ArtistPage";
 
-export const fetchCache = 'force-cache'
-export const dynamic = 'force-static'
-
+export const fetchCache = "force-cache";
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
   const { artists } = await getAllArtists();
@@ -39,27 +38,28 @@ async function page({
     const imageUrl = `/artist_images/${artist.image_url!}`.trim();
 
     const artistPageProps = {
-      songs: currentSongs, 
-      image: imageUrl, 
-      artist
-    }
+      songs: currentSongs,
+      image: imageUrl,
+      artist,
+    };
     //const href = `/artist/${artist.artist_id!}`;
     return (
-      <div className='relative h-screen'>
-      <div className="absolute inset-0 overflow-hidden bg-white dark:bg-black opacity-30">
+      <div className="relative h-screen">
+        <div className="absolute inset-0 overflow-visible bg-white dark:bg-black opacity-30">
           <Image
             alt={artist?.artist_name}
             src={imageUrl}
-            fill className="object-cover scale-150 blur"
+            fill
+            className="object-cover scale-150 blur"
           />
         </div>
-        <div className='p-20'/>
+        <div className="p-20" />
 
         <ArtistPage {...artistPageProps} />
-        <div className='p-8'/>
+        <div className="p-8" />
 
-<Footer/>
-<div className='p-8'/>
+        <Footer />
+        <div className="p-8" />
       </div>
     );
   } else {

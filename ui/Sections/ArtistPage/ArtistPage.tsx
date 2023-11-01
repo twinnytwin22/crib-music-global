@@ -31,7 +31,7 @@ function ArtistPage({ image, artist, songs }) {
               {/* <div className='w-full flex items-center justify-between'>
 
                     */}{" "}
-              <h2 className="text-2xl md:text-3xl font-semibold whitespace-nowrap">
+              <h2 className="text-xl md:text-3xl font-semibold whitespace-nowrap">
                 {artist?.artist_name}
               </h2>
               <p className="hidden">{artist?.artist_name}</p>

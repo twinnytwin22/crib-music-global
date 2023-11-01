@@ -19,8 +19,13 @@ function PlayButton({ song, audio }: any) {
     const imagePath ='/song_covers/' + fileName
     return imagePath
   };
+
+
   //const { user } = useAuthProvider();
-  const newMetaData = song.metaData;
+  const newMetaData = {
+    title: song.title, 
+    artist_name: song.artist_name
+  }
   const newImageUrl = getCoverImage(song?.cover_art_url);
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => setMounted(true), []);

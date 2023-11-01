@@ -11,7 +11,7 @@ async function page() {
 
 
   return (
-    <div className="w-full relative py-28 min-h-full">
+    <div className="w-full relative py-28 mt-4 md:mt-0 min-h-full">
     <Suspense>
      <ArtistRowHeader artists={artists}/>
       <MusicList songs={songs?.songs} />

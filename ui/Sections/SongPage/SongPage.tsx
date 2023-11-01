@@ -4,6 +4,7 @@ import { useHandleOutsideClick } from '@/lib/hooks/handleOutsideClick';
 import { getSong } from '@/utils/db';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { Fragment, useState } from 'react';
 import { BsShareFill } from 'react-icons/bs';
 import LicenseButton from 'ui/Buttons/LicenseButton/LicenseButton';
@@ -11,7 +12,7 @@ import ShareButton from 'ui/Buttons/ShareButton/ShareButton';
 import AudioVisualizer from 'ui/Components/AudioVisualizer/Visualizer';
 import PlayButton from 'ui/Components/Players/PlayButton';
 import RelatedMusicList from './RelatedSongs';
-function SongPage({ song, image, songs }) {
+function SongPage({ song, image, songs, artist }) {
     const { data } = useQuery({
         queryKey: ["data", song],
         queryFn: () => getSong(song),
@@ -43,7 +44,7 @@ function SongPage({ song, image, songs }) {
                     <div className='pl-4 w-full relative max-w-2xl  lg:max-w-4xl  xl:max-w-6xl ml-auto'>
                         <div className='w-full flex items-center justify-between'>
 
-                            <h2 className="text-3xl font-bold font-owners">{song?.title}</h2>
+                            <h2 className="text-xl md:text-3xl font-bold font-owners">{song?.title}</h2>
                             <div className='flex items-center space-x-4'>
                                 <BsShareFill className='relative' onClick={() => setIsOpen(true)} />
 
@@ -51,7 +52,9 @@ function SongPage({ song, image, songs }) {
                                 {/* <ShareButton title={song.title}/> */}
                             </div>
                         </div>
+                        <Link href={'/artist/' + artist?.artist_id} className=' hover:underline duration-300 ease-in-out'>
                         <p>{song.artist_name}</p>
+                        </Link>
                         <div className='w-full h-16 overflow-hidden flex justify-between py-4 re items-center'>
                             <AudioVisualizer audioFile={data} />
                             <div>
