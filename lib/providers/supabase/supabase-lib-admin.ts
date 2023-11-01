@@ -34,7 +34,7 @@ export const supabaseSRkey = process.env.SUPABASE_SERVICE_ROLE_KEY
                               metadata: product.metadata,
                             };
                           
-                            const { error } = await supabaseAdmin.from("products").upsert([productData]);
+                            const { error } = await supabaseAdmin.from("licenses").upsert([productData]);
                             if (error) throw error;
                             console.log(`Product inserted/updated: ${product.id}`);
                           };
@@ -54,7 +54,7 @@ export const supabaseSRkey = process.env.SUPABASE_SERVICE_ROLE_KEY
                               metadata: price.metadata,
                             };
                           
-                            const { error } = await supabaseAdmin.from("prices").upsert([priceData]);
+                            const { error } = await supabaseAdmin.from("license_prices").upsert([priceData]);
                             if (error) throw error;
                             console.log(`Price inserted/updated: ${price.id}`);
                           };
@@ -169,7 +169,7 @@ export const supabaseSRkey = process.env.SUPABASE_SERVICE_ROLE_KEY
                             };
                           
                             const { error } = await supabaseAdmin
-                              .from("subscriptions")
+                              .from("license_orders")
                               .upsert([subscriptionData]);
                             if (error) throw error;
                             console.log(

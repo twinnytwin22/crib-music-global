@@ -1,8 +1,8 @@
 'use server'
 import { Database } from "@/types/Database";
 import {
-    createRouteHandlerClient,
-    createServerComponentClient,
+  createRouteHandlerClient,
+  createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { cache } from "react";
@@ -56,13 +56,13 @@ export const supabaseRouteHandler = cache(() => {
   
   export async function getSubscription() {
     try {
-      const { data: subscription } = await supabaseAdmin
-        .from("subscriptions")
+      const { data: orders } = await supabaseAdmin
+        .from("license_orders")
         .select("*, prices(*, products(*))")
         .in("status", ["trialing", "active"])
         .maybeSingle()
         .throwOnError();
-      return subscription;
+      return orders;
     } catch (error) {
       console.error("Error:", error);
       return null;
@@ -71,7 +71,7 @@ export const supabaseRouteHandler = cache(() => {
   
   export const getActiveProductsWithPrices = async () => {
     const { data, error } = await supabaseAdmin
-      .from("products")
+      .from("licenses")
       .select("*, prices(*)")
       .eq("active", true)
       .eq("prices.active", true)
