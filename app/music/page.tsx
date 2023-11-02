@@ -14,7 +14,7 @@ async function page() {
     <div className="w-full relative py-28 mt-4 md:mt-0 min-h-full">
     <Suspense>
      <ArtistRowHeader artists={artists}/>
-      <MusicList songs={songs?.songs} />
+      <MusicList songs={songs?.songs || songs} />
     </Suspense>
     </div>
   );
