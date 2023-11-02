@@ -14,7 +14,7 @@ function AudioVisualizer({ audioFile }) {
 
   useEffect(() => {
     // Create a WaveSurfer instance if it doesn't exist or if the audio file has changed
-    if (!wavesurfer.current || currentAudioUrl && extractSongURL(audioFile) !== (extractSongURL(currentAudioUrl) || extractSongURL(audioUrl))  ) {
+    if (!wavesurfer.current || currentAudioUrl && extractSongURL(audioFile) !== (extractSongURL(currentAudioUrl) || extractSongURL(audioUrl))) {
       // Clean up the previous instance
       if (wavesurfer.current) {
         wavesurfer.current.destroy();
