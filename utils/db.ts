@@ -14,7 +14,7 @@ export const getSong = async (song) => {
 };
 export const getAllArtists = async () => {
   try {
-    const res = await fetch(`/api/v1/music/getAllArtists/`, {
+    const res = await fetch(`/api/v1/getAllArtists/`, {
       method: 'GET',
       cache: 'no-cache',
       headers: {
@@ -38,7 +38,7 @@ export const getAllArtists = async () => {
 
 export const getAllSongs = async () => {
   try {
-    const res = await fetch(`/api/v1/music/getAllSongs/`, {
+    const res = await fetch(`/api/v1/getAllSongs/`, {
       method: 'GET',
       cache: 'no-cache',
       headers: {

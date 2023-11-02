@@ -41,7 +41,7 @@ function AudioVisualizer({ audioFile }) {
 
   useEffect(() => {
     // If the audio is playing and corresponds to this visualizer instance, update the time
-    if (wavesurfer.current && (currentAudioUrl && isPlaying && extractSongURL(audioFile) ===extractSongURL(currentAudioUrl)) ) {
+    if (wavesurfer.current && (currentAudioUrl && isPlaying && extractSongURL(audioFile) === extractSongURL(currentAudioUrl)) ) {
       wavesurfer.current.setTime(currentTime);
     }
   }, [isPlaying, currentTime, audioFile, currentAudioUrl]);

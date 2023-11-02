@@ -25,11 +25,11 @@ const {data: songs} = useQuery({
   refetchOnMount: false, 
   enabled: !!id
 })
-const song = songs?.songs.find((currentSong) => currentSong?.song_id === Number(id))
-
+const song = songs?.songs?.find((currentSong) => currentSong?.song_id === Number(id)) || songs?.find((currentSong) => currentSong?.song_id === Number(id))
+  console.log(songs, id)
 const renderStep1 = () => {
 //console.log(currentSong)
-  return (
+  return id && song && (
     <div className="py-8  px-4 mx-auto max-w-full">
       <h2 className="mb-4 text-2xl tracking-tight font-extrabold text-center text-zinc-900 dark:text-white">
         {song?.title} - {song?.artist_name}
