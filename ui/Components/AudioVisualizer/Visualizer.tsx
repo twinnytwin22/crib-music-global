@@ -13,7 +13,7 @@ function AudioVisualizer({ audioFile }) {
 
   useEffect(() => {
     // Create a WaveSurfer instance if it doesn't exist or if the audio file has changed
-    if (!wavesurfer.current || audioFile !== (currentAudioUrl || audioUrl)) {
+    if (!wavesurfer.current || audioFile !== (currentAudioUrl || audioUrl)  ) {
       // Clean up the previous instance
       if (wavesurfer.current) {
         wavesurfer.current.destroy();
@@ -41,8 +41,10 @@ function AudioVisualizer({ audioFile }) {
 
   useEffect(() => {
     // If the audio is playing and corresponds to this visualizer instance, update the time
-    if (wavesurfer.current && (isPlaying && audioFile === currentAudioUrl)) {
+    if (wavesurfer.current && (isPlaying && audioFile === currentAudioUrl) ) {
       wavesurfer.current.setTime(currentTime);
+
+      
     }
   }, [isPlaying, currentTime, audioFile, currentAudioUrl]);
 
