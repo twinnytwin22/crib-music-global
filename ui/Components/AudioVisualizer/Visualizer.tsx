@@ -9,12 +9,22 @@ function AudioVisualizer({ audioFile }) {
     currentTime,
     audioUrl: currentAudioUrl,
   } = usePlayerStore();
-  const { audioUrl, wavesurfer, contextWaveFormRef, createWaveSurfer, playPause } =
-    useSubportPlayer();
+  const {
+    audioUrl,
+    wavesurfer,
+    contextWaveFormRef,
+    createWaveSurfer,
+    playPause,
+  } = useSubportPlayer();
 
   useEffect(() => {
     // Create a WaveSurfer instance if it doesn't exist or if the audio file has changed
-    if (!wavesurfer.current || currentAudioUrl && extractSongURL(audioFile) !== (extractSongURL(currentAudioUrl) || extractSongURL(audioUrl))) {
+    if (
+      !wavesurfer.current ||
+      (currentAudioUrl &&
+        extractSongURL(audioFile) !==
+          (extractSongURL(currentAudioUrl) || extractSongURL(audioUrl)))
+    ) {
       // Clean up the previous instance
       if (wavesurfer.current) {
         wavesurfer.current.destroy();
@@ -29,8 +39,12 @@ function AudioVisualizer({ audioFile }) {
         }
         // Cleanup the instance when the component unmounts or if the audio file changes
         return () => {
-          if (wavesurfer.current && (currentAudioUrl && extractSongURL(audioFile) !== extractSongURL(currentAudioUrl))) {
-            playPause()
+          if (
+            wavesurfer.current &&
+            currentAudioUrl &&
+            extractSongURL(audioFile) !== extractSongURL(currentAudioUrl)
+          ) {
+            playPause();
             wavesurfer.current.destroy();
             wavesurfer.current = null; // Clear the instance to allow recreation
           }
@@ -41,7 +55,12 @@ function AudioVisualizer({ audioFile }) {
 
   useEffect(() => {
     // If the audio is playing and corresponds to this visualizer instance, update the time
-    if (wavesurfer.current && (currentAudioUrl && isPlaying && extractSongURL(audioFile) === extractSongURL(currentAudioUrl)) ) {
+    if (
+      wavesurfer.current &&
+      currentAudioUrl &&
+      isPlaying &&
+      extractSongURL(wavesurfer.current.currentSrc) === extractSongURL(currentAudioUrl)
+    ) {
       wavesurfer.current.setTime(currentTime);
     }
   }, [isPlaying, currentTime, audioFile, currentAudioUrl]);

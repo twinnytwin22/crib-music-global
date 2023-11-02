@@ -1,94 +1,88 @@
-'use client'
-import { useEffect, useRef } from 'react';
+import { useSubportPlayer } from "app/context/subport-player";
+import { useEffect } from "react";
+import { extractSongURL } from "../Players/PlayButton/PlayButton";
 
-interface SongVisualizerProps {
-  audioFile: string; // URL to the audio file
-}
-
-function SongVisualizer({ audioFile }: SongVisualizerProps) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
-  const analyserRef = useRef<AnalyserNode | null>(null);
-  const sourceStartedRef = useRef(false);
+function AudioVisualizer({ audioFile }) {
+  const {
+    audioUrl: currentAudioUrl,
+    audioRef,
+    isPlaying,
+    timeUpdate,
+    dataLoad,
+    seekChange,
+    currentTime,
+  } = useSubportPlayer();
+  const { audioUrl, wavesurfer, createWaveSurfer, playPause } =
+    useSubportPlayer();
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-
-    const canvas = canvasRef.current;
-    const audioContext = new AudioContext();
-    audioContextRef.current = audioContext;
-
-    const analyser = audioContext.createAnalyser();
-    analyserRef.current = analyser;
-    analyser.fftSize = 256;
-
-    const canvasContext = canvas.getContext('2d');
-    if (!canvasContext) return;
-
-    const source = audioContext.createBufferSource();
-
-    fetch(audioFile)
-      .then((response) => response.arrayBuffer())
-      .then((data) => audioContext.decodeAudioData(data))
-      .then((buffer) => {
-        source.buffer = buffer;
-        source.connect(analyser);
-        analyser.connect(audioContext.destination);
-        sourceStartedRef.current = true; // Mark source as started
-        source.start(0);
-
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-
-        function draw() {
-          if (sourceStartedRef.current && canvasContext) {
-            analyser.getByteTimeDomainData(dataArray);
-
-            canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-
-            canvasContext.lineWidth = 2;
-            canvasContext.strokeStyle = 'rgb(0, 0, 0)';
-            canvasContext.beginPath();
-
-            const sliceWidth = (canvas.width * 1.0) / bufferLength;
-            let x = 0;
-
-            for (let i = 0; i < bufferLength; i++) {
-              const v = dataArray[i] / 128.0;
-              const y = (v * canvas.height) / 2;
-
-              if (i === 0) {
-                canvasContext.moveTo(x, y);
-              } else {
-                canvasContext.lineTo(x, y);
-              }
-
-              x += sliceWidth;
-            }
-
-            canvasContext.lineTo(canvas.width, canvas.height / 2);
-            canvasContext.stroke();
-          }
-
-          requestAnimationFrame(draw);
-        }
-
-        draw();
-      });
-
-    return () => {
-      if (sourceStartedRef.current) {
-        source.stop();
-        audioContext.close();
+    // Create a WaveSurfer instance if it doesn't exist or if the audio file has changed
+    if (
+      !wavesurfer.current ||
+      (currentAudioUrl &&
+        extractSongURL(audioFile) !==
+          (extractSongURL(currentAudioUrl) || extractSongURL(audioUrl)))
+    ) {
+      // Clean up the previous instance
+      if (wavesurfer.current) {
+        wavesurfer.current.destroy();
+        wavesurfer.current = null;
       }
-    };
-  }, [audioFile]);
 
+      createWaveSurfer().then((instance) => {
+        wavesurfer.current = instance;
+        if (wavesurfer.current) {
+          wavesurfer.current.load(audioFile); // Load the audio for this track
+          // You can customize other properties for this instance here.
+        }
+        // Cleanup the instance when the component unmounts or if the audio file changes
+        return () => {
+          if (
+            wavesurfer.current &&
+            currentAudioUrl &&
+            extractSongURL(audioFile) !== extractSongURL(currentAudioUrl)
+          ) {
+            playPause();
+            wavesurfer.current.destroy();
+            wavesurfer.current = null; // Clear the instance to allow recreation
+          }
+        };
+      });
+    }
+  }, [audioFile, currentAudioUrl, audioUrl]);
+
+  useEffect(() => {
+    // If the audio is playing and corresponds to this visualizer instance, update the time
+    if (
+      wavesurfer.current &&
+      currentAudioUrl &&
+      isPlaying &&
+      extractSongURL(audioFile) === extractSongURL(currentAudioUrl)
+    ) {
+      wavesurfer.current.setTime(currentTime);
+    }
+  }, [isPlaying, currentTime, audioFile, currentAudioUrl]);
+  console.log(audioRef);
   return (
-    <div>
-      <canvas ref={canvasRef} width={800} height={200} />
-    </div>
+    currentAudioUrl &&
+    audioRef.current &&
+    extractSongURL(audioRef.current.currentSrc) ===
+      extractSongURL(currentAudioUrl) && (
+      <input
+        readOnly
+        type="range"
+        className=" accent-red-300 h-2.5 rounded-full w-full bg-zinc-300 dark:bg-zinc-500 appearance-none cursor-pointer "
+        min="0"
+        max={
+          !audioRef?.current?.duration ? "0:00" : audioRef?.current?.duration
+        }
+        value={audioRef?.current?.currentTime ?? ""}
+        onTimeUpdate={timeUpdate}
+        onLoadedData={dataLoad}
+        onChange={seekChange}
+      />
+    )
   );
 }
 
-export default SongVisualizer;
+export default AudioVisualizer;
