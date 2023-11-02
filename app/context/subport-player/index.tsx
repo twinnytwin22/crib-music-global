@@ -152,7 +152,9 @@ export const SubportPlayer = ({ children
     );
 
 
-
+    // useEffect(() => {
+        
+    // }, [isPlaying])
 
     // Define the value for the context provider
     const values = {

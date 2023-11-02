@@ -2,9 +2,14 @@
 import { getSong } from "@/utils/db";
 import { useQuery } from "@tanstack/react-query";
 import { useSubportPlayer } from "app/context/subport-player";
-import React from "react";
 import { FaPlayCircle, FaStopCircle } from "react-icons/fa";
-
+export function extractSongURL(fullURL: string) {
+  if(fullURL){
+  const url = new URL(fullURL);
+  const path = url?.pathname; // Extract the path without the token
+  return `https://${url.host}${path}`;
+  }
+}
 function PlayButton({ song, audio }: any) {
   const {
     play,
@@ -27,17 +32,17 @@ function PlayButton({ song, audio }: any) {
     artist_name: song.artist_name
   }
   const newImageUrl = getCoverImage(song?.cover_art_url);
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => setMounted(true), []);
+  //const [mounted, setMounted] = React.useState(false);
+  //React.useEffect(() => setMounted(true), []);
   const { data } = useQuery({
     queryKey: ["data", song],
     queryFn: () => getSong(song),
     enabled: !!song.music_file_url && !audio,
-    refetchOnMount: false, 
-    
+  //  refetchOnWindowFocus: false, 
+    refetchOnMount: false
   });
 
-  const newAudioUrl = data || audio;
+  const newAudioUrl = audio || data
 //console.log(newAudioUrl)
   const handlePlay = async () => {
     if (audioUrl !== newAudioUrl) {
@@ -54,10 +59,14 @@ function PlayButton({ song, audio }: any) {
     }
   };
 
+  //console.log(audioUrl, newAudioUrl)
+
+  
+
   return (
   (
       <>
-        {mounted && isPlaying && audioUrl === newAudioUrl ? (
+        {isPlaying && extractSongURL(audioUrl) === extractSongURL(newAudioUrl) ? (
           <div
             onClick={stop}
             className="hover:scale-110 duration-300 ease-in-out "

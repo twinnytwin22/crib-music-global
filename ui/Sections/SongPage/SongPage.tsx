@@ -11,9 +11,8 @@ import LicenseButton from 'ui/Buttons/LicenseButton/LicenseButton';
 import ShareButton from 'ui/Buttons/ShareButton/ShareButton';
 ///import AudioVisualizer from 'ui/Components/AudioVisualizer/Visualizer';
 import dynamic from 'next/dynamic';
-import PlayButton from 'ui/Components/Players/PlayButton';
 import RelatedMusicList from './RelatedSongs';
-
+const PlayButton = dynamic(() => import('ui/Components/Players/PlayButton'), {ssr: false})
 const AudioVisualizer = dynamic(() => import('ui/Components/AudioVisualizer/Visualizer'), {ssr: false})
 
 function SongPage({ song, image, songs, artist }) {
