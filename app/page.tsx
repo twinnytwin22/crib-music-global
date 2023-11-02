@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: "Your Global Music Partner.",
     url: "https://cribmusic.xyz",
     siteName: "CRIB Music",
-    images: [
+    images: [ 
       {
         url: metaImage,
         width: 800,
