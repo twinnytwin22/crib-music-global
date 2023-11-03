@@ -4,6 +4,7 @@ import { ScrollingTruncatedText, truncateText } from "@/lib/hooks/truncateText";
 import { useSubportPlayer } from "app/context/subport-player";
 import { useHandleOutsideClick } from "lib/hooks/handleOutsideClick";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { FaPause, FaPlay, FaStop } from "react-icons/fa";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
@@ -119,6 +120,7 @@ const FooterPlayer = () => {
                     className="max-w-[30px] h-[30px] rounded-md bg-red-200 w-full"
                   ></div>
                 ) : (
+                  <Link href={'/song/' + metaData.song_id}>
                   <Image
                     src={imageUrl}
                     alt="song-image"
@@ -127,6 +129,7 @@ const FooterPlayer = () => {
                     blurDataURL={"/site_images/stock/blur.png"}
                     className="aspect-square object-cover rounded-md"
                   />
+                  </Link>
                 )}
                 {!isPlaying && (
                   <button

@@ -15,7 +15,7 @@ function AudioVisualizer({ audioFile }) {
     contextWaveFormRef,
     createWaveSurfer,
     play,
-    pause,
+    pause, stop
   } = useSubportPlayer();
   const a = extractSongURL(audioFile);
   const b = extractSongURL(audioUrl);
@@ -39,7 +39,7 @@ function AudioVisualizer({ audioFile }) {
       // Cleanup the instance when the component unmounts or if the audio file changes
       return () => {
         if (wavesurfer.current && audioUrl && a !== b) {
-          pause();
+          stop();
           wavesurfer.current.destroy();
           wavesurfer.current = null; // Clear the instance to allow recreation
         } else {

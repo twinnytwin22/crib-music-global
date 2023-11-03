@@ -1,5 +1,9 @@
 import { supabaseAdmin } from '@/lib/providers/supabase/supabase-lib-admin';
+import { cache } from 'react';
 import { v4 as uuid } from 'uuid';
+
+export const revalidate = 3600 // revalidate the data at most every hour
+
 
 export const getSong = async (song) => {
   try {
@@ -15,8 +19,9 @@ export const getSong = async (song) => {
 export const getAllArtists = async () => {
   try {
     const res = await fetch(`/api/v1/getAllArtists/`, {
+      next: { revalidate: 3600}, 
       method: 'GET',
-      cache: 'no-cache',
+      //cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json'
         // "Access-Control-Allow-Origin": "*"
@@ -40,7 +45,9 @@ export const getAllSongs = async () => {
   try {
     const res = await fetch(`/api/v1/getAllSongs/`, {
       method: 'GET',
-      cache: 'no-cache',
+      next: { revalidate: 3600}, 
+
+      //cache: 'force-cache',
       headers: {
         'Content-Type': 'application/json'
         // "Access-Control-Allow-Origin": "*"
@@ -135,13 +142,13 @@ export async function deleteFile ({
   }
 }
 
-export async function downloadFile ({
+export const downloadFile = cache(async({
   path,
   bucket
 }: {
   path: string
   bucket: string
-}) {
+}) => {
   try {
     const { data:url, error } = await supabaseAdmin.storage
       .from(bucket)
@@ -155,7 +162,7 @@ export async function downloadFile ({
   } catch (error) {
     console.log('Error downloading image: ', error)
   }
-}
+})
 export const uploadFile = async ({
   event,
   file,
