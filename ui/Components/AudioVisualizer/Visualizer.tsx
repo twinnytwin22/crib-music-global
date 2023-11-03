@@ -68,7 +68,7 @@ function AudioVisualizer({ audioFile }) {
   ]);
   // console.log(currentTime)
 
-  console.log(contextWaveFormRef);
+ // console.log(contextWaveFormRef);
   return (
     <div ref={contextWaveFormRef} className="w-full max-w-2xl">
       {/* The waveform will be displayed here */}

@@ -14,7 +14,6 @@ import dynamic from 'next/dynamic';
 import RelatedMusicList from './RelatedSongs';
 const PlayButton = dynamic(() => import('ui/Components/Players/PlayButton'), {ssr: false})
 const AudioVisualizer = dynamic(() => import('ui/Components/AudioVisualizer/Visualizer'), {ssr: false})
-const SoundVisualizer = dynamic(() => import('ui/Components/AudioVisualizer/SongVisualizer'), {ssr: false})
 
 function SongPage({ song, image, songs, artist }) {
     const { data } = useQuery({
