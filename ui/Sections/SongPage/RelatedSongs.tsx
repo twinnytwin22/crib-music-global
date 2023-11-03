@@ -68,7 +68,7 @@ const RelatedMusicList = ({ songs }: any) => {
           >
             <Pagination
               itemsPerPage={itemsPerPage}
-              totalItems={currentSongs?.length}
+              totalItems={songs?.length}
               paginateBack={paginateBack}
               paginateFront={paginateFront}
               currentPage={currentPage}
