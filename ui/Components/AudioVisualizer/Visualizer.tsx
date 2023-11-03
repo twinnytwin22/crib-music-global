@@ -14,59 +14,63 @@ function AudioVisualizer({ audioFile }) {
     wavesurfer,
     contextWaveFormRef,
     createWaveSurfer,
-    playPause,
+    play,
+    pause,
   } = useSubportPlayer();
-
+  const a = extractSongURL(audioFile);
+  const b = extractSongURL(audioUrl);
   useEffect(() => {
-    // Create a WaveSurfer instance if it doesn't exist or if the audio file has changed
-    if (
-      !wavesurfer.current ||
-      (currentAudioUrl &&
-        extractSongURL(audioFile) !==
-          (extractSongURL(currentAudioUrl) || extractSongURL(audioUrl)))
-    ) {
-      // Clean up the previous instance
-      if (wavesurfer.current) {
-        wavesurfer.current.destroy();
-        wavesurfer.current = null;
-      }
-
-      createWaveSurfer().then((instance) => {
-        wavesurfer.current = instance;
-        if (wavesurfer.current) {
-          wavesurfer.current.load(audioFile); // Load the audio for this track
-          // You can customize other properties for this instance here.
-        }
-        // Cleanup the instance when the component unmounts or if the audio file changes
-        return () => {
-          if (
-            wavesurfer.current &&
-            currentAudioUrl &&
-            extractSongURL(audioFile) !== extractSongURL(currentAudioUrl)
-          ) {
-            playPause();
-            wavesurfer.current.destroy();
-            wavesurfer.current = null; // Clear the instance to allow recreation
-          }
-        };
-      });
+    // Clean up the previous instance
+    if (wavesurfer.current) {
+      wavesurfer.current.destroy();
+      wavesurfer.current = null;
     }
-  }, [audioFile, currentAudioUrl, audioUrl]);
+
+    if (wavesurfer.current && a !== b) {
+      wavesurfer.current.destroy();
+      wavesurfer.current = null;
+    }
+
+    createWaveSurfer().then((instance) => {
+      wavesurfer.current = instance;
+      if (wavesurfer.current) {
+        wavesurfer.current.load(audioFile);
+      }
+      // Cleanup the instance when the component unmounts or if the audio file changes
+      return () => {
+        if (wavesurfer.current && audioUrl && a !== b) {
+          pause();
+          wavesurfer.current.destroy();
+          wavesurfer.current = null; // Clear the instance to allow recreation
+        } else {
+          play();
+        }
+      };
+    });
+  }, [audioFile, audioUrl]);
 
   useEffect(() => {
-    // If the audio is playing and corresponds to this visualizer instance, update the time
     if (
       wavesurfer.current &&
-      currentAudioUrl &&
+      (currentAudioUrl || audioUrl) &&
       isPlaying &&
-      extractSongURL(wavesurfer.current.currentSrc) === extractSongURL(currentAudioUrl)
+      a === b
     ) {
       wavesurfer.current.setTime(currentTime);
     }
-  }, [isPlaying, currentTime, audioFile, currentAudioUrl]);
+  }, [
+    isPlaying,
+    currentTime,
+    audioFile,
+    audioUrl,
+    currentAudioUrl,
+    wavesurfer,
+  ]);
+  // console.log(currentTime)
 
+  console.log(contextWaveFormRef);
   return (
-    <div ref={contextWaveFormRef} className="w-full max-w-2xl ">
+    <div ref={contextWaveFormRef} className="w-full max-w-2xl">
       {/* The waveform will be displayed here */}
     </div>
   );

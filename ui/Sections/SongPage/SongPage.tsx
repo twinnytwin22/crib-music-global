@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import RelatedMusicList from './RelatedSongs';
 const PlayButton = dynamic(() => import('ui/Components/Players/PlayButton'), {ssr: false})
 const AudioVisualizer = dynamic(() => import('ui/Components/AudioVisualizer/Visualizer'), {ssr: false})
+const SoundVisualizer = dynamic(() => import('ui/Components/AudioVisualizer/SongVisualizer'), {ssr: false})
 
 function SongPage({ song, image, songs, artist }) {
     const { data } = useQuery({
@@ -60,6 +61,7 @@ function SongPage({ song, image, songs, artist }) {
                         </Link>
                         <div className='w-full h-16 overflow-hidden flex justify-between py-4 re items-center'>
                             <AudioVisualizer audioFile={data} />
+                        {/* {data && <AudioWaveForm audioFile={data}/>} */}
                             <div>
                                 <p>
                                     {formatDuration(song.duration)}
