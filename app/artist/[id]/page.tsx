@@ -44,7 +44,7 @@ async function page({
     };
     //const href = `/artist/${artist.artist_id!}`;
     return (
-      <div className="relative h-screen">
+      <div className="relative h-screen ">
         <div className="absolute inset-0 overflow-visible bg-white dark:bg-black opacity-30">
           <Image
             alt={artist?.artist_name}

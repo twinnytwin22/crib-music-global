@@ -33,7 +33,7 @@ async function page({ params, searchParams }: { params: { id: string | number },
       artist
     }
     return (
-      <div className='relative h-screen'>
+      <div className='relative h-screen overflow-x-hidden'>
       <div className="absolute inset-0 overflow-visible bg-white dark:bg-black opacity-30">
           <Image alt={song?.title} src={image} fill className="object-cover scale-150 blur" />
         </div>
