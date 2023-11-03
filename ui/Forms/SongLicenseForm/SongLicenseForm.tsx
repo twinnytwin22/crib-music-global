@@ -26,7 +26,7 @@ const {data: songs} = useQuery({
   enabled: !!id
 })
 const song = songs?.songs?.find((currentSong) => currentSong?.song_id === Number(id)) || songs?.find((currentSong) => currentSong?.song_id === Number(id))
-  console.log(songs, id)
+ // console.log(songs, id)
 const renderStep1 = () => {
 //console.log(currentSong)
   return id && song && (
