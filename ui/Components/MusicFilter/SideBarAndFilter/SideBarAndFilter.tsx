@@ -24,9 +24,10 @@ function SideBarAndFilter() {
       <div className='text-center text-xs w-full font-work-sans'>
   <div className='flex-col flex items-center justify-around border-b border-zinc-200 dark:border-zinc-800 w-full aspect-video'>
     <input
-      onChange={() => handleSongTypeFilter('instrumental')}
+      onChange={(e) => handleSongTypeFilter('instrumental', e)}
       id='instrumental'
       type='checkbox'
+      value={'instrumental'}
       name='song-type'
       checked={filters.instrumental === true}
       className='w-5 h-5 accent-red-300'
@@ -35,7 +36,7 @@ function SideBarAndFilter() {
   </div>
   <div className='flex-col flex items-center justify-around border-b border-zinc-200 dark:border-zinc-800 aspect-video'>
     <input
-      onChange={() => handleSongTypeFilter('hasLyrics')}
+      onChange={(e) => handleSongTypeFilter('hasLyrics', e)}
       id='has_lyrics'
       type='checkbox'
       name='song-type'

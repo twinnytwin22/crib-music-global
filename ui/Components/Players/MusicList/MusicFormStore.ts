@@ -21,16 +21,16 @@ export interface Song {
         genres: string[];
         artists: string[];
         moods: string[];
-        hasLyrics: boolean | null
-        instrumental: boolean | null
+        hasLyrics?: boolean | null
+        instrumental?: boolean | null
     };
-    setFilters: ({ genres, artists, moods, hasLyrics, instrumental }: {   genres: string[]; artists: string[]; moods: string[]; hasLyrics: boolean; instrumental: boolean}) => void;
+    setFilters: ({ genres, artists, moods, hasLyrics, instrumental }: { genres: string[]; artists: string[]; moods: string[]; hasLyrics?: boolean; instrumental?: boolean}) => void;
     activeFilters: string[];
     setActiveFilters: (newFilters: string[]) => void;
     handleClear: () => void;
     handleClearItem: (filter: string) => void;
     handleFilterClick: (filter: string) => void;
-    handleSongTypeFilter: (filter: any) => void
+    handleSongTypeFilter: (filter: any, e: any) => void
     fetchInitialData: () => void;
     filterWindowOpen: boolean,
     setFilterWindowOpen: (filterWindowOpen: boolean, viewName: string) => void
@@ -42,8 +42,8 @@ export interface Song {
         genres: [],
         artists: [],
         moods: [],
-        hasLyrics: null, 
-        instrumental: null, 
+        hasLyrics: true, 
+        instrumental: true, 
 
     },
     setFilters: ({ genres, artists, moods, hasLyrics, instrumental }) => {
@@ -69,7 +69,7 @@ export interface Song {
                 return { activeFilters: newFilters };
             }
         }),
-        handleSongTypeFilter: (filter) => {
+        handleSongTypeFilter: (filter, e) => {
             set((state) => {
               // Create a copy of the current filters object
               const updatedFilters = { ...state.filters };
@@ -108,8 +108,8 @@ export interface Song {
                     genres: initialGenres,
                     artists: initialArtists,
                     moods: initialKeywords, 
-                    hasLyrics: null, 
-                    instrumental: null
+                    hasLyrics: true, 
+                    instrumental: true
                 },
                 activeFilters: [],
             }));

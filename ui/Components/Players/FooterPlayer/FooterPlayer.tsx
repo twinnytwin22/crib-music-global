@@ -176,7 +176,7 @@ const FooterPlayer = () => {
                     ? "0:00"
                     : formatTime(audioRef?.current?.duration)}
                 </div>
-                <div className="block ">
+                <div className="sm:block hidden">
                   {isMuted ? (
                     <HiSpeakerXMark
                       className="text-black dark:text-white text-2xl"

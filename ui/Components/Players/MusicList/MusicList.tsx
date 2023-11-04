@@ -1,7 +1,6 @@
 "use client";
 import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import dynamic from "next/dynamic";
-import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { FiRefreshCcw } from "react-icons/fi";
@@ -15,20 +14,17 @@ const Pagination = dynamic(() => import("lib/hooks/pagination"), {
 
 const MusicList = ({ songs }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pathname = usePathname()
-  
+//  const pathname = usePathname()
   const [itemsPerPage] = useState(10);
   const indexEnd = currentPage * itemsPerPage;
   const indexStart = indexEnd - itemsPerPage;
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
-  const router = useRouter();
   const currentSongs = songs?.slice(indexStart, indexEnd);
   const [openFilterWindow, setOpenFilterWindow] = useState(false)
   const [filtersSet, setFiltersSet] = useState(false); // Track if filters have been set
   const handleOpenFilterWindow = () => setOpenFilterWindow(true)
 
-  const handleRefresh = () => router.refresh();
   const { setActiveFilters, setFilters, activeFilters, filters, handleClear } =
     useMusicFilterStore();
 
@@ -48,13 +44,14 @@ const MusicList = ({ songs }: any) => {
           new Set(songs.flatMap((song) => song?.moods || []))
         ).filter(Boolean);
 
-        const instrumentalOnly: any = new Set(songs.flatMap((song) => song?.instrumental)
-        )
-        const hasLyrics: any = new Set(songs.flatMap((song) => song?.has_lyrics)
-        )
+        // const instrumentalOnly: any = new Set(songs.map((song) => song?.instrumental).filter(Boolean)
+        // )
+        // const hasLyrics: any = new Set(songs.map((song) => song?.has_lyrics).filter(Boolean)
+        // )
+        // console.log('hasLyrics:',hasLyrics, 'instrumental:', instrumentalOnly)
         if (songs.length > 0) {
           if (!filtersSet) {
-            setFilters({ genres, artists, moods, instrumental: instrumentalOnly, hasLyrics });
+            setFilters({ genres, artists, moods, instrumental: true, hasLyrics: true });
             setFiltersSet(true);
             //  console.log(cities, states);
           }
@@ -68,20 +65,32 @@ const MusicList = ({ songs }: any) => {
   }, [songs, setFilters, setActiveFilters, filtersSet]);
 
   const filteredSongs = songs.filter((song: any) => {
-    const { genres, artist_name, moods, has_lyrics, instrumental } = song
+    const { genres, artist_name, moods, has_lyrics, instrumental: instr } = song
+    console.log(song, 'SONG')
 
     const activeFilter = activeFilters.map(a => a)
     // Check if any city or state is present in the location
     const includesFilters = 
-    activeFilter.some((filteredGenre) => genres.includes(filteredGenre)) 
-    || activeFilter.some((artist) => artist_name.includes(artist)) 
-    || activeFilter.some((filteredMood) => moods.includes(filteredMood)) 
-   /// activeFilter.map((song) => song.has_lyrics === true)
-    //   console.log(activeFilters)
-    return includesFilters || activeFilters.length === 0
-  });
+    activeFilter.some((filteredGenre) => genres.includes(filteredGenre)) ||
+    activeFilter.some((artist) => artist_name.includes(artist)) ||
+    activeFilter.some((filteredMood) => moods.includes(filteredMood));
+
+  // Exclude songs that have both instrumentals and lyrics
+ // const excludedInstrumentalOrLyrics = (activeFilter.some((i) => instr === i)) || (activeFilter.some((i) => has_lyrics === i))
+
+ if (filters.instrumental && filters.hasLyrics) {
+  return includesFilters || activeFilters.length === 0;
+} else if (filters.instrumental && !filters.hasLyrics) {
+  return (instr && !has_lyrics) || includesFilters ///|| activeFilters.length === 0;
+} else if (filters.hasLyrics && !filters.instrumental) {
+  return (has_lyrics && !instr) || includesFilters //|| activeFilters.length === 0;
+} else {
+  return (instr && has_lyrics && includesFilters) //|| activeFilters.length === 0;
+}
+});
 
   useHandleOutsideClick(openFilterWindow, setOpenFilterWindow, 'filter-window')
+  console.log(filters)
   return (
     <div className=" -z-0 relative mx-auto flex justify-center">
       {openFilterWindow && 
