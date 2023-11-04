@@ -21,7 +21,6 @@ function SongPage({ song, image, songs, artist }) {
         queryFn: () => getSong(song),
         enabled: !!song.music_file_url && !!AudioVisualizer,
         refetchOnWindowFocus:false
-
     });
     const [isOpen, setIsOpen] = useState(false)
     // console.log(image)
@@ -51,11 +50,11 @@ function SongPage({ song, image, songs, artist }) {
                             <div className='flex items-center space-x-4'>
                                 <BsShareFill className='relative' onClick={() => setIsOpen(true)} />
 
-                                <LicenseButton song={song} id={song.song_id} />
+                                <LicenseButton song={song} id={song.id} />
                                 {/* <ShareButton title={song.title}/> */}
                             </div>
                         </div>
-                        <Link href={'/artist/' + artist?.artist_id} className=' hover:underline duration-300 ease-in-out'>
+                        <Link href={'/artist/' + artist?.id} className=' hover:underline duration-300 ease-in-out'>
                         <p>{song.artist_name}</p>
                         </Link>
                         <div className='w-full h-16 overflow-hidden flex justify-between py-4 re items-center'>

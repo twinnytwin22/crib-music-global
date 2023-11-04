@@ -15,7 +15,7 @@ async function page({ params, searchParams }: { params: { id: string | number },
   ])
 
   // Check if there is a matching song_id for the given id
-  const song = songs.find((song: any) => song.song_id.toString() === id);
+  const song = songs.find((song: any) => song.id === id);
 
   if (song) {
     //const data = await getSong(song);

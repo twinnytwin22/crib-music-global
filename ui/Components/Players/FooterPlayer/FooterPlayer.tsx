@@ -120,7 +120,7 @@ const FooterPlayer = () => {
                     className="max-w-[30px] h-[30px] rounded-md bg-red-200 w-full"
                   ></div>
                 ) : (
-                  <Link href={'/song/' + metaData.song_id}>
+                  <Link href={'/song/' + metaData.id}>
                   <Image
                     src={imageUrl}
                     alt="song-image"

@@ -30,7 +30,7 @@ function PlayButton({ song, audio }: any) {
   const newMetaData = {
     title: song.title, 
     artist_name: song.artist_name,
-    song_id: song.song_id
+    id: song.id
   }
   const newImageUrl = getCoverImage(song?.cover_art_url);
   //const [mounted, setMounted] = React.useState(false);

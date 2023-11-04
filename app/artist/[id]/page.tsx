@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 export async function generateStaticParams() {
   const { artists } = await getAllArtists();
   return artists.map((artist: any) => ({
-    id: artist.artist_id.toString(),
+    id: artist.id,
   }));
 }
 
@@ -23,9 +23,9 @@ async function page({
   const { id } = params;
   const { artists } = await getAllArtists();
 
-  // Check if there is a matching artist_id for the given id
+  // Check if there is a matching id for the given id
   const artist = artists.find(
-    (artist: any) => artist.artist_id.toString() === id
+    (artist: any) => artist.id.toString() === id
   );
 
   if (artist) {
@@ -42,7 +42,7 @@ async function page({
       image: imageUrl,
       artist,
     };
-    //const href = `/artist/${artist.artist_id!}`;
+    //const href = `/artist/${artist.id!}`;
     return (
       <div className="relative h-screen ">
         <div className="absolute inset-0 overflow-visible bg-white dark:bg-black opacity-30">

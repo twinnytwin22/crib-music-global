@@ -11,7 +11,7 @@ import MenuItemMenu from "./MenuItemMenu";
 const MusicItem = ({ song }: any) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.song_id}`);
+  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.id}`);
 
   const handleMenuClick = () => {
     setIsOpen((prevState) => !prevState);
@@ -42,13 +42,13 @@ const MusicItem = ({ song }: any) => {
         </div>
       </th>
       <td
-        onClick={() => router.push(`/song/${song?.song_id}`)}
+        onClick={() => router.push(`/song/${song?.id}`)}
         className="px-4 py-2 font-medium text-zinc-900 whitespace-nowrap dark:text-white cursor-pointer"
       >
         {song?.title}
       </td>
       <td
-       onClick={() => router.push(`/artist/${song.artist_id}`)}
+       onClick={() => router.push(`/artist/${song.artist_id_new}`)}
         className="px-4 py-2 font-medium text-zinc-900 whitespace-nowrap dark:text-white cursor-pointer"
       >
         {song?.artist_name}
@@ -59,9 +59,9 @@ const MusicItem = ({ song }: any) => {
         </span>
       </td>
       <td className="px-4 py-2">
-      <LicenseButton song={song} id={song.song_id}/>
+      <LicenseButton song={song} id={song.id}/>
       </td>
-      <td className={`collect-menu${song.song_id}`} onClick={handleMenuClick}>
+      <td className={`collect-menu${song.id}`} onClick={handleMenuClick}>
         <BsThreeDots/>
         {isOpen && <MenuItemMenu song={song}/>}
 

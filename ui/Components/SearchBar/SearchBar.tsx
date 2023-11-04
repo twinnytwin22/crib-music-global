@@ -100,8 +100,8 @@ function SearchBar() {
                                 const href = ''
                                 return (
                                     <div
-                                        onClick={() => handleLink(`/artist/${artist.artist_id}`)}
-                                        key={artist.artist_id}
+                                        onClick={() => handleLink(`/artist/${artist.id}`)}
+                                        key={artist.id}
                                         className="flex items-center p-2.5 border-b border-zinc-300 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 relative z-[99999] cursor-pointer"
                                     >
                                         <Image
@@ -135,8 +135,8 @@ function SearchBar() {
                                 const href = ''
                                 return (
                                     <div
-                                        onClick={() => handleLink(`/song/${song.song_id}`)}
-                                        key={song.song_id}
+                                        onClick={() => handleLink(`/song/${song.id}`)}
+                                        key={song.id}
                                         className="flex items-center p-2 border-b border-zinc-300 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800  cursor-pointer"
                                     >
                                         <Image

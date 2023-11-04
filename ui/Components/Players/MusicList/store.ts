@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 
 export interface Song {
-  song_id: number;
+  id: number | string;
   title: string;
-  artist_id: number;
+  artist_id_new: number | string;
   album: string | null;
   release_year: number;
   genre: string;

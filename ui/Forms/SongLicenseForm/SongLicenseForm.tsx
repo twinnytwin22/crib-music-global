@@ -25,7 +25,7 @@ const {data: songs} = useQuery({
   refetchOnMount: false, 
   enabled: !!id
 })
-const song = songs?.songs?.find((currentSong) => currentSong?.song_id === Number(id)) || songs?.find((currentSong) => currentSong?.song_id === Number(id))
+const song = songs?.songs?.find((currentSong) => currentSong?.id === id) || songs?.find((currentSong) => currentSong?.id === id)
  // console.log(songs, id)
 const renderStep1 = () => {
 //console.log(currentSong)

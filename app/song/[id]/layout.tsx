@@ -5,7 +5,7 @@ import LoadingContainer from "ui/Components/Loading/Loading";
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="">
+    <div className="overflow-x-hidden">
       <LicenseModal />
         <Suspense fallback={<LoadingContainer />}>
           {children}

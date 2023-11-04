@@ -20,7 +20,7 @@ export interface BusinessLicenseFormProps {
   linkedin_profile: string | undefined;
   form_questions?: FormQuestions[];
   form_type?: string | undefined;
-  song_id: string | number; 
+  id: string | number; 
   song_title: string | null
 }
 
@@ -36,7 +36,7 @@ function BusinessLicenseForm({song}) {
   const router = useRouter();
 
   const initialState: BusinessLicenseFormProps = {
-    song_id: song.song_id,
+    id: song.id,
     song_title: song.title,
     email: "",
     subject: "",
