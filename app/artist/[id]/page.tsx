@@ -25,7 +25,7 @@ async function page({
 
   // Check if there is a matching id for the given id
   const artist = artists.find(
-    (artist: any) => artist.id === id
+    (artist: any) => artist?.id === id
   );
 
   if (artist) {
