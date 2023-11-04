@@ -64,33 +64,51 @@ const MusicList = ({ songs }: any) => {
     fetchData();
   }, [songs, setFilters, setActiveFilters, filtersSet]);
 
-  const filteredSongs = songs.filter((song: any) => {
-    const { genres, artist_name, moods, has_lyrics, instrumental: instr } = song
-    console.log(song, 'SONG')
-
-    const activeFilter = activeFilters.map(a => a)
-    // Check if any city or state is present in the location
-    const includesFilters = 
-    activeFilter.some((filteredGenre) => genres.includes(filteredGenre)) ||
-    activeFilter.some((artist) => artist_name.includes(artist)) ||
-    activeFilter.some((filteredMood) => moods.includes(filteredMood));
-
-  // Exclude songs that have both instrumentals and lyrics
- // const excludedInstrumentalOrLyrics = (activeFilter.some((i) => instr === i)) || (activeFilter.some((i) => has_lyrics === i))
-
- if (filters.instrumental && filters.hasLyrics) {
-  return includesFilters || activeFilters.length === 0;
-} else if (filters.instrumental && !filters.hasLyrics) {
-  return (instr && !has_lyrics) || includesFilters ///|| activeFilters.length === 0;
-} else if (filters.hasLyrics && !filters.instrumental) {
-  return (has_lyrics && !instr) || includesFilters //|| activeFilters.length === 0;
-} else {
-  return (instr && has_lyrics && includesFilters) //|| activeFilters.length === 0;
+  function filterByInstrumental(song) {
+    const { instrumental: instr } = song;
+    return filters.instrumental ? instr : false;
 }
+
+// A function to filter songs by has_lyrics
+function filterByHasLyrics(song) {
+    const { has_lyrics } = song;
+    return filters.hasLyrics ? has_lyrics : false;
+}
+const filteredSongs = songs.filter((song) => {
+  const { genres, artist_name, moods, has_lyrics, instrumental } = song;
+  const activeFilter = activeFilters.map((a) => a);
+
+  const includesFilters =
+      activeFilter.some((filteredGenre) => genres.includes(filteredGenre)) ||
+      activeFilter.some((artist) => artist_name.includes(artist)) ||
+      activeFilter.some((filteredMood) => moods.includes(filteredMood));
+
+  
+      if (activeFilters.length === 0) {
+        if (!filters.instrumental && !filters.hasLyrics) {
+            // If no active filters and both instrumental and has_lyrics filters are deselected,
+            // include all songs
+            return false;
+        }
+
+        if (filters.instrumental && filters.hasLyrics) {
+            // If no active filters and both instrumental and has_lyrics filters are selected,
+            // exclude all songs
+            return true;
+        }
+
+        if (filters.instrumental || filters.hasLyrics) {
+          // If no active filters and both instrumental and has_lyrics filters are selected,
+          // exclude all songs
+          return ((filterByInstrumental(song) || filterByHasLyrics(song)));
+        }
+    }
+
+  return ((filterByInstrumental(song) || filterByHasLyrics(song)) && includesFilters);
 });
 
   useHandleOutsideClick(openFilterWindow, setOpenFilterWindow, 'filter-window')
-  console.log(filters)
+ // console.log(filters)
   return (
     <div className=" -z-0 relative mx-auto flex justify-center">
       {openFilterWindow && 
