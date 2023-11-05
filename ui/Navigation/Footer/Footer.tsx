@@ -55,6 +55,14 @@ function Footer() {
                     FAQs
                   </Link>
                 </li>
+                <li >
+                <Link
+                    href="https://syncos.cribmusic.xyz"
+                    className="hover:underline"
+                  >
+                    Sync OS
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
