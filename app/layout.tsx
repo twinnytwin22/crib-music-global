@@ -1,5 +1,6 @@
 import Providers from '@/lib/providers/Providers'
 import Navbar from '@/ui/Navigation/Navbar'
+import Script from 'next/script'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import LicenseModal from 'ui/Components/LicenseModal/LicenseModal'
@@ -18,6 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+          {process.env.NODE_ENV !== 'development' && <Script
+        
+        defer
+        src="https://unpkg.com/@tinybirdco/flock.js"
+        data-host="https://api.us-east.tinybird.co"
+        data-token={process.env.NEXT_PUBLIC_TINYBIRD_TRACKER_TOKEN}
+      ></Script>}
       <body className=' bg-white dark:bg-black overflow-hidden'>
         <Providers>
           <Navbar />
