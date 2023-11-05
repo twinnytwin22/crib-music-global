@@ -1,4 +1,5 @@
 "use client";
+import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import DarkModeSwitch from "@/ui/Components/DarkModeSwitch/DarkModeSwitch";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,6 +22,8 @@ function NavBar() {
   const isMusicPage = pathname.startsWith("/music");
   ///console.log(isMusicPage)
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore();
+
+  useHandleOutsideClick(isMobileMenuOpen, toggleMobileMenu, 'mobile-menu')
 
   return (
     <nav className="bg-white dark:bg-black fixed w-full z-[9000] top-0 left-0 border-b border-zinc-200 dark:border-zinc-700 mx-auto">
@@ -59,7 +62,7 @@ function NavBar() {
           </button>
         </div>
         <div
-          className={`items-center justify-between w-full relative z-50 md:flex md:w-auto md:order-1 ${
+          className={`items-center justify-between w-full relative z-50 md:flex md:w-auto md:order-1 mobile-menu ${
             isMobileMenuOpen ? "" : "hidden"
           }`}
           id="navbar-sticky"
