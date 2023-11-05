@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "update-types": "supabase gen types typescript --project-id \"fujysxynvyqqxsignqbq\" > types/Database.ts"
+    "update-types": "supabase gen types typescript --project-id \"tvuqvrbxusmicpmjqpus\" > types/Database.ts"
   },
   "author": "",
   "license": "ISC",

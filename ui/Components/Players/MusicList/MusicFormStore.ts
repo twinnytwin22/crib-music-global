@@ -78,7 +78,7 @@ export interface Song {
                 // Toggle the boolean value for the selected filter
                 updatedFilters[filter] = !updatedFilters[filter];
               }
-              console.log(updatedFilters)
+             // console.log(updatedFilters)
               return { filters: updatedFilters, activeFilters: state.activeFilters };
             });
           }
