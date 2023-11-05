@@ -1,8 +1,8 @@
 import HomeHeader from '@/ui/Headers/HomeHeader'
 import AboutHome from '@/ui/Sections/AboutHome'
 import ServicesHome from '@/ui/Sections/ServicesHome'
-import { Metadata } from 'next'
 import Footer from 'ui/Navigation/Footer'
+import FAQ from 'ui/Sections/FAQ/FAQ'
 export const fetchCache = 'force-cache'
 export const dynamic = 'force-static'
 
@@ -13,8 +13,13 @@ async function page() {
     <div className='relative h-screen'>
     <HomeHeader/>  
     <AboutHome/>
+    
     <ServicesHome/>
+    <div id='faq' className='max-w-5xl mx-auto'>
+    <FAQ/>
+    </div>
     <Footer/>
+
     <div className='p-8'/>
     </div>
   )

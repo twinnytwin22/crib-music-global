@@ -44,7 +44,7 @@ function layout({ children }) {
         <div className={`absolute border-l border-zinc-300 dark:border-zinc-700 h-full p-0 flex px-8 items-center  right-0 ${filterWindowOpen ? "md:right-72" : "md:right-24"}`}>
         <p onClick={() => {
     // <pathname>?sort=asc
-    router.push(pathname + '?' + url('license', 'custom'))
+    router.push(pathname + '?' + url('license', 'custom'), { scroll: false })
   }}className="font-semibold text-black text-sm dark:text-white hover:text-red-400 hover:dark:text-red-300 ease-in-out duration-300 cursor-pointer">
         Custom Music
         </p>

@@ -33,7 +33,7 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
             onClick={() => {
               // removeParams();
               setLicenseWindowOpen(false);
-              router.push(pathname);
+              router.push(pathname, { scroll: false });
             }}
             className="w-6 absolute top-3 left-3 z-[99999] text-black dark:text-white scale-150"
           >

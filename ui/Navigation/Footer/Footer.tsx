@@ -28,20 +28,31 @@ function Footer() {
                 Resources
               </h2>
               <ul className="text-zinc-600 dark:text-zinc-400">
-                <li className="mb-4">
+                <li >
                   <Link
+                  scroll={false}
                     href={pathname + '/?contact=artist-submission'}
                     className="hover:underline"
                   >
                     Submit Music
                     </Link>
                 </li>
-                <li>
+                <li >
                 <Link
                     href="https://cribnetwork.io"
                     className="hover:underline"
                   >
                     Crib Network
+                  </Link>
+                </li>
+                <li className="mb-4">
+                <Link
+                   // prefetch={false}
+                   // scroll={false}
+                    href="/#faq"
+                    className="hover:underline"
+                  >
+                    FAQs
                   </Link>
                 </li>
               </ul>
@@ -51,12 +62,20 @@ function Footer() {
                 Follow us
               </h2>
               <ul className="text-zinc-600 dark:text-zinc-400">
-                <li className="mb-4">
+                <li className="">
                   <Link
                     href="https://instagram.com/cribmusicglobal"
                     className="hover:underline "
                   >
                     Instagram
+                  </Link>
+                </li>
+                <li className="">
+                  <Link
+                    href="https://instagram.com/cribmusicglobal"
+                    className="hover:underline "
+                  >
+                    Twitter
                   </Link>
                 </li>
                 <li>
@@ -74,7 +93,7 @@ function Footer() {
                 Legal
               </h2>
               <ul className="text-zinc-600 dark:text-zinc-400">
-                <li className="mb-4">
+                <li className="">
                   <Link href="#" className="hover:underline">
                     Privacy Policy
                   </Link>
