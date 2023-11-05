@@ -74,6 +74,14 @@ function NavBar() {
               Home
               </Link>
             </li>
+            <li className="">
+              <Link
+                href="/music"
+                className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
+              >
+                Music
+              </Link>
+            </li>
             <li className="relative">
               {/* Services menu item with submenu */}
               <div
@@ -96,14 +104,7 @@ function NavBar() {
                 Technology
               </a>
             </li>
-            <li className="">
-              <Link
-                href="/music"
-                className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
-              >
-                Music
-              </Link>
-            </li>
+            
             <li className="block md:hidden">
             <Link  href={pathname + '/?contact=inquiry'}
                 className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
