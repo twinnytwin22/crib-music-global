@@ -119,7 +119,7 @@ const filteredSongs = songs.filter((song) => {
         </div>
       </div>}
 
-      <section className="py-4 self-center w-full max-w-screen-2xl mx-auto rounded justify-center relative flex">
+      <section className="py-4 self-center w-full max-w-screen-2xl mx-auto rounded justify-center  flex">
         <div className=" z-20 overflow-hidden bg-white shadow dark:bg-zinc-950 sm:rounded w-full border border-zinc-200 dark:border-zinc-800">
           <div className="flex flex-col px-4 py-3 space-y-3 md:flex-row md:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
             <div className="flex items-center flex-1 space-x-4 text-sm md:text-base">
@@ -154,7 +154,7 @@ const filteredSongs = songs.filter((song) => {
             </div>
           </div>
           <div className="overflow-x-scroll">
-            <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400 overflow-x-scroll relative">
+            <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400 overflow-x-scroll ">
               <thead className="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-400">
                 <tr>
                   <th scope="col" className="px-4 py-3">
@@ -178,7 +178,7 @@ const filteredSongs = songs.filter((song) => {
                 </tr>
               </thead>
 
-              <tbody className=" overflow-y-scroll relative ">
+              <tbody className=" overflow-y-scroll  ">
                 {filteredSongs?.map((song, index: number) => (
                   <MusicItem key={index} song={song} />
                 ))}

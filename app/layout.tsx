@@ -11,13 +11,13 @@ import './globals.css';
 
 const metaImage = 'https://tvuqvrbxusmicpmjqpus.supabase.co/storage/v1/object/public/site_images/CribArtboard%201%20copy@4x.png'
 export const metadata = {
+  metadataBase: new URL('https://cribnusic.xyz'),
   openGraph: {
     title: "CRIB Music Global",
     description: "Your Global Music Partner.",
     url: "https://cribmusic.xyz",
     siteName: "CRIB Music",
     keywords: allKeywords,
-
     images: [ 
       {
         url: metaImage,
@@ -31,6 +31,8 @@ export const metadata = {
         alt: "Home",
       },
     ],
+  
+  
 //  type: "website",
   },
 };

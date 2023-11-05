@@ -1,6 +1,7 @@
 import ContactButton from "@/ui/Buttons/ContactButton/ContactButton";
 import Image from "next/image";
 import Footer from "ui/Navigation/Footer/Footer";
+import FAQ from "ui/Sections/FAQ";
 
 export const dynamic = "force-static";
 
@@ -23,13 +24,13 @@ async function page() {
   // PARAGRAPHS
   const techSupportP = `At CRIB, we are dedicated to empowering businesses for success. Unlock your full potential with our transformative multichannel services and innovative technology. Enhance customer experiences, drive revenue growth, and achieve sustainable success with our seamless solutions.`;
 
-  const musicSupP = `Code quality and performance are critical to your software's success. Our experts specialize in debugging and code review for Javascript, Typescript, React, and Solidity. We ensure your code is efficient, secure, and error-free.`;
+  const musicSupP = `Enhance the impact of your music in the visual and digital realms with our supervision services. Our team is skilled in synchronizing music with visuals to create captivating and memorable experiences. We work closely with filmmakers, advertising agencies, and content creators to ensure that your music complements their projects perfectly, amplifying the emotional resonance and engagement of their content. Join Crib Music Global and let your music tell a story that transcends boundaries.`;
 
-  const musicAdminP = `Efficient system administration is the backbone of a stable IT environment. Our team excels at managing and maintaining your systems, ensuring they run smoothly and securely, so you can focus on core business activities.`;
+  const musicAdminP = `Navigating the administrative aspects of the music industry can be daunting. That's where Crib Music Global comes in. We offer meticulous and efficient administration services, handling tasks such as copyright registration, royalty collection, and contractual negotiations. Let us take care of the paperwork while you focus on creating remarkable music.  `;
 
-  const musicPubP = `Technical issues can disrupt operations. With our troubleshooting support, you can count on rapid problem resolution. We're here to get your systems back on track, minimizing downtime and maximizing productivity.`;
+  const musicPubP = `We believe in the power of your music to inspire, connect, and resonate with audiences worldwide. Our Music Publishing services are designed to unlock the full potential of your compositions. We're here to help you navigate the intricate world of music rights, ensuring that your work is not only protected but also poised for success. With our expertise, we'll explore avenues for your music's licensing, distribution, and performance, so you can focus on creating, knowing that your music is working for you.`;
 
-  const musicLicenseP = `Building technical proficiency and expertise is essential. We offer comprehensive technical training programs that equip your team with the knowledge and skills they need to excel in today's tech-driven landscape.`;
+  const musicLicenseP = `Unlock new horizons for your music with our comprehensive music licensing services. Whether you're a budding artist or an established musician, we have the expertise and connections to get your work featured in film, television, commercials, and more. Our dedicated team will guide you through the intricate world of licensing, securing opportunities that align perfectly with your artistic vision.`;
 
   const whyUs = `Why Choose Us
   At CRIB, we are committed to excellence in every aspect of web design. Here's why you should choose us:
@@ -167,11 +168,14 @@ async function page() {
               {musicSupSub}
             </p>
 
-            <p className="mb-4">z{musicSupP}</p>
+            <p className="mb-4">{musicSupP}</p>
             <ContactButton />
           </div>
         </div>
       </section>
+      <section id='faq' className='max-w-5xl mx-auto'>
+    <FAQ/>
+    </section>
       <Footer/>
     </div>
   );

@@ -61,7 +61,7 @@ const MusicItem = ({ song }: any) => {
       <td className="px-4 py-2">
       <LicenseButton song={song} id={song.id}/>
       </td>
-      <td className={`collect-menu${song.id}`} onClick={handleMenuClick}>
+      <td className={`collect-menu${song.id} relative`} onClick={handleMenuClick}>
         <BsThreeDots/>
         {isOpen && <MenuItemMenu song={song}/>}
 

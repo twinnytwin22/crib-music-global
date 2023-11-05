@@ -1,3 +1,4 @@
+'use client'
 import { useSubportPlayer } from "app/context/subport-player";
 import { usePlayerStore } from "app/context/subport-player/PlayerLogic";
 import { useEffect } from "react";
