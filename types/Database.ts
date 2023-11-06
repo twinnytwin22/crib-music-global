@@ -521,8 +521,8 @@ export interface Database {
       songs: {
         Row: {
           album: string | null
-          artist_id: number | null
-          artist_id_new: string | null
+          artist_id: string | null
+          artist_id_old: number | null
           artist_name: string | null
           cover_art_url: string | null
           duration: unknown | null
@@ -539,8 +539,8 @@ export interface Database {
         }
         Insert: {
           album?: string | null
-          artist_id?: number | null
-          artist_id_new?: string | null
+          artist_id?: string | null
+          artist_id_old?: number | null
           artist_name?: string | null
           cover_art_url?: string | null
           duration?: unknown | null
@@ -557,8 +557,8 @@ export interface Database {
         }
         Update: {
           album?: string | null
-          artist_id?: number | null
-          artist_id_new?: string | null
+          artist_id?: string | null
+          artist_id_old?: number | null
           artist_name?: string | null
           cover_art_url?: string | null
           duration?: unknown | null
@@ -576,7 +576,7 @@ export interface Database {
         Relationships: [
           {
             foreignKeyName: "fk_artist"
-            columns: ["artist_id"]
+            columns: ["artist_id_old"]
             isOneToOne: false
             referencedRelation: "artists"
             referencedColumns: ["artist_id"]
@@ -586,14 +586,14 @@ export interface Database {
             columns: ["artist_id"]
             isOneToOne: false
             referencedRelation: "artists"
-            referencedColumns: ["artist_id"]
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "songs_artist_id_new_fkey"
-            columns: ["artist_id_new"]
+            foreignKeyName: "songs_artist_id_old_fkey"
+            columns: ["artist_id_old"]
             isOneToOne: false
             referencedRelation: "artists"
-            referencedColumns: ["id"]
+            referencedColumns: ["artist_id"]
           }
         ]
       }

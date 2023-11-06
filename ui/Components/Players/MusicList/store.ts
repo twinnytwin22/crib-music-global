@@ -3,7 +3,7 @@ import { create } from 'zustand';
 export interface Song {
   id: number | string;
   title: string;
-  artist_id_new: number | string;
+  artist_id: number | string;
   album: string | null;
   release_year: number;
   genre: string;

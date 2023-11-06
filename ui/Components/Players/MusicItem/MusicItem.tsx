@@ -48,7 +48,7 @@ const MusicItem = ({ song }: any) => {
         {song?.title}
       </td>
       <td
-       onClick={() => router.push(`/artist/${song.artist_id_new}`)}
+       onClick={() => router.push(`/artist/${song.artist_id}`)}
         className="px-4 py-2 font-medium text-zinc-900 whitespace-nowrap dark:text-white cursor-pointer"
       >
         {song?.artist_name}
