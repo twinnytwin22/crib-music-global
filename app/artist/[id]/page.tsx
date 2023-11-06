@@ -4,7 +4,7 @@ import Footer from "ui/Navigation/Footer";
 import ArtistPage from "ui/Sections/ArtistPage";
 
 export const fetchCache = "force-cache";
-export const dynamic = "force-static";
+export const dynamic = "auto";
 
 export async function generateStaticParams() {
   const { artists } = await getAllArtists();
