@@ -5,7 +5,9 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { toast } from "react-toastify";
 interface FormQuestions {
   question: string | undefined;
-  response: string | undefined;
+  response: string | string[] | undefined;
+  options?: any[] | null | undefined
+
 }
 
 export interface BusinessLicenseFormProps {
@@ -20,24 +22,49 @@ export interface BusinessLicenseFormProps {
   linkedin_profile: string | undefined;
   form_questions?: FormQuestions[];
   form_type?: string | undefined;
-  id: string | number; 
+  id: string | number;
   song_title: string | null
 }
 
 const min = 1;
-const max = 3;
+const max = 4;
 const isInRange = (s: number) => s >= min && s <= max;
 
-function BusinessLicenseForm({song}) {
+function BusinessLicenseForm({ song }) {
   const questions = [
-    "What is your biggest challenge as a small business owner?",
-    "What is a primary goal you have for your company? List 1-3",
+    {
+      q: 'What type of license is needed?',
+      options: [
+        "Individual", "Business"
+      ]
+    },
+    {
+      q: "How big is your company?",
+      options: [
+        {
+          size: 'Small',
+          count: '1-50'
+        },
+        {
+          size: 'Medium',
+          count: '51-250'
+        },
+        {
+          size: "Large",
+          count: '250+'
+        }
+      ]
+    },
+    { q: "What is your intended use?",
+   options: [
+      "Web/Social", "Industrial", "Internal", "Podcast", "VOD/OTT", "Film Festival", "Video Games", "Broadcast"
+   ] },
   ];
   const router = useRouter();
 
   const initialState: BusinessLicenseFormProps = {
-    id: song.id,
-    song_title: song.title,
+    id: song?.id,
+    song_title: song?.title,
     email: "",
     subject: "",
     message: "",
@@ -48,7 +75,8 @@ function BusinessLicenseForm({song}) {
     company_name: "",
     linkedin_profile: "",
     form_questions: questions.map((question) => ({
-      question: question,
+      question: question.q,
+      options: question.options,
       response: "",
     })),
     form_type: undefined, // You can add the form_type if needed
@@ -63,6 +91,7 @@ function BusinessLicenseForm({song}) {
     questionIndex?: number,
   ) => {
     const { name, value } = e.target;
+    console.log(name,value)
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -73,6 +102,7 @@ function BusinessLicenseForm({song}) {
         return question;
       }),
     }));
+    console.log(formData)
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -230,30 +260,36 @@ function BusinessLicenseForm({song}) {
   };
 
   const renderStep2 = () => {
-    return (
+    return  (
       <div>
-        <p className="mb-8 text-lg text-zinc-500 dark:text-zinc-300">
+        <p className="mb-8 text-base text-zinc-900 dark:text-zinc-300 text-center">
           {formData?.form_questions && formData?.form_questions[0].question}
         </p>
-        <div className="relative z-0 w-full mb-6 group">
-          <textarea
+        {formData?.form_questions && formData?.form_questions[0]?.options?.map((option) => (
+        <div className="relative z-0 w-full mb-3 group" key={option}>
+          <input
+            type="radio"
             value={
-              formData?.form_questions && formData?.form_questions[0].response
+              option
             }
+            checked={formData?.form_questions && formData?.form_questions[0]?.response === option}
             onChange={(e) => handleChange(e, 0)}
-            name={`form_questions`}
-            id={`form_questions`}
-            className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
+            name={'response_1'}
+            id={option}
+            className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             placeholder=" "
             required
           />
           <label
-            htmlFor="response_1"
-            className="peer-focus:font-medium absolute text-sm text-zinc-500 dark:text-zinc-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-300 peer-focus:dark:text-red-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            htmlFor={option}
+            className="inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300  dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900"
           >
-            Response
+            <div className="block">
+              <div className="w-full text-lg font-semibold">{option}</div>
+              <div className="w-full text-sm"></div>
+            </div>
           </label>
-        </div>
+        </div>))}
       </div>
     );
   };
@@ -261,34 +297,74 @@ function BusinessLicenseForm({song}) {
   const renderStep3 = () => {
     return (
       <div>
-        <p className="mb-8 text-lg text-zinc-500 dark:text-zinc-300">
+        <p className="mb-8 text-sm text-zinc-900 dark:text-zinc-300 text-center">
           {formData?.form_questions && formData?.form_questions[1].question}
         </p>
-        <div className="relative z-0 w-full mb-6 group">
-          <textarea
+        {formData?.form_questions && formData?.form_questions[1]?.options?.map((option, i: number) => (
+        <div className="relative z-0 w-full mb-3 group" key={i}>
+          <input
+            checked={formData?.form_questions && formData?.form_questions[1]?.response === option?.size}
+            type="radio"
             value={
-              formData?.form_questions && formData?.form_questions[1].response
+          option?.size
             }
             onChange={(e) => handleChange(e, 1)}
-            name={`form_questions`}
-            id={`form_questions`}
-            className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
+            name={'response_2'}
+            id={option?.size}
+            className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             placeholder=" "
             required
           />
           <label
-            htmlFor="response_2"
-            className="peer-focus:font-medium absolute text-sm text-zinc-500 dark:text-zinc-300 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-red-300 peer-focus:dark:text-red-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            htmlFor={option?.size}
+            className="inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300  dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900"
           >
-            Response
+            <div className="block">
+              <div className="w-full text-lg font-semibold">{option?.size}</div>
+              <div className="w-full text-sm">{(option?.count + " Employees") || ''}</div>
+            </div>
           </label>
+        </div>))}
+      </div>
+    );
+  };
+
+  const renderStep4 = () => {
+    return (
+      <div>
+        <p className="mb-8 text-base text-center text-zinc-500 dark:text-zinc-300">
+          {formData?.form_questions && formData?.form_questions[2].question}
+        </p>
+        <div className="relative z-0 w-full mb-6 group flex flex-wrap gap-2 justify-center">
+        {formData?.form_questions && formData?.form_questions[2]?.options?.map((option, i: number) => (
+<div className="flex gap-2 p-2 border rounded hover:bg-zinc-100 dark:hover:bg-zinc-950 border-zinc-300 dark:border-zinc-800 me-2 items-center h-fit" key={i}>
+          <input
+                      checked={formData?.form_questions && formData?.form_questions[2]?.response?.includes(option)}
+
+          type="checkbox"
+            value={option}
+            onChange={(e) => handleChange(e, 2)}
+            name={`response_3`}
+            id={option}
+            className=" accent-red-300"
+            //placeholder=" "
+            //required
+          />
+
+          <label
+            htmlFor={option}
+            className="text-sm"
+          >
+           {option}
+          </label> 
+          </div> ))}
         </div>
       </div>
     );
   };
   return (
     <div className=" font-work-sans">
-     
+
       <form
         onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
         className="w-full mx-auto h-[410px] max-h-full min-h-full relative"
@@ -296,7 +372,9 @@ function BusinessLicenseForm({song}) {
         <div className="min-h-[315px] max-h-fit">
           {step === min && renderStep1()}
           {step === 2 && renderStep2()}
-          {step === max && renderStep3()}
+          {step === 3 && renderStep3()}
+
+          {step === max && renderStep4()}
           {status === "error" && (
             <div className="text-red-500">Sorry there was an error</div>
           )}
@@ -310,7 +388,7 @@ function BusinessLicenseForm({song}) {
             {step === max ? (
               <button
                 type="submit"
-                className="text-black bg-red-400 hover:bg-red-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-300 dark:hover-bg-red-400 dark:focus:ring-red-400"
+                className="text-black bg-red-300 hover:bg-red-400 focus:ring-4 focus:outline-none rounded text-xs w-full sm:w-auto px-5 py-2.5 text-center duration-300 ease-in-out dark:focus:ring-red-400"
               >
                 Submit
               </button>
@@ -350,15 +428,15 @@ const StepButtons = ({
     <div className="flex text-black space-x-1">
       <div
         onClick={decrementStep}
-        className="p-2.5 bg-red-300 rounded-l-lg hover:bg-red-400 ease-in-out duration-200"
+        className={`p-2.5 bg-red-300 h-fit rounded rounded-l-lg hover:bg-red-400 ease-in-out duration-200 items-center text-xs gap-2 ${step === min ? 'hidden' : 'flex'}`}
       >
-        <FaChevronLeft />
+        <FaChevronLeft /> Back
       </div>
       <div
         onClick={incrementStep}
-        className="p-2.5 bg-red-300 rounded-r-lg hover:bg-red-400 ease-in-out duration-200"
+        className={`p-2.5 bg-red-300 h-fit rounded rounded-r-lg hover:bg-red-400 ease-in-out duration-200 items-center text-xs gap-2 ${step === max ? 'hidden' : 'flex'}`}
       >
-        <FaChevronRight />
+       Next <FaChevronRight />
       </div>
     </div>
   );
