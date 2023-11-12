@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 const ModalWrapper = dynamic(() => import('ui/Components/ModalWrapper'), {ssr: false})
-const ArtistSubmitForm = dynamic(() => import("ui/Forms/ArtistSubmitForm/ArtistSubmitForm"), {ssr: false});
+const ArtistSubmitForm = dynamic(() => import("ui/Forms/ArtistSubmitForm"), {ssr: false});
 const ContactForm = dynamic(() => import("ui/Forms/ContactPageForm"), {ssr: false});
 const CustomMusicForm = dynamic(() => import("ui/Forms/CustomMusicForm"), {ssr: false});
 const SongLicenseForm = dynamic(() => import("ui/Forms/SongLicenseForm"), {ssr: false});

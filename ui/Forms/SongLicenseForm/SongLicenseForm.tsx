@@ -62,6 +62,7 @@ const renderStep1 = () => {
 
       </div>
       <div className="relative  space-y-4">
+        {process.env.NODE_ENV === 'development' &&
         <div className="h-fit w-full flex flex-col space-y-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-900 duration-300 ease-in-out border  border-zinc-200 dark:border-zinc-800 rounded">
           <h2 className="text-lg font-semibold text-center">
             For Creators
@@ -76,10 +77,10 @@ const renderStep1 = () => {
           <button className="bg-zinc-100 mx-auto dark:hover:bg-zinc-950 dark:bg-black hover:bg-zinc-200 border border-zinc-200 dark:border-zinc-700 text-primary-800 ease-in-out duration-300 text-xs font-medium px-2 py-1.5 rounded">
             Boy Now
           </button>
-        </div>
+        </div>}
         <div className="w-full md:h-52 flex-col flex space-y-4 p-4 hover:bg-zinc-100 dark:hover:bg-zinc-900 duration-300 ease-in-out border rounded border-zinc-200 dark:border-zinc-800">
           <h2 className="text-lg font-semibold text-center">
-            For Business
+          {process.env.NODE_ENV === 'development' ? 'For Business' : 'License Song'}
           </h2>
           <p className="text-sm text-center max-w-sm mx-auto">
             {sampleText}
