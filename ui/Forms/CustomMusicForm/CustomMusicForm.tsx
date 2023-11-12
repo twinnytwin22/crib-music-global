@@ -95,7 +95,7 @@ function BuildGrantForm() {
         setStatus("error");
         console.log("Error sending email. Please try again later.");
       } finally {
-        router.push(pathname)
+        router.push(pathname, {scroll: false})
       }
     }
   };

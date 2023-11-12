@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { toast } from "react-toastify";
@@ -61,7 +61,7 @@ function BusinessLicenseForm({ song }) {
    ] },
   ];
   const router = useRouter();
-
+  const pathname = usePathname()
   const initialState: BusinessLicenseFormProps = {
     id: song?.id,
     song_title: song?.title,
@@ -128,6 +128,8 @@ function BusinessLicenseForm({ song }) {
       } catch (err) {
         setStatus("error");
         console.log("Error sending email. Please try again later.");
+      } finally {
+        router.push(pathname, {scroll:false})
       }
     }
   };
