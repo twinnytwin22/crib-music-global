@@ -16,7 +16,7 @@ const SongLicenseForm = () => {
   const url = createQueryString(searchParams)
 const handleBusinessClick = () => {
 
-    router.push(pathname + '?' + url('business', 'song'))
+    router.push(pathname + '?' + url('business', 'song'),{scroll: false})
 
 }
 const {data: songs} = useQuery({
