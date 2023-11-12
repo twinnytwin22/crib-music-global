@@ -322,7 +322,7 @@ function BusinessLicenseForm({ song }) {
             className="inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300  dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900"
           >
             <div className="block">
-              <div className="w-full text-lg font-semibold">{option?.size}</div>
+              <div className="w-full text-base font-semibold">{option?.size}</div>
               <div className="w-full text-sm">{(option?.count + " Employees") || ''}</div>
             </div>
           </label>
