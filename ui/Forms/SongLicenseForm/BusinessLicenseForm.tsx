@@ -1,67 +1,12 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { toast } from "react-toastify";
-interface FormQuestions {
-  question: string | undefined;
-  response: string | string[] | undefined;
-  options?: any[] | null | undefined
-
-}
-
-export interface BusinessLicenseFormProps {
-  email: string | undefined;
-  subject: string | undefined;
-  message: string | undefined;
-  first_name: string | undefined;
-  last_name: string | undefined;
-  phone_number: string | undefined;
-  website: string | undefined;
-  company_name: string | undefined;
-  linkedin_profile: string | undefined;
-  form_questions?: FormQuestions[];
-  form_type?: string | undefined;
-  id: string | number;
-  song_title: string | null
-}
-
-const min = 1;
-const max = 4;
-const isInRange = (s: number) => s >= min && s <= max;
+import { StepButtons } from "./StepButtons";
+import { max, min, questions } from "./lib";
+import { BusinessLicenseFormProps } from "./types";
 
 function BusinessLicenseForm({ song }) {
-  const questions = [
-    {
-      q: 'What type of license is needed?',
-      options: [
-        "Individual", "Business"
-      ]
-    },
-    {
-      q: "How big is your company?",
-      options: [
-        {
-          size: 'Small',
-          count: '1-50'
-        },
-        {
-          size: 'Medium',
-          count: '51-250'
-        },
-        {
-          size: "Large",
-          count: '250+'
-        }
-      ]
-    },
-    { q: "What is your intended use?",
-   options: [
-      "Web/Social", "Industrial", "Internal", "Podcast", "VOD/OTT", "Film Festival", "Video Games", "Broadcast"
-   ] },
-  ];
-  const router = useRouter();
-  const pathname = usePathname()
   const initialState: BusinessLicenseFormProps = {
     id: song?.id,
     song_title: song?.title,
@@ -81,17 +26,53 @@ function BusinessLicenseForm({ song }) {
     })),
     form_type: undefined, // You can add the form_type if needed
   };
-
-  const [formData, setFormData] = useState<BusinessLicenseFormProps>(initialState);
+  const [intentionsArray, setIntentionsArray] = useState<any[]>([]);
+  const [formData, setFormData] = useState<BusinessLicenseFormProps | any>(initialState);
   const [status, setStatus] = useState<string | null>("");
   const [step, setStep] = useState<number | null>(1);
+  const handleIntentionSelect = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    questionIndex: number
+  ) => {
+    const { name, value:selectedIntention } = e.target;
 
+    // Check if the selectedIntention is already in the array
+    if (intentionsArray?.includes(selectedIntention)) {
+      // If it is, remove it
+      setIntentionsArray((prevArray) =>
+        prevArray.filter((item) => item !== selectedIntention)
+      );
+    } else {
+      // If it's not, add it to the array
+      setIntentionsArray((prevArray) => [...prevArray, selectedIntention]);
+    }
+  
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: selectedIntention,
+      form_questions: prevFormData?.form_questions?.map((question, index) => {
+        if (index === questionIndex) {
+          return { ...question, response: intentionsArray };
+        }
+        return question;
+      }),
+    }));
+  };
+  
+  console.log(formData)
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+
+console.log(intentionsArray, 'IA')
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    questionIndex?: number,
+    questionIndex?: number
   ) => {
+    // e.preventDefault()
     const { name, value } = e.target;
-    console.log(name,value)
+  //  console.log(name, value);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -102,14 +83,22 @@ function BusinessLicenseForm({ song }) {
         return question;
       }),
     }));
-    console.log(formData)
   };
 
+  const handleTestSubmit = (e) => {
+      console.log(formData)
+  }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+
+
     if (step === max) {
+      delete formData.response_1
+      delete formData.response_2
+      delete formData.response_3
       e.preventDefault();
       try {
-        const updates: BusinessLicenseFormProps = {
+        const updates: BusinessLicenseFormProps | any = { 
           ...formData,
           form_type: "Business License Inquiry",
           subject: "Business License Inquiry",
@@ -129,18 +118,14 @@ function BusinessLicenseForm({ song }) {
         setStatus("error");
         console.log("Error sending email. Please try again later.");
       } finally {
-        router.push(pathname, {scroll:false})
+        router.push(pathname, { scroll: false });
       }
     }
   };
-  const headers = (index) => [
-    {
-      GetStarted: "Get Started",
-      TellUsMore: "Tell Us More About You",
-      FinishUp: "Finish Up",
-      Completed: "All Done",
-    },
-  ];
+
+
+ /// console.log(formData);
+
   const renderStep1 = () => {
     return (
       <div className=" w-full mx-auto">
@@ -262,36 +247,39 @@ function BusinessLicenseForm({ song }) {
   };
 
   const renderStep2 = () => {
-    return  (
+    return (
       <div>
         <p className="mb-8 text-base text-zinc-900 dark:text-zinc-300 text-center">
           {formData?.form_questions && formData?.form_questions[0].question}
         </p>
-        {formData?.form_questions && formData?.form_questions[0]?.options?.map((option) => (
-        <div className="relative z-0 w-full mb-3 group" key={option}>
-          <input
-            type="radio"
-            value={
-              option
-            }
-            checked={formData?.form_questions && formData?.form_questions[0]?.response === option}
-            onChange={(e) => handleChange(e, 0)}
-            name={'response_1'}
-            id={option}
-            className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            htmlFor={option}
-            className="inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300  dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900"
-          >
-            <div className="block">
-              <div className="w-full text-lg font-semibold">{option}</div>
-              <div className="w-full text-sm"></div>
+        {formData?.form_questions &&
+          formData?.form_questions[0]?.options?.map((option) => (
+            <div className="relative z-0 w-full mb-3 group" key={option}>
+              <input
+                type="radio"
+                value={option}
+                checked={
+                  formData?.form_questions &&
+                  formData?.form_questions[0]?.response === option
+                }
+                onChange={(e) => handleChange(e, 0)}
+                name={"response_1"}
+                id={option}
+                className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor={option}
+                className="inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300  dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900"
+              >
+                <div className="block">
+                  <div className="w-full text-lg font-semibold">{option}</div>
+                  <div className="w-full text-sm"></div>
+                </div>
+              </label>
             </div>
-          </label>
-        </div>))}
+          ))}
       </div>
     );
   };
@@ -302,31 +290,38 @@ function BusinessLicenseForm({ song }) {
         <p className="mb-8 text-sm text-zinc-900 dark:text-zinc-300 text-center">
           {formData?.form_questions && formData?.form_questions[1].question}
         </p>
-        {formData?.form_questions && formData?.form_questions[1]?.options?.map((option, i: number) => (
-        <div className="relative z-0 w-full mb-3 group" key={i}>
-          <input
-            checked={formData?.form_questions && formData?.form_questions[1]?.response === option?.size}
-            type="radio"
-            value={
-          option?.size
-            }
-            onChange={(e) => handleChange(e, 1)}
-            name={'response_2'}
-            id={option?.size}
-            className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            htmlFor={option?.size}
-            className="inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300  dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900"
-          >
-            <div className="block">
-              <div className="w-full text-base font-semibold">{option?.size}</div>
-              <div className="w-full text-sm">{(option?.count + " Employees") || ''}</div>
+        {formData?.form_questions &&
+          formData?.form_questions[1]?.options?.map((option, i: number) => (
+            <div className="relative z-0 w-full mb-3 group" key={i}>
+              <input
+                checked={
+                  formData?.form_questions &&
+                  formData?.form_questions[1]?.response === option?.size
+                }
+                type="radio"
+                value={option?.size}
+                onChange={(e) => handleChange(e, 1)}
+                name={"response_2"}
+                id={option?.size}
+                className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor={option?.size}
+                className="inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300  dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900"
+              >
+                <div className="block">
+                  <div className="w-full text-base font-semibold">
+                    {option?.size}
+                  </div>
+                  <div className="w-full text-sm">
+                    {option?.count + " Employees" || ""}
+                  </div>
+                </div>
+              </label>
             </div>
-          </label>
-        </div>))}
+          ))}
       </div>
     );
   };
@@ -338,37 +333,37 @@ function BusinessLicenseForm({ song }) {
           {formData?.form_questions && formData?.form_questions[2].question}
         </p>
         <div className="relative z-0 w-full mb-6 group flex flex-wrap gap-2 justify-center">
-        {formData?.form_questions && formData?.form_questions[2]?.options?.map((option, i: number) => (
-<div className="flex gap-2 p-2 border rounded hover:bg-zinc-100 dark:hover:bg-zinc-950 border-zinc-300 dark:border-zinc-800 me-2 items-center h-fit" key={i}>
-          <input
-                      checked={formData?.form_questions && formData?.form_questions[2]?.response?.includes(option)}
+          {formData?.form_questions &&
+            formData?.form_questions[2]?.options?.map((option, i: number) => (
+              <div
+                className="flex gap-2 p-2 border rounded hover:bg-zinc-100 dark:hover:bg-zinc-950 border-zinc-300 dark:border-zinc-800 me-2 items-center h-fit"
+                key={i}
+              >
+                <input
+                  checked={intentionsArray.includes(option)}
+                  type="checkbox"
+                  value={option}
+                  onChange={(e) => handleIntentionSelect(e, 2)}
+                  name={`response_3`}
+                  id={option}
+                  className=" accent-red-300"
+                //placeholder=" "
+                //required
+                />
 
-          type="checkbox"
-            value={option}
-            onChange={(e) => handleChange(e, 2)}
-            name={`response_3`}
-            id={option}
-            className=" accent-red-300"
-            //placeholder=" "
-            //required
-          />
-
-          <label
-            htmlFor={option}
-            className="text-sm"
-          >
-           {option}
-          </label> 
-          </div> ))}
+                <label htmlFor={option} className="text-sm">
+                  {option}
+                </label>
+              </div>
+            ))}
         </div>
       </div>
     );
   };
   return (
     <div className=" font-work-sans">
-
       <form
-        onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
+       onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
         className="w-full mx-auto h-[410px] max-h-full min-h-full relative"
       >
         <div className="min-h-[315px] max-h-fit">
@@ -406,40 +401,3 @@ function BusinessLicenseForm({ song }) {
 
 export default BusinessLicenseForm;
 
-const StepButtons = ({
-  step,
-  set,
-}: {
-  step: number;
-  set: (step: number) => void;
-}) => {
-  const incrementStep = () => {
-    const newStep = step + 1;
-    if (isInRange(newStep)) {
-      set(newStep);
-    }
-  };
-  const decrementStep = () => {
-    const prevStep = step - 1;
-    if (isInRange(prevStep)) {
-      set(prevStep);
-    }
-  };
-
-  return (
-    <div className="flex text-black space-x-1">
-      <div
-        onClick={decrementStep}
-        className={`p-2.5 bg-red-300 h-fit rounded rounded-l-lg hover:bg-red-400 ease-in-out duration-200 items-center text-xs gap-2 ${step === min ? 'hidden' : 'flex'}`}
-      >
-        <FaChevronLeft /> Back
-      </div>
-      <div
-        onClick={incrementStep}
-        className={`p-2.5 bg-red-300 h-fit rounded rounded-r-lg hover:bg-red-400 ease-in-out duration-200 items-center text-xs gap-2 ${step === max ? 'hidden' : 'flex'}`}
-      >
-       Next <FaChevronRight />
-      </div>
-    </div>
-  );
-};
