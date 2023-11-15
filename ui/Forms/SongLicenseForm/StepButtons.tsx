@@ -1,3 +1,4 @@
+'use client'
 import useFormStateContext from "app/context/FormContext";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { max, min } from "./lib";

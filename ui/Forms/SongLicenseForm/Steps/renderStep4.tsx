@@ -47,7 +47,7 @@ export const Step4 = () => {
           try {
             const updates: IFormProps | IFormContextProps | any = {
               ...formData,
-              subject: "Business License Inquiry",
+              subject: formData.form_type
             };
     
             const res = await fetch(
