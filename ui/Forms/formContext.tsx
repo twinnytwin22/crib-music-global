@@ -1,33 +1,29 @@
+import { useSearchParams } from "next/navigation";
 import {
   ReactNode,
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
 } from "react";
-import { UseFormProps, useForm } from "react-hook-form";
-import { questions } from "./lib";
-import useFormStore from "./store";
+import { useForm } from "react-hook-form";
+import useFormStore from "./SongLicenseForm/store";
 import { FormQuestions, IFormProps } from "./types";
 
 export interface IFormContextProps extends IFormProps {
   decrementStep: () => void;
   incrementStep: () => void;
 }
-type TAllFormProps = IFormProps | IFormContextProps | UseFormProps;
+// type TAllFormProps = IFormProps | IFormContextProps | UseFormProps;
 const store = useFormStore.getState();
 const FormContext = createContext<IFormProps | IFormContextProps | any>(store);
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
-  const song = {
-    id: "",
-    title: "",
-  };
-  const formQuestions = questions.map((question) => ({
-    question: question.q,
-    options: question.options,
-    response: "",
-  }));
+  const params = useSearchParams()
+  const license = params.get('license')
+
+  console.log(license)
   const store = useFormStore();
   const {
     song_title,
@@ -38,7 +34,8 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     max,
     step,
     setStep,
-    defaultValues: values,
+    setFormState,
+    defaultValues,
   } = useFormStore();
   const {
     watch,
@@ -50,9 +47,18 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     formState: { errors },
   } = useForm<IFormProps>({
     mode: "all",
-    defaultValues: values,
+    defaultValues,
   });
-  const isInRange = (s: number) => s >= min && s <= max;
+
+  const isEmail = watch('email')
+  // useEffect(() => {
+  //   if(!license && (isEmail)){
+  //     reset()
+  //     setFormState(defaultValues)
+  //   }
+  // },[!license, defaultValues, isEmail, reset, setFormState])
+  const setMinMax = (min: number, max: number) => 
+  useFormStore.setState({ min, max})
   const setSong = (newSong: { id: string; song_title: string }) =>
     useFormStore.setState(newSong);
   const setFormQuestions = (newQuestionSet: FormQuestions[]) =>
@@ -78,10 +84,16 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
   const updateFormQuestions = useCallback(
     (newFormQuestions: FormQuestions[]) => {
       setValue("form_questions", newFormQuestions);
-      setFormQuestions(formQuestions);
+      setFormQuestions(newFormQuestions);
     },
     [setFormQuestions, setValue]
   );
+  const isInRange = (s: number) => s >= min! && s <= max!;
+
+  const updateMinMax = useCallback(
+    (newMin: number, newMax: number) => {
+    setMinMax(newMin, newMax)
+  },[])
 
   const incrementStep = () => {
     const newStep = step + 1;
@@ -115,6 +127,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
       updateFormQuestions,
       updateFormType,
       updateSong,
+      updateMinMax
     }),
     [
       store,
@@ -132,7 +145,8 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
       updateFormType,
       updateSong,
       control,
-      song_id
+      song_id,
+      updateMinMax
     ]
   );
 

@@ -22,11 +22,13 @@ function BusinessLicenseForm({ song }) {
     updateFormType,
     updateSong,
     step,
+    updateMinMax
   } = useFormStateContext();
 
   useEffect(() => {
     if(song){
     setStatus('loading')
+    updateMinMax(1,4)
     updateSong(song)
     updateFormType('Business License Inquiry');
     updateFormQuestions(formQuestions)

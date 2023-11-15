@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { create } from 'zustand';
+import { FormQuestions, IFormProps } from '../types';
 import { isInRange } from './lib';
-import { FormQuestions, IFormProps } from './types';
 
 
 const useFormStore = create<IFormProps>((set) => ({
@@ -79,8 +79,8 @@ const useFormStore = create<IFormProps>((set) => ({
         setStep(newStep);
       }
     },
-    min: 1, 
-    max: 4, 
+    min: null, 
+    max: null, 
     isInRange: (s: number, min: number, max: number) =>  s >= min && s <= max,
     setStatus: (status: string) => ({status}),
     status: ''

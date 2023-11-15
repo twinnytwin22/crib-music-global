@@ -1,28 +1,19 @@
 'use client'
-import useFormStateContext, { IFormContextProps, } from "app/context/FormContext";
-import { usePathname, useRouter } from "next/navigation";
+import useFormStateContext from "app/context/FormContext";
 import { useState } from "react";
-import { SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
-import { IFormProps } from "../../types";
 import { StepButtons } from "../StepButtons";
 
 export const Step4 = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const {
     setFormState,
-    reset,
     form_questions,
-    max,
     register,
     setValue,
-    setStep,
     handleSubmit,
-    step,
-    defaultValues
+    incrementStep
   } = useFormStateContext();
-    const router = useRouter();
-    const pathname = usePathname();
+
   //console.log(watch(), song_title)
     const handleCheckboxChange = (e) => {
       const {value:option} = e.target
@@ -38,40 +29,10 @@ export const Step4 = () => {
       // Update form value
       setValue(`form_questions.2.response`, selectedOptions);
     };
-    const onSubmit: SubmitHandler<IFormProps | IFormContextProps | any> = async (
-      formData
-      ) => {
-        if (step === max) {
-          setValue(`form_questions.2.response`, selectedOptions);
-
-          try {
-            const updates: IFormProps | IFormContextProps | any = {
-              ...formData,
-              subject: formData.form_type
-            };
-    
-            const res = await fetch(
-              "/api/contact/requests/business-inquiry/",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(updates),
-              }
-            );
-    
-            if (res.ok) {
-              toast.success("Your message was sent successfully");
-              reset()
-              setFormState(defaultValues)
-              setStep(1)
-              router.push(pathname, { scroll: false });
-            }
-          } catch (err) {
-            console.error("Error sending email. Please try again later.");
-          }
-        }
-      };
-    
+    const onSubmit = (data) => {
+      setFormState(data);
+      incrementStep();
+    }
     
     return (
       <form onSubmit={handleSubmit(onSubmit)}>

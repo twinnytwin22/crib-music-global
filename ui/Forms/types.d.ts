@@ -27,8 +27,8 @@ export type FormQuestions = {
     step: number
     setStep: (step: number) => void
     defaultValues: BusinessLicenseFormProps
-    min: number
-    max:number
+    min: number | null
+    max:number | null
     
     status: string
     setStatus: (status: string) => void
