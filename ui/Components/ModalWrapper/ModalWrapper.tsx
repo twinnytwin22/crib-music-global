@@ -16,7 +16,7 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
   const { reset, setStep } = useFormStateContext();
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center  ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center select-none  ${
         open ? "translate-x-0 " : "translate-x-full"
       } `}
     >

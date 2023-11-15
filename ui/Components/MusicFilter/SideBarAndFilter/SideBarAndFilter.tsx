@@ -6,7 +6,7 @@ function SideBarAndFilter() {
     useMusicFilterStore();
 
   return (
-    <div className="w-24 bg-zinc-50 dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 darK:bg-zinc-800 h-screen fixed left-0 top-0 overflow-y-auto hidden md:block mt-20">
+    <div className="w-24 bg-zinc-50 dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 darK:bg-zinc-800 h-screen fixed left-0 top-0 overflow-y-auto hidden md:block mt-20 select-none">
         <div>
     <div className=' relative z-10  font-work-sans place-items-center text-sm'>
       <ul className='text-black dark:text-white text-center '>

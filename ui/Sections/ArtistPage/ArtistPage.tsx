@@ -89,7 +89,7 @@ function ArtistPage({ image, artist, songs }) {
             </Fragment>
           </div>
           <div className="md:w-2/3  md:pl-8">
-            <h2 className="font-semibold text-lg">
+            <h2 className="font-semibold text-lg select-none">
               More Sounds from {artist.artist_name}
             </h2>
             <RelatedMusicList songs={songs} />

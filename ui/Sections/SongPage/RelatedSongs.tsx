@@ -24,7 +24,7 @@ const RelatedMusicList = ({ songs }: any) => {
 
 
   return (
-    <div className=" -z-0 relative mx-auto flex justify-center">
+    <div className=" -z-0 relative mx-auto flex justify-center select-none">
   
 
       <section className="py-4 self-center w-full max-w-screen-2xl mx-auto rounded justify-center relative flex">

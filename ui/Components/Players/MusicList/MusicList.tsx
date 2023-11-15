@@ -110,7 +110,7 @@ const filteredSongs = songs.filter((song) => {
   useHandleOutsideClick(openFilterWindow, setOpenFilterWindow, 'filter-window')
  // console.log(filters)
   return (
-    <div className=" -z-0 relative mx-auto flex justify-center">
+    <div className=" -z-0 relative mx-auto flex justify-center select-none">
       {openFilterWindow && 
       <div className="fixed inset-0 z-[9999] flex items-center justify-center mx-8">
         <div className="w-full h-full bg-black fixed z-0 opacity-80"></div>
