@@ -1,5 +1,5 @@
+import useFormStateContext from "app/context/FormContext";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { useFormStateContext } from "./formContext";
 import { max, min } from "./lib";
 
 export const StepButtons = () => {

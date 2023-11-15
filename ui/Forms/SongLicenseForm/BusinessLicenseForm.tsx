@@ -35,8 +35,9 @@ function BusinessLicenseForm({ song }) {
   },[song])
 
 
-  return (status !== 'loading') && (
+  return  (
     <div className=" font-work-sans">
+      {(status !== 'loading') &&
       <div
         // onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
         className="w-full mx-auto h-[410px] max-h-full min-h-full relative"
@@ -54,7 +55,7 @@ function BusinessLicenseForm({ song }) {
           )}
         </div>
        
-      </div>
+      </div>}
     </div>
   );
 }
