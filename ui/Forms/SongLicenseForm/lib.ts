@@ -40,7 +40,11 @@ const questions = [
     ],
   },
 ];
-
+export const form_questions = questions.map((question) => ({
+  question: question.q,
+  options: question.options,
+  response: "",
+}))
 const min = 1;
 const max = 4;
 const isInRange = (s: number) => s >= min && s <= max;
