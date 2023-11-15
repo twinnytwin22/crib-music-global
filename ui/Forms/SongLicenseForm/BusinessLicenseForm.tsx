@@ -34,7 +34,7 @@ function BusinessLicenseForm({ song }) {
     updateFormQuestions(formQuestions)
     setStatus('ready')
     }
-  },[song, min, max, formQuestions])
+  },[song,])
 
 
   return  (
