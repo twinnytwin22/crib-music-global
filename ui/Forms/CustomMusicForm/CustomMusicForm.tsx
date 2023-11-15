@@ -41,7 +41,7 @@ function CustomMusicForm() {
     <div className=" font-work-sans">
           <div className="py-8  px-4 mx-auto max-w-full">
 
-           <h2 className="mb-4 text-2xl font-semibold text-center text-zinc-900 dark:text-white font-owners">Custom Music Inquiry</h2>
+           <h2 className="mb-4 text-2xl font-medium text-center text-zinc-900 dark:text-white font-owners">Custom Music Inquiry</h2>
         <p className="mb-8 font-light text-center text-zinc-500 dark:text-zinc-300 ">Fill out the following information and our team with reach out with a quote within 24 hours.</p>
        
        

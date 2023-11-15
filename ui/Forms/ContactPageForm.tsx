@@ -54,7 +54,7 @@ const ContactForm = () => {
 
   return (
     <div className="w-full p-8 mx-auto max-w-screen-md z-[100] h-full  isolate relative ">
-      <h1 className=" text-2xl tracking-tight font-semibold text-center text-black dark:text-white font-owners">
+      <h1 className=" text-2xl tracking-tight font-medium text-center text-black dark:text-white font-owners">
         Let's Chat!
       </h1>
       <p className="text-center -mt-2 mb-8 text-black dark:text-white text-sm">

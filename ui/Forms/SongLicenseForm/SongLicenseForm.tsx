@@ -31,7 +31,7 @@ const renderStep1 = () => {
 //console.log(currentSong)
   return id && song && (
     <div className="py-8  px-4 mx-auto max-w-full">
-      <h2 className="mb-4 text-2xl font-semibold text-center text-zinc-900 dark:text-white">
+      <h2 className="mb-4 text-2xl font-medium text-center text-zinc-900 dark:text-white font-owners">
         {song?.title} - {song?.artist_name}
       </h2>
       <div className="grid grid-cols-2 p-4">
