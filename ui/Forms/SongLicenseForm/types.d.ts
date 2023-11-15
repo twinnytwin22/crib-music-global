@@ -17,7 +17,7 @@ export type FormQuestions = {
     linkedin_profile?: string | undefined;
     form_questions?: FormQuestions[];
     form_type?: string | undefined;
-    id?: string | number | null;
+    song_id?: string | number | null;
     song_title?: string | null;
     onHandleBack: (step, setStep) => void;
     onHandleNext:(step, setStep) => void;

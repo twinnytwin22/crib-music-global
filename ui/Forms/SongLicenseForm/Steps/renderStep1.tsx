@@ -1,18 +1,13 @@
 "use client";
-
+import useFormStateContext from "app/context/FormContext";
 import { StepButtons } from "../StepButtons";
-import { useFormStateContext } from "../formContext";
 
 export const Step1 = () => {
   const {
     setFormState,
-    onHandleBack,
     register,
-    setValue,
-    watch,
     handleSubmit,
     incrementStep,
-    decrementStep,
   } = useFormStateContext();
 
   const onSubmit = (data) => {
@@ -25,15 +20,10 @@ export const Step1 = () => {
       <div className="grid md:grid-cols-2 md:gap-6">
         <div className="relative z-0 w-full mb-6 group">
           <input
-            //defaultValue={first_name}
-            // value={formData?.first_name}
-            //onChange={handleChange}
             type="text"
-            //  name="first_name"
             id="first_name"
             className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             placeholder=" "
-            //  required
             {...register("first_name", { required: true })}
           />
           <label
@@ -45,16 +35,12 @@ export const Step1 = () => {
         </div>
         <div className="relative z-0 w-full mb-6 group">
           <input
-            // defaultValue={last_name}
-            // value={formData.last_name}
-            //onChange={handleChange}
             {...register("last_name", { required: true })}
             type="text"
             name="last_name"
             id="last_name"
             className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="last_name"
@@ -85,15 +71,13 @@ export const Step1 = () => {
       </div>
       <div className="relative z-0 w-full mb-6 group">
         <input
-          // value={formData.website}
-          //  onChange={handleChange}
+
           {...register("website", { required: true })}
           type="url"
           name="website"
           id="website"
           className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
           placeholder=" "
-          // required
         />
         <label
           htmlFor="website"
@@ -106,15 +90,12 @@ export const Step1 = () => {
       <div className="grid md:grid-cols-2 md:gap-6">
         <div className="relative z-0 w-full mb-6 group">
           <input
-            //  value={formData.phone_number}
-            //  onChange={handleChange}
             {...register("phone_number", { required: true })}
             type="tel"
             name="phone_number"
             id="phone_number"
             className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="phone_number"
@@ -125,15 +106,12 @@ export const Step1 = () => {
         </div>
         <div className="relative z-0 w-full mb-6 group">
           <input
-            // value={formData.company_name}
             {...register("company_name", { required: true })}
-            // onChange={handleChange}
             type="text"
             name="company_name"
             id="company_name"
             className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             placeholder=" "
-            // required
           />
           <label
             htmlFor="company_name"

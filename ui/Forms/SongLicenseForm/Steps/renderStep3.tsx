@@ -1,19 +1,16 @@
 'use client'
 
+import useFormStateContext from "app/context/FormContext";
 import { StepButtons } from "../StepButtons";
-import { useFormStateContext } from "../formContext";
 
 export const Step3 = () => {
   const {
     form_questions,
     setFormState,
-    onHandleBack,
     register,
     setValue,
-    watch,
     handleSubmit,
     incrementStep,
-    decrementStep,
   } = useFormStateContext();
   const onSubmit = (data) => {
     setFormState(data);
@@ -29,19 +26,11 @@ export const Step3 = () => {
         <div className="relative z-0 w-full mb-3 group" key={i}>
           <input
             {...register(`form_questions.1.response`, { required: "A response is required" })}
-
-            // checked={
-            //   form_questions &&
-            //   form_questions[1]?.response === option?.size
-            // }
             type="radio"
             value={option?.size}
             onChange={() => setValue(`form_questions.1.response`, option?.size)} // Set the value on change
-            // name={"response_2"}
             id={option?.size}
             className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
-          // placeholder=" "
-          //required
           />
           <label
             htmlFor={option?.size}

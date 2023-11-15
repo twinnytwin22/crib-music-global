@@ -1,20 +1,17 @@
 'use client'
 
+import useFormStateContext from "app/context/FormContext";
 import { StepButtons } from "../StepButtons";
-import { useFormStateContext } from "../formContext";
 
 export const Step2 = () => {
 
   const {
     setFormState,
-    onHandleBack,
     register,
     setValue,
     watch,
     handleSubmit,
     incrementStep,
-    decrementStep,
-    step, 
     form_questions
   } = useFormStateContext();
   const onSubmit = (data) => {
@@ -31,7 +28,6 @@ export const Step2 = () => {
       {form_questions[0]?.options?.map((option, index: number) => {
         const formResponse = watch(`form_questions.0.response`)
         const checked = formResponse === option
-       // console.log(checked, option)
         return (
           <div className="relative z-0 w-full mb-3 group form-g" key={option}>
             <input
@@ -39,9 +35,7 @@ export const Step2 = () => {
               checked={checked}
               type="radio"
               value={option}
-              //required
               onChange={() => setValue(`form_questions.0.response`, option)} // Set the value on change
-
               id={option[index]} // Use index to generate unique IDs
               className="hidden py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             />

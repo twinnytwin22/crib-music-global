@@ -1,33 +1,29 @@
 'use client'
+import useFormStateContext, { IFormContextProps, } from "app/context/FormContext";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import { StepButtons } from "../StepButtons";
-import { IFormContextProps, useFormStateContext } from "../formContext";
-import useFormStore from "../store";
 import { IFormProps } from "../types";
 
 export const Step4 = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const {song_title} = useFormStore()
   const {
     setFormState,
+    reset,
     form_questions,
     max,
-    onHandleBack,
     register,
     setValue,
-    watch,
+    setStep,
     handleSubmit,
-    incrementStep,
     step,
-    decrementStep,
+    defaultValues
   } = useFormStateContext();
     const router = useRouter();
     const pathname = usePathname();
-    const formResponse = watch(`form_questions.2.response`)
-  console.log(watch(), song_title)
+  //console.log(watch(), song_title)
     const handleCheckboxChange = (e) => {
       const {value:option} = e.target
       // Toggle selected options
@@ -65,6 +61,9 @@ export const Step4 = () => {
     
             if (res.ok) {
               toast.success("Your message was sent successfully");
+              reset()
+              setFormState(defaultValues)
+              setStep(1)
               router.push(pathname, { scroll: false });
             }
           } catch (err) {
@@ -84,7 +83,7 @@ export const Step4 = () => {
            form_questions[2]?.options?.map((option, i: number) => {
 
             const checked = selectedOptions.includes(option)
-            console.log(formResponse, 'FR')
+            //console.log(formResponse, 'FR')
             return (
               <div
                 className="flex gap-2 p-2 border rounded hover:bg-zinc-100 dark:hover:bg-zinc-950 border-zinc-300 dark:border-zinc-800 me-2 items-center h-fit"

@@ -5,7 +5,7 @@ import { FormQuestions, IFormProps } from './types';
 
 
 const useFormStore = create<IFormProps>((set) => ({
-    id: null,
+    song_id: null,
     song_title: null,
     email: '',
     subject: '',
@@ -24,7 +24,7 @@ const useFormStore = create<IFormProps>((set) => ({
       },
     ],
     defaultValues: {
-      id: null,
+      song_id: null,
       song_title: null,
       email: '',
       subject: '',
@@ -44,7 +44,7 @@ const useFormStore = create<IFormProps>((set) => ({
       ],
     },
     formState:  {
-      id: null,
+     song_id: null,
       song_title: null,
       email: '',
       subject: '',

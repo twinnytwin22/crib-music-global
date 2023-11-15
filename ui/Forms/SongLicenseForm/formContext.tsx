@@ -33,7 +33,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     song_title,
     status,
     setStatus,
-    id,
+    song_id,
     min,
     max,
     step,
@@ -42,6 +42,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
   } = useFormStore();
   const {
     watch,
+    reset,
     setValue,
     register,
     handleSubmit,
@@ -62,7 +63,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
   const updateSong = useCallback(
     (newSong: any) => {
       setValue("song_title", newSong.title);
-      setValue("id", newSong.id);
+      setValue("song_id", newSong.id);
       setSong(newSong);
     },
     [setSong, setValue]
@@ -79,7 +80,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
       setValue("form_questions", newFormQuestions);
       setFormQuestions(formQuestions);
     },
-    [setFormQuestions]
+    [setFormQuestions, setValue]
   );
 
   const incrementStep = () => {
@@ -99,8 +100,9 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
   const value = useMemo(
     () => ({
       ...store,
+      reset,
       song_title,
-      id,
+      song_id,
       status,
       setStatus,
       decrementStep,
@@ -117,6 +119,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     [
       store,
       status,
+      reset,
       setStatus,
       setSong,
       decrementStep,
@@ -129,12 +132,13 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
       updateFormType,
       updateSong,
       control,
+      song_id
     ]
   );
 
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>;
 };
 
-export function useFormStateContext() {
+export default function useFormStateContext() {
   return useContext(FormContext);
 }
