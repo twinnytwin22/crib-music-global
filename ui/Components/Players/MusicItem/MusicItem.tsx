@@ -64,11 +64,14 @@ const MusicItem = ({ song }: any) => {
       </td>
       </Suspense>
       <td
-        className={`collect-menu${song.id} relative`}
+        className={`collect-menu${song.id}`}
         onClick={handleMenuClick}
       >
         <BsThreeDots />
-        {isOpen && <MenuItemMenu song={song} />}
+        {isOpen && 
+        <div className="isolate z-50">
+        <MenuItemMenu song={song} />
+        </div>}
       </td>
     </tr>
   );

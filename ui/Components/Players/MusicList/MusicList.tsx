@@ -185,7 +185,7 @@ const MusicList = ({ songs }: any) => {
                 </tr>
               </thead>
 
-              <tbody className=" overflow-y-scroll  ">
+              <tbody className=" relative  ">
                 {filteredSongs?.map((song, index: number) => (
                   <MusicItem key={index} song={song} />
                 ))}

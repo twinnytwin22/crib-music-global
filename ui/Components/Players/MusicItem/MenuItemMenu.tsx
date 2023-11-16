@@ -13,7 +13,7 @@ function MenuItemMenu({ song }) {
   };
   return (
     <div
-      className={`collect-menu${song.id} absolute isolate right-0 mt-1 pl-8 `}
+      className={`collect-menu${song.id} absolute isolate z-50 right-4 mt-1 pl-8 `}
     >
       <ul className="w-48 text-sm font-medium text-zinc-900 bg-white border border-zinc-200 rounded-md dark:bg-zinc-900 dark:border-zinc-700 dark:text-white opacity-90 shadow-sm shadow-zinc-500 ">
         <li className="w-full px-4 py-2 flex justify-between border-b border-zinc-200 rounded-t-lg dark:border-zinc-600 hover:dark:bg-zinc-700">
