@@ -4,6 +4,7 @@ import { getAllSongs } from "@/utils/db";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
+import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
 import BusinessLicenseForm from "./BusinessLicenseForm";
 import {
   forBusinessList,
@@ -17,23 +18,23 @@ const SongLicenseForm = () => {
   const id: string = searchParams.get("id")!;
   const business = searchParams.get("business");
   const url = createQueryString(searchParams);
-
+  const { licenseWindowOpen  } = useLicensingStore()
   const router = useRouter();
   const pathname = usePathname();
   const handleBusinessClick = () => {
     router.push(pathname + "?" + url("business", "song"), { scroll: false });
   };
-  const { data: songs, isLoading, isFetching, isSuccess } = useQuery({
+  const { data: songs, isLoading, isFetching, isSuccess, isPending } = useQuery({
     queryKey: ["songs"],
     queryFn: () => getAllSongs(),
     refetchOnMount: false,
-    enabled: !!!id,
+    enabled: !!!id && licenseWindowOpen,
   });
   const song =
     songs?.songs?.find((currentSong:{ id: string}) => currentSong?.id === id) ||
     songs?.find((currentSong: {id: string}) => currentSong?.id === id);
 
-    const loading =  isLoading || isFetching 
+    const loading =  isLoading || isFetching || isFetching
   // console.log(songs, id)
   const renderStep1 = () => {
 
