@@ -39,7 +39,7 @@ const SongLicenseForm = () => {
   const renderStep1 = () => {
 
     return (
-     !loading && isSuccess && (
+     !loading && isSuccess && song.title && (
         <div className="py-8  px-4 mx-auto max-w-full">
           <h2 className="mb-4 text-2xl font-medium text-center text-zinc-900 dark:text-white font-owners">
             {song?.title} - {song?.artist_name}
