@@ -2,7 +2,7 @@
 import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import LicenseButton from "ui/Buttons/LicenseButton/LicenseButton";
 import PlayButton from "../PlayButton";
@@ -58,9 +58,11 @@ const MusicItem = ({ song }: any) => {
           {song.genres[0]}/{song.moods[0]}
         </span>
       </td>
+      <Suspense>
       <td className="px-4 py-2">
         <LicenseButton song={song} id={song.id} />
       </td>
+      </Suspense>
       <td
         className={`collect-menu${song.id} relative`}
         onClick={handleMenuClick}
