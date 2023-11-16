@@ -27,8 +27,8 @@ const SongLicenseForm = () => {
   const { data: songs, isLoading, isFetching, isSuccess, isPending } = useQuery({
     queryKey: ["songs"],
     queryFn: () => getAllSongs(),
-    refetchOnMount: false,
-    enabled: !!!id && licenseWindowOpen,
+    refetchOnMount: licenseWindowOpen,
+    enabled: !!!id,
   });
   const song =
     songs?.songs?.find((currentSong:{ id: string}) => currentSong?.id === id) ||
