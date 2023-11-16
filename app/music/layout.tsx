@@ -64,8 +64,9 @@ function layout({ children }) {
       {/**END TOP BAR */}
       <div className="flex relative left-0 right-0 overflow-hidden">
         <SideBarAndFilter />
+        <Suspense>
         <LicenseModal />
-
+              </Suspense>
         {filterWindowOpen && (
           <div className="mt-32 relative right-0">
             <div
