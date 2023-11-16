@@ -114,7 +114,7 @@ const filteredSongs = songs.filter((song) => {
       {openFilterWindow && 
       <div className="fixed z-[9999] flex items-center justify-center mx-8">
         <div className="w-full h-screen bg-black fixed z-0 opacity-80"></div>
-        <div className="z-[9999] w-full max-w-3xl filter-window relative top-0 bottom-0 max-h-[70vh]">
+        <div className="z-[9999] w-full max-w-3xl filter-window relative -top-16 max-h-[70vh] self-start">
           <MusicFilter />
         </div>
       </div>}
