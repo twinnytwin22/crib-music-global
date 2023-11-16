@@ -23,7 +23,7 @@ const SongLicenseForm = () => {
   const handleBusinessClick = () => {
     router.push(pathname + "?" + url("business", "song"), { scroll: false });
   };
-  const { data: songs } = useQuery({
+  const { data: songs, isLoading } = useQuery({
     queryKey: ["songs"],
     queryFn: () => getAllSongs(),
     refetchOnMount: false,
@@ -37,7 +37,7 @@ const SongLicenseForm = () => {
     //console.log(currentSong)
     return (
       id! &&
-      song! && (
+      song! && !isLoading && (
         <div className="py-8  px-4 mx-auto max-w-full">
           <h2 className="mb-4 text-2xl font-medium text-center text-zinc-900 dark:text-white font-owners">
             {song?.title} - {song?.artist_name}
