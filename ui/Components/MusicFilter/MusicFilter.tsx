@@ -12,7 +12,7 @@ function MusicFilter() {
 
   return (
     <section className="py-4 pt-8 w-full mx-auto rounded-md justify-center select-none font-work-sans">
-      <div className="z-20 p-4 overflow-y-scroll max-h-[500px] min-h-[500px] overflow-x-hidden bg-white shadow dark:bg-black sm:rounded-md w-full border border-zinc-200 dark:border-zinc-800">
+      <div className="z-20 p-4 overflow-y-scroll  sm:max-h-[500px] sm:min-h-[500px] max-h-[400px] min-h-[400px] h-[400px] sm:h-[500px] overflow-x-hidden bg-white shadow dark:bg-black sm:rounded-md w-full border border-zinc-200 dark:border-zinc-800">
         <div>
           <div className="flex flex-col justify-between space-y-4">
             <div>
