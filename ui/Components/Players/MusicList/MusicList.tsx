@@ -112,9 +112,9 @@ const filteredSongs = songs.filter((song) => {
   return (
     <div className=" -z-0 relative mx-auto flex justify-center select-none">
       {openFilterWindow && 
-      <div className="fixed z-[9999] flex items-center justify-center mx-8">
+      <div className="fixed z-[9999] flex items-center justify-center mx-8 md:hidden">
         <div className="w-full inset-0 h-screen bg-black fixed z-0 opacity-80"></div>
-        <div className="z-[9999] w-full max-w-3xl filter-window relative -top-16 max-h-[200px] self-start">
+        <div className="z-[9999] w-full max-w-3xl filter-window relative -top-16  self-start">
           <MusicFilter />
         </div>
       </div>}
