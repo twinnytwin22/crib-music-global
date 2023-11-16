@@ -1,12 +1,10 @@
-'use client'
-import React from "react"
-import { useForm } from "react-hook-form"
-
+"use client";
+import React from "react";
+import { useForm } from "react-hook-form";
 
 export default function Form({ defaultValues, children, onSubmit }) {
-  const methods = useForm({ defaultValues })
-  const { handleSubmit } = methods
-
+  const methods = useForm({ defaultValues });
+  const { handleSubmit } = methods;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -19,8 +17,8 @@ export default function Form({ defaultValues, children, onSubmit }) {
                 key: child.props.name,
               },
             })
-          : child
+          : child;
       })}
     </form>
-  )
+  );
 }

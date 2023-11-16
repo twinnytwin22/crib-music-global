@@ -1,10 +1,8 @@
-'use client'
-
+"use client";
 
 export function Input({ register, name, ...rest }) {
-  return <input {...register(name)} {...rest} />
+  return <input {...register(name)} {...rest} />;
 }
-
 
 export function Select({ register, options, name, ...rest }) {
   return (
@@ -15,5 +13,5 @@ export function Select({ register, options, name, ...rest }) {
         </option>
       ))}
     </select>
-  )
+  );
 }

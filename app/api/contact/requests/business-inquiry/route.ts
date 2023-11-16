@@ -1,11 +1,10 @@
-
 import { supabaseAdmin } from "@/lib/site/constants";
 import sgMail from "@sendgrid/mail";
 import { NextResponse } from "next/server";
 //import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
- 
+
 async function sendEmail(msg: any) {
   try {
     await sgMail.send(msg);
@@ -41,8 +40,9 @@ export async function POST(req: Request) {
   }
   if (req.method === "POST") {
     const updates = await req.json();
-      const { subject, email, message, first_name, last_name, phone_number } = updates
-  
+    const { subject, email, message, first_name, last_name, phone_number } =
+      updates;
+
     if (!email) {
       return NextResponse.json("error: Email is required");
     }

@@ -24,16 +24,14 @@ async function page({
   const { artists } = await getAllArtists();
 
   // Check if there is a matching id for the given id
-  const artist = artists.find(
-    (artist: any) => artist?.id === id
-  );
+  const artist = artists.find((artist: any) => artist?.id === id);
 
   if (artist) {
     // const data = await getSong(artist)≈≈
     // console.log(data)
     const { songs } = await getAllSongs();
     const currentSongs = songs.filter(
-      (song) => song.artist_name === artist.artist_name
+      (song) => song.artist_name === artist.artist_name,
     );
     const imageUrl = `/artist_images/${artist.image_url!}`.trim();
 

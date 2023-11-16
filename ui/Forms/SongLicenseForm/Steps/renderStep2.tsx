@@ -1,10 +1,9 @@
-'use client'
+"use client";
 
 import useFormStateContext from "app/context/FormContext";
 import { StepButtons } from "../StepButtons";
 
 export const Step2 = () => {
-
   const {
     setFormState,
     register,
@@ -12,12 +11,12 @@ export const Step2 = () => {
     watch,
     handleSubmit,
     incrementStep,
-    form_questions
+    form_questions,
   } = useFormStateContext();
   const onSubmit = (data) => {
     setFormState(data);
     incrementStep();
-  }
+  };
 
   //console.log(checked)
   return (
@@ -26,8 +25,8 @@ export const Step2 = () => {
         {form_questions[0]?.question}
       </p>
       {form_questions[0]?.options?.map((option, index: number) => {
-        const formResponse = watch(`form_questions.0.response`)
-        const checked = formResponse === option
+        const formResponse = watch(`form_questions.0.response`);
+        const checked = formResponse === option;
         return (
           <div className="relative z-0 w-full mb-3 group form-g" key={option}>
             <input
@@ -41,7 +40,9 @@ export const Step2 = () => {
             />
             <label
               htmlFor={option[index]} // Use index to generate unique IDs
-              className={`inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300   dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900  ${formResponse === option && ''}`}
+              className={`inline-flex items-center justify-between w-full p-5 text-black bg-white border-2 border-zinc-200 rounded-lg cursor-pointer  dark:border-zinc-800 peer-checked:border-red-300   dark:peer-checked:text-zinc-300 peer-checked:text-zinc-600 hover:bg-zinc-50 dark:text-zinc-400 dark:bg-zinc-950 dark:hover:bg-zinc-900  ${
+                formResponse === option && ""
+              }`}
             >
               <div className="block">
                 <div className="w-full text-lg font-medium">{option}</div>
@@ -49,10 +50,9 @@ export const Step2 = () => {
               </div>
             </label>
           </div>
-        )
+        );
       })}
       <StepButtons />
-
     </form>
   );
 };

@@ -10,8 +10,8 @@ const Pagination = dynamic(() => import("lib/hooks/pagination"), {
 
 const RelatedMusicList = ({ songs }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pathname = usePathname()
-  const maxItems = pathname.startsWith('/song') ? 5 : 10
+  const pathname = usePathname();
+  const maxItems = pathname.startsWith("/song") ? 5 : 10;
 
   const [itemsPerPage] = useState(maxItems);
   const indexEnd = currentPage * itemsPerPage;
@@ -20,16 +20,10 @@ const RelatedMusicList = ({ songs }: any) => {
   const paginateBack = () => setCurrentPage(currentPage - 1);
   const currentSongs = songs?.slice(indexStart, indexEnd);
 
-
-
-
   return (
     <div className=" -z-0 relative mx-auto flex justify-center select-none">
-  
-
       <section className="py-4 self-center w-full max-w-screen-2xl mx-auto rounded justify-center relative flex">
         <div className=" z-20 overflow-hidden bg-white shadow dark:bg-zinc-950 sm:rounded w-full border border-zinc-200 dark:border-zinc-800">
-      
           <div className="overflow-x-scroll">
             <table className="w-full text-sm text-left text-zinc-500 dark:text-zinc-400 overflow-x-scroll relative">
               <thead className="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-400">

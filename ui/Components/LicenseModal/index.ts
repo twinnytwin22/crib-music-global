@@ -1,1 +1,1 @@
-export { default } from './LicenseModal';
+export { default } from "./LicenseModal";

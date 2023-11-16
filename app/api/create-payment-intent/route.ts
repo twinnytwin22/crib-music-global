@@ -1,6 +1,5 @@
 import { calculateTax } from "@/lib/hooks/calculateTax";
 
-
 export async function POST(req: Request) {
   if (req.method === "POST") {
     const { items } = await req.json();

@@ -1,1 +1,1 @@
-export { default } from './ArtistRowHeader';
+export { default } from "./ArtistRowHeader";

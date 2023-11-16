@@ -45,7 +45,7 @@ const fetchUserEnrollments = async ({ userId }: FetchTypes) => {
     try {
       //  await fetch(`${protocol}://${host}/api/v1/getCollectibles`);
       const res = await fetch(
-        `${protocol}://${host}/api/v1/getUserCourses?userId=${userId}`
+        `${protocol}://${host}/api/v1/getUserCourses?userId=${userId}`,
       );
 
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -77,7 +77,7 @@ const fetchProfilesForDrops = async (id: any) => {
 
   try {
     let res = await fetch(
-      `${protocol}://${host}//api/v1/getProfilesForDrops?userId=${id}`
+      `${protocol}://${host}//api/v1/getProfilesForDrops?userId=${id}`,
     );
     const data = await res.json();
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -92,7 +92,7 @@ const fetchProfilesForDrops = async (id: any) => {
 const fetchProfileForEvent = async (id: any) => {
   try {
     let res = await fetch(
-      `${protocol}://${host}//api/v1/getProfileForEvent?userId=${id}`
+      `${protocol}://${host}//api/v1/getProfileForEvent?userId=${id}`,
     );
     const data = await res.json();
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -117,7 +117,7 @@ export const getAllArtists = async () => {
         },
 
         //  mode: 'no-cors',
-      }
+      },
     );
 
     if (res) {
@@ -144,7 +144,7 @@ export const getAllSongs = async () => {
           "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
         },
-      }
+      },
     );
 
     if (res) {

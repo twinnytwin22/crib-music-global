@@ -1,18 +1,17 @@
 {
-    "cSpell.words": [
-        "applemusic",
-        "Applemusic",
-        "Influencers",
-        "jaii",
-        "Podcasters",
-        "Ratelimit",
-        "soundcloud",
-        "Soundcloud",
-        "wavesurfer",
-        "zustand"
-    ],
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
-    
+  "cSpell.words": [
+    "applemusic",
+    "Applemusic",
+    "Influencers",
+    "jaii",
+    "Podcasters",
+    "Ratelimit",
+    "soundcloud",
+    "Soundcloud",
+    "wavesurfer",
+    "zustand"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
 }

@@ -1,4 +1,3 @@
-
 interface PaginationProps {
   itemsPerPage: number;
   totalItems: number;
@@ -60,7 +59,9 @@ export default function Pagination(props: PaginationProps) {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <p className="text-zinc-700 dark:text-zinc-400  hidden md:block">Previ</p>
+            <p className="text-zinc-700 dark:text-zinc-400  hidden md:block">
+              Previ
+            </p>
           </button>
         </div>
         <div className="text-zinc-900 dark:text-white">
@@ -71,7 +72,9 @@ export default function Pagination(props: PaginationProps) {
             }}
             className="inline-flex items-center px-4 py-2 text-sm font-medium text-zinc-800 bg-zinc-100 border-0 border-l border-zinc-700 rounded-r hover:bg-zinc-900 dark:bg-black dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-950 dark:hover:text-white"
           >
-            <p className="text-zinc-700 dark:text-zinc-400  hidden md:block">Next</p>
+            <p className="text-zinc-700 dark:text-zinc-400  hidden md:block">
+              Next
+            </p>
             <svg
               aria-hidden="true"
               className="w-5 h-5 ml-2 "

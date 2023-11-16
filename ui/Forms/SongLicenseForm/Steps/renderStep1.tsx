@@ -3,12 +3,8 @@ import useFormStateContext from "app/context/FormContext";
 import { StepButtons } from "../StepButtons";
 
 export const Step1 = () => {
-  const {
-    setFormState,
-    register,
-    handleSubmit,
-    incrementStep,
-  } = useFormStateContext();
+  const { setFormState, register, handleSubmit, incrementStep } =
+    useFormStateContext();
 
   const onSubmit = (data) => {
     setFormState(data);
@@ -71,7 +67,6 @@ export const Step1 = () => {
       </div>
       <div className="relative z-0 w-full mb-6 group">
         <input
-
           {...register("website", { required: true })}
           type="url"
           name="website"

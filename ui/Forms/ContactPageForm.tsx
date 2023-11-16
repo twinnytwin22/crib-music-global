@@ -67,7 +67,6 @@ const ContactForm = () => {
         <div className="relative z-0 w-full  group">
           <input
             placeholder=" "
-
             className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             type="email"
             id="email"
@@ -88,7 +87,6 @@ const ContactForm = () => {
             <div className="w-full  relative ">
               <input
                 placeholder=" "
-
                 className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
                 type="text"
                 id="first_name"
@@ -106,7 +104,6 @@ const ContactForm = () => {
             <div className="w-full  relative ">
               <input
                 placeholder=" "
-
                 className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
                 type="text"
                 id="last_name"
@@ -127,7 +124,6 @@ const ContactForm = () => {
           <div className="relative z-0 w-full  group">
             <input
               placeholder=" "
-
               className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
               type="text"
               name="subject"
@@ -148,7 +144,6 @@ const ContactForm = () => {
         <div className="relative z-0 w-full  group">
           <input
             placeholder=" "
-
             className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             type="tel"
             id="phone_number"
@@ -168,7 +163,6 @@ const ContactForm = () => {
         <div className="relative z-0 w-full  group">
           <textarea
             placeholder=" "
-
             className="block py-2.5 px-0 w-full text-sm text-zinc-900 bg-transparent border-0 border-b-2 border-zinc-300 appearance-none dark:text-white dark:border-zinc-600 dark:focus:border-red-200 focus:outline-none focus:ring-0 focus:border-red-300 peer"
             name="message"
             id="message"

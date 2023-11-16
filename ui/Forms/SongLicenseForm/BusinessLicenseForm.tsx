@@ -12,9 +12,9 @@ function BusinessLicenseForm({ song }) {
     question: question.q,
     options: question.options,
     response: "",
-  }))
+  }));
   const {
-    status, 
+    status,
     min,
     max,
     setStatus,
@@ -22,42 +22,41 @@ function BusinessLicenseForm({ song }) {
     updateFormType,
     updateSong,
     step,
-    updateMinMax
+    updateMinMax,
   } = useFormStateContext();
 
   useEffect(() => {
-    if(song){
-    setStatus('loading')
-    updateMinMax(1,4)
-    updateSong(song)
-    updateFormType('Business License Inquiry');
-    updateFormQuestions(formQuestions)
-    setStatus('ready')
+    if (song) {
+      setStatus("loading");
+      updateMinMax(1, 4);
+      updateSong(song);
+      updateFormType("Business License Inquiry");
+      updateFormQuestions(formQuestions);
+      setStatus("ready");
     }
-  },[song,])
+  }, [song]);
 
-
-  return  (
+  return (
     <div className=" font-work-sans">
-      {(status !== 'loading') &&
-      <div
-        // onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
-        className="w-full mx-auto h-[410px] max-h-full min-h-full relative"
-      >
-        <div className="min-h-[315px] max-h-fit">
-          {step === min && <Step1/>}
-          {step === 2 && <Step2/>}
-          {step === 3 && <Step3/>}
-          {step === max && <Step4/>}
-          {status === "error" && (
-            <div className="text-red-500">Sorry there was an error</div>
-          )}
-          {status === "success" && !step && (
-            <div className="text-green-500">Success</div>
-          )}
+      {status !== "loading" && (
+        <div
+          // onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}
+          className="w-full mx-auto h-[410px] max-h-full min-h-full relative"
+        >
+          <div className="min-h-[315px] max-h-fit">
+            {step === min && <Step1 />}
+            {step === 2 && <Step2 />}
+            {step === 3 && <Step3 />}
+            {step === max && <Step4 />}
+            {status === "error" && (
+              <div className="text-red-500">Sorry there was an error</div>
+            )}
+            {status === "success" && !step && (
+              <div className="text-green-500">Success</div>
+            )}
+          </div>
         </div>
-       
-      </div>}
+      )}
     </div>
   );
 }

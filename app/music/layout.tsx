@@ -24,12 +24,11 @@ function layout({ children }) {
     handleFilterClick,
     activeFilters,
   };
-  const searchParams = useSearchParams()
-  const pathname = usePathname()
-  const router = useRouter()
-  const url = createQueryString(searchParams)
- 
- 
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const url = createQueryString(searchParams);
+
   return (
     <div className="relative overflow-x-hidden right-0 left-0 mx-auto">
       {/** BEGIN TOP BAR */}
@@ -38,23 +37,34 @@ function layout({ children }) {
           filterWindowOpen ? "md:left-72" : "md:left-24"
         }`}
       >
-        <div className={`flex justify-between w-full relative right-0 left-0 items-center `}>
-     <SearchBar/>
-       
-        <div className={`absolute border-l border-zinc-300 dark:border-zinc-700 h-full p-0 flex px-8 items-center  right-0 ${filterWindowOpen ? "md:right-72" : "md:right-24"}`}>
-        <p onClick={() => {
-    // <pathname>?sort=asc
-    router.push(pathname + '?' + url('license', 'custom'), { scroll: false })
-  }}className="font-semibold text-black text-sm dark:text-white hover:text-red-400 hover:dark:text-red-300 ease-in-out duration-300 cursor-pointer">
-        Custom Music
-        </p>
+        <div
+          className={`flex justify-between w-full relative right-0 left-0 items-center `}
+        >
+          <SearchBar />
+
+          <div
+            className={`absolute border-l border-zinc-300 dark:border-zinc-700 h-full p-0 flex px-8 items-center  right-0 ${
+              filterWindowOpen ? "md:right-72" : "md:right-24"
+            }`}
+          >
+            <p
+              onClick={() => {
+                // <pathname>?sort=asc
+                router.push(pathname + "?" + url("license", "custom"), {
+                  scroll: false,
+                });
+              }}
+              className="font-semibold text-black text-sm dark:text-white hover:text-red-400 hover:dark:text-red-300 ease-in-out duration-300 cursor-pointer"
+            >
+              Custom Music
+            </p>
+          </div>
         </div>
-        </div>
-      </div> 
-{/**END TOP BAR */}
+      </div>
+      {/**END TOP BAR */}
       <div className="flex relative left-0 right-0 overflow-hidden">
         <SideBarAndFilter />
-    <LicenseModal />
+        <LicenseModal />
 
         {filterWindowOpen && (
           <div className="mt-32 relative right-0">
@@ -69,13 +79,13 @@ function layout({ children }) {
         )}
 
         <div
-          className={`relative w-full z-0 mx-auto mt-8 p-4 md:p-8 h-screen overflow-y-scroll overflow-x-hidden ${filterWindowOpen ? "md:ml-72" : "md:ml-24"}`}
+          className={`relative w-full z-0 mx-auto mt-8 p-4 md:p-8 h-screen overflow-y-scroll overflow-x-hidden ${
+            filterWindowOpen ? "md:ml-72" : "md:ml-24"
+          }`}
         >
-          <Suspense fallback={<LoadingContainer />}>
-            {children}
-            </Suspense>
-            <Footer/>
-            <div className="p-8"/>
+          <Suspense fallback={<LoadingContainer />}>{children}</Suspense>
+          <Footer />
+          <div className="p-8" />
         </div>
       </div>
     </div>

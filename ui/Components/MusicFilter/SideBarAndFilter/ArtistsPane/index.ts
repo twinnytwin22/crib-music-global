@@ -1,1 +1,1 @@
-export { default } from './ArtistsPane';
+export { default } from "./ArtistsPane";

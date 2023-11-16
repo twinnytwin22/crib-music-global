@@ -21,31 +21,30 @@ const securityHeaders = [
     value:
       "accelerometer=(self), camera=(self), geolocation=(self), microphone=(self)",
   },
-  
 ];
 
 const nextConfig = {
   experimental: {
-  //  appDir: true,
-   // serverActions: true,
+    //  appDir: true,
+    // serverActions: true,
   },
   images: {
-    loader: 'custom',
-    loaderFile: './utils/supabase-image-loader.ts',
+    loader: "custom",
+    loaderFile: "./utils/supabase-image-loader.ts",
 
     remotePatterns: [
       {
-        protocol:'https',
-        hostname: 'cdn.sanity.io'
-      }, 
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
       {
-        protocol: 'https',
-        hostname: 'tvuqvrbxusmicpmjqpus.supabase.co'
-      }
+        protocol: "https",
+        hostname: "tvuqvrbxusmicpmjqpus.supabase.co",
+      },
     ],
-  //  domains: ["cdn.sanity.io"],
- ///   loader: "custom",
- //   loaderFile: "./lib/providers/sanity/imageLoader.tsx",
+    //  domains: ["cdn.sanity.io"],
+    ///   loader: "custom",
+    //   loaderFile: "./lib/providers/sanity/imageLoader.tsx",
   },
   reactStrictMode: true,
   async headers() {
@@ -76,7 +75,7 @@ const nextConfig = {
             value: "Content-Type, Authorization",
           },
         ],
-      }
+      },
     ];
   },
 };

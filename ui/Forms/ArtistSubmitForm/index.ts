@@ -1,1 +1,1 @@
-export { default } from './ArtistSubmitForm';
+export { default } from "./ArtistSubmitForm";

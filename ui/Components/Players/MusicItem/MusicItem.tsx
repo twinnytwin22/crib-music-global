@@ -15,7 +15,7 @@ const MusicItem = ({ song }: any) => {
 
   const handleMenuClick = () => {
     setIsOpen((prevState) => !prevState);
-   // console.log(open)
+    // console.log(open)
   };
   return (
     <tr
@@ -28,7 +28,7 @@ const MusicItem = ({ song }: any) => {
       >
         <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
           <Image
-            src={'/song_covers/'+song.cover_art_url}
+            src={"/song_covers/" + song.cover_art_url}
             className="object-cover w-10 h-10 rounded-md"
             width={40}
             height={40}
@@ -48,7 +48,7 @@ const MusicItem = ({ song }: any) => {
         {song?.title}
       </td>
       <td
-       onClick={() => router.push(`/artist/${song.artist_id}`)}
+        onClick={() => router.push(`/artist/${song.artist_id}`)}
         className="px-4 py-2 font-medium text-zinc-900 whitespace-nowrap dark:text-white cursor-pointer"
       >
         {song?.artist_name}
@@ -59,12 +59,14 @@ const MusicItem = ({ song }: any) => {
         </span>
       </td>
       <td className="px-4 py-2">
-      <LicenseButton song={song} id={song.id}/>
+        <LicenseButton song={song} id={song.id} />
       </td>
-      <td className={`collect-menu${song.id} relative`} onClick={handleMenuClick}>
-        <BsThreeDots/>
-        {isOpen && <MenuItemMenu song={song}/>}
-
+      <td
+        className={`collect-menu${song.id} relative`}
+        onClick={handleMenuClick}
+      >
+        <BsThreeDots />
+        {isOpen && <MenuItemMenu song={song} />}
       </td>
     </tr>
   );

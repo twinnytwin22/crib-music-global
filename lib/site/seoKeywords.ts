@@ -36,7 +36,7 @@ const seoKeywords: string[] = [
   "independent music licensing",
 ];
 
-const seoKeywordsPhoenix: string[]  = [
+const seoKeywordsPhoenix: string[] = [
   "Phoenix music libraries",
   "Phoenix music administrators",
   "Phoenix music publishers",

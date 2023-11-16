@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useSubportPlayer } from "app/context/subport-player";
 import { usePlayerStore } from "app/context/subport-player/PlayerLogic";
 import { useEffect } from "react";
@@ -16,7 +16,8 @@ function AudioVisualizer({ audioFile }) {
     contextWaveFormRef,
     createWaveSurfer,
     play,
-    pause, stop
+    pause,
+    stop,
   } = useSubportPlayer();
   const a = extractSongURL(audioFile);
   const b = extractSongURL(audioUrl);
@@ -69,7 +70,7 @@ function AudioVisualizer({ audioFile }) {
   ]);
   // console.log(currentTime)
 
- // console.log(contextWaveFormRef);
+  // console.log(contextWaveFormRef);
   return (
     <div ref={contextWaveFormRef} className="w-full max-w-2xl">
       {/* The waveform will be displayed here */}

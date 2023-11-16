@@ -1,1 +1,1 @@
-export { default } from './GenrePane';
+export { default } from "./GenrePane";

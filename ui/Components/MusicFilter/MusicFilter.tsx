@@ -23,23 +23,23 @@ function MusicFilter() {
                 Reset
               </button>
               <div className="py-4">
-            <ul className="flex space-x-4 items-center flex-wrap">
-              {activeFilters.map((item: any) => (
-                <li
-                  key={item}
-                  className={`bg-green-100 flex text-green-800 mb-1 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-zinc-950 dark:text-green-400 border border-green-400 `}
-                >
-                  {item}
-                  <span
-                    className="cursor-pointer ml-1 text-red-400 text-lg"
-                    onClick={() => handleClearItem(item)}
-                  >
-                    <FaDeleteLeft/>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                <ul className="flex space-x-4 items-center flex-wrap">
+                  {activeFilters.map((item: any) => (
+                    <li
+                      key={item}
+                      className={`bg-green-100 flex text-green-800 mb-1 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-zinc-950 dark:text-green-400 border border-green-400 `}
+                    >
+                      {item}
+                      <span
+                        className="cursor-pointer ml-1 text-red-400 text-lg"
+                        onClick={() => handleClearItem(item)}
+                      >
+                        <FaDeleteLeft />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <p className="font-owners tracking-wide ">Genres:</p>
               <ul className="flex flex-wrap gap-2">
                 {genres.length > 0 &&
@@ -95,7 +95,6 @@ function MusicFilter() {
               </ul>
             </div>
           </div>
-          
         </div>
       </div>
     </section>

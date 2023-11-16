@@ -120,15 +120,15 @@ const FooterPlayer = () => {
                     className="max-w-[30px] h-[30px] rounded-md bg-red-200 w-full"
                   ></div>
                 ) : (
-                  <Link href={'/song/' + metaData.id}>
-                  <Image
-                    src={imageUrl}
-                    alt="song-image"
-                    width={30}
-                    height={30}
-                    blurDataURL={"/site_images/stock/blur.png"}
-                    className="aspect-square object-cover rounded-md"
-                  />
+                  <Link href={"/song/" + metaData.id}>
+                    <Image
+                      src={imageUrl}
+                      alt="song-image"
+                      width={30}
+                      height={30}
+                      blurDataURL={"/site_images/stock/blur.png"}
+                      className="aspect-square object-cover rounded-md"
+                    />
                   </Link>
                 )}
                 {!isPlaying && (

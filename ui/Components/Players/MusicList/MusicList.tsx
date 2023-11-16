@@ -14,20 +14,19 @@ const Pagination = dynamic(() => import("lib/hooks/pagination"), {
 
 const MusicList = ({ songs }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
-//  const pathname = usePathname()
+  //  const pathname = usePathname()
   const [itemsPerPage] = useState(10);
   const indexEnd = currentPage * itemsPerPage;
   const indexStart = indexEnd - itemsPerPage;
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
   const currentSongs = songs?.slice(indexStart, indexEnd);
-  const [openFilterWindow, setOpenFilterWindow] = useState(false)
+  const [openFilterWindow, setOpenFilterWindow] = useState(false);
   const [filtersSet, setFiltersSet] = useState(false); // Track if filters have been set
-  const handleOpenFilterWindow = () => setOpenFilterWindow(true)
+  const handleOpenFilterWindow = () => setOpenFilterWindow(true);
 
   const { setActiveFilters, setFilters, activeFilters, filters, handleClear } =
     useMusicFilterStore();
-
 
   useEffect(() => {
     // Call the useLocationExtractor function asynchronously
@@ -35,13 +34,13 @@ const MusicList = ({ songs }: any) => {
       try {
         // const locationDataArray = await useLocationExtractor(events.map((event: any) => event.location));
         const genres: any = Array.from(
-          new Set(songs.flatMap((song: any) => song?.genres || [].flat()))
+          new Set(songs.flatMap((song: any) => song?.genres || [].flat())),
         ).filter(Boolean);
         const artists: any = Array.from(
-          new Set(songs.map((song: any) => song?.artist_name))
+          new Set(songs.map((song: any) => song?.artist_name)),
         ).filter(Boolean);
         const moods: any = Array.from(
-          new Set(songs.flatMap((song) => song?.moods || []))
+          new Set(songs.flatMap((song) => song?.moods || [])),
         ).filter(Boolean);
 
         // const instrumentalOnly: any = new Set(songs.map((song) => song?.instrumental).filter(Boolean)
@@ -51,7 +50,13 @@ const MusicList = ({ songs }: any) => {
         // console.log('hasLyrics:',hasLyrics, 'instrumental:', instrumentalOnly)
         if (songs.length > 0) {
           if (!filtersSet) {
-            setFilters({ genres, artists, moods, instrumental: true, hasLyrics: true });
+            setFilters({
+              genres,
+              artists,
+              moods,
+              instrumental: true,
+              hasLyrics: true,
+            });
             setFiltersSet(true);
             //  console.log(cities, states);
           }
@@ -67,57 +72,59 @@ const MusicList = ({ songs }: any) => {
   function filterByInstrumental(song) {
     const { instrumental: instr } = song;
     return filters.instrumental ? instr : false;
-}
+  }
 
-// A function to filter songs by has_lyrics
-function filterByHasLyrics(song) {
+  // A function to filter songs by has_lyrics
+  function filterByHasLyrics(song) {
     const { has_lyrics } = song;
     return filters.hasLyrics ? has_lyrics : false;
-}
-const filteredSongs = songs.filter((song) => {
-  const { genres, artist_name, moods, has_lyrics, instrumental } = song;
-  const activeFilter = activeFilters.map((a) => a);
+  }
+  const filteredSongs = songs.filter((song) => {
+    const { genres, artist_name, moods, has_lyrics, instrumental } = song;
+    const activeFilter = activeFilters.map((a) => a);
 
-  const includesFilters =
+    const includesFilters =
       activeFilter.some((filteredGenre) => genres.includes(filteredGenre)) ||
       activeFilter.some((artist) => artist_name.includes(artist)) ||
       activeFilter.some((filteredMood) => moods.includes(filteredMood));
 
-  
-      if (activeFilters.length === 0) {
-        if (!filters.instrumental && !filters.hasLyrics) {
-            // If no active filters and both instrumental and has_lyrics filters are deselected,
-            // include all songs
-            return false;
-        }
+    if (activeFilters.length === 0) {
+      if (!filters.instrumental && !filters.hasLyrics) {
+        // If no active filters and both instrumental and has_lyrics filters are deselected,
+        // include all songs
+        return false;
+      }
 
-        if (filters.instrumental && filters.hasLyrics) {
-            // If no active filters and both instrumental and has_lyrics filters are selected,
-            // exclude all songs
-            return true;
-        }
+      if (filters.instrumental && filters.hasLyrics) {
+        // If no active filters and both instrumental and has_lyrics filters are selected,
+        // exclude all songs
+        return true;
+      }
 
-        if (filters.instrumental || filters.hasLyrics) {
-          // If no active filters and both instrumental and has_lyrics filters are selected,
-          // exclude all songs
-          return ((filterByInstrumental(song) || filterByHasLyrics(song)));
-        }
+      if (filters.instrumental || filters.hasLyrics) {
+        // If no active filters and both instrumental and has_lyrics filters are selected,
+        // exclude all songs
+        return filterByInstrumental(song) || filterByHasLyrics(song);
+      }
     }
 
-  return ((filterByInstrumental(song) || filterByHasLyrics(song)) && includesFilters);
-});
+    return (
+      (filterByInstrumental(song) || filterByHasLyrics(song)) && includesFilters
+    );
+  });
 
-  useHandleOutsideClick(openFilterWindow, setOpenFilterWindow, 'filter-window')
- // console.log(filters)
+  useHandleOutsideClick(openFilterWindow, setOpenFilterWindow, "filter-window");
+  // console.log(filters)
   return (
     <div className=" -z-0 relative mx-auto flex justify-center select-none">
-      {openFilterWindow && 
-      <div className="fixed z-[9999] flex items-center justify-center mx-8 md:hidden">
-        <div className="w-full inset-0 h-screen bg-black fixed z-0 opacity-80"></div>
-        <div className="z-[9999] w-full max-w-3xl filter-window relative -top-16  self-start">
-          <MusicFilter />
+      {openFilterWindow && (
+        <div className="fixed z-[9999] flex items-center justify-center mx-8 md:hidden">
+          <div className="w-full inset-0 h-screen bg-black fixed z-0 opacity-80"></div>
+          <div className="z-[9999] w-full max-w-3xl filter-window relative -top-16  self-start">
+            <MusicFilter />
+          </div>
         </div>
-      </div>}
+      )}
 
       <section className="py-4 self-center w-full max-w-screen-2xl mx-auto rounded justify-center  flex">
         <div className=" z-20 overflow-hidden bg-white shadow dark:bg-zinc-950 sm:rounded w-full border border-zinc-200 dark:border-zinc-800">

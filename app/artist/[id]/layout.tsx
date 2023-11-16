@@ -4,11 +4,9 @@ import LoadingContainer from "ui/Components/Loading/Loading";
 function layout({ children }) {
   return (
     <div className="overflow-x-hidden">
-      <LicenseModal/>
-        <Suspense fallback={<LoadingContainer/>}>
-        {children}
-        </Suspense>
-      </div>
+      <LicenseModal />
+      <Suspense fallback={<LoadingContainer />}>{children}</Suspense>
+    </div>
   );
 }
 

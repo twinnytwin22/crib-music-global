@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 function Footer() {
   const image = "/site_images/crib-logo.png";
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
     <section className="p-4 bg-white sm:p-6 text-sm dark:bg-black relative border-t border-zinc-300 dark:border-zinc-800">
       <div className="mx-auto max-w-screen-2xl">
@@ -28,17 +28,17 @@ function Footer() {
                 Resources
               </h2>
               <ul className="text-zinc-600 dark:text-zinc-400">
-                <li >
+                <li>
                   <Link
-                  scroll={false}
-                    href={pathname + '/?contact=artist-submission'}
+                    scroll={false}
+                    href={pathname + "/?contact=artist-submission"}
                     className="hover:underline"
                   >
                     Submit Music
-                    </Link>
+                  </Link>
                 </li>
-                <li >
-                <Link
+                <li>
+                  <Link
                     href="https://cribnetwork.io"
                     className="hover:underline"
                   >
@@ -46,17 +46,17 @@ function Footer() {
                   </Link>
                 </li>
                 <li className="">
-                <Link
-                   // prefetch={false}
-                   // scroll={false}
+                  <Link
+                    // prefetch={false}
+                    // scroll={false}
                     href="/#faq"
                     className="hover:underline"
                   >
                     FAQs
                   </Link>
                 </li>
-                <li >
-                <Link
+                <li>
+                  <Link
                     href="https://syncos.cribmusic.xyz"
                     className="hover:underline"
                   >
@@ -126,19 +126,19 @@ function Footer() {
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
             <Link
-            href="https://facebook.com"
+              href="https://facebook.com"
               className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
             >
               <FaFacebook />{" "}
             </Link>
             <Link
-               href="https://instagram.com/cribmusicglobal"
+              href="https://instagram.com/cribmusicglobal"
               className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
             >
               <FaInstagram />{" "}
             </Link>
             <Link
-                href="https://x.com/"
+              href="https://x.com/"
               className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
             >
               <FaTwitter />{" "}

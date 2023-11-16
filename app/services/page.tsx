@@ -19,7 +19,7 @@ async function page() {
   const musicAdminSub = `Hassle-Free Administrative Support`;
   const musicPubSub = `Maximize Your Music's Earning Potential`;
   const musicLicenseSub = `Licensing Expertise at Your Fingertips`;
-  const musicMasteringSub = `Elevate Your Sound to Perfection`
+  const musicMasteringSub = `Elevate Your Sound to Perfection`;
   // PARAGRAPHS
   const techSupportP = `At CRIB, we are dedicated to empowering businesses for success. Unlock your full potential with our transformative multichannel services and innovative technology. Enhance customer experiences, drive revenue growth, and achieve sustainable success with our seamless solutions.`;
 
@@ -40,11 +40,12 @@ async function page() {
   Results-Driven: Our focus is on delivering websites and applications that drive real results for your business.`;
 
   //IMAGES
-  const introImage = '/artist_images/5c91a939-169f-4e18-827c-2b5ab83e7178-kingcashbeatz.jpg';
-  const musicLicenseImage = '/artist_images/IMG_1415.jpg';
-  const musicPubImage = '/artist_images/jaii-reynolds.png';
-  const musicAdminImage ='/site_images/afro-artist.png';
-  const musicSupImage = '/site_images/music-sup.png';
+  const introImage =
+    "/artist_images/5c91a939-169f-4e18-827c-2b5ab83e7178-kingcashbeatz.jpg";
+  const musicLicenseImage = "/artist_images/IMG_1415.jpg";
+  const musicPubImage = "/artist_images/jaii-reynolds.png";
+  const musicAdminImage = "/site_images/afro-artist.png";
+  const musicSupImage = "/site_images/music-sup.png";
 
   return (
     <div className="w-full overflow-y-scroll relative h-screen py-20">
@@ -172,10 +173,10 @@ async function page() {
           </div>
         </div>
       </section>
-      <section id='faq' className='max-w-5xl mx-auto'>
-    <FAQ/>
-    </section>
-      <Footer/>
+      <section id="faq" className="max-w-5xl mx-auto">
+        <FAQ />
+      </section>
+      <Footer />
     </div>
   );
 }

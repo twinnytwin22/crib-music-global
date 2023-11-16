@@ -7,9 +7,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="overflow-x-hidden">
       <LicenseModal />
-        <Suspense fallback={<LoadingContainer />}>
-          {children}
-        </Suspense>
+      <Suspense fallback={<LoadingContainer />}>{children}</Suspense>
     </div>
   );
 }

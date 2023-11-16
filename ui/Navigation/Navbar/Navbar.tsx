@@ -23,7 +23,7 @@ function NavBar() {
   ///console.log(isMusicPage)
   const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore();
 
-  useHandleOutsideClick(isMobileMenuOpen, toggleMobileMenu, 'mobile-menu')
+  useHandleOutsideClick(isMobileMenuOpen, toggleMobileMenu, "mobile-menu");
 
   return (
     <nav className="bg-white dark:bg-black fixed w-full z-[9000] top-0 left-0 border-b border-zinc-200 dark:border-zinc-700 mx-auto">
@@ -41,13 +41,13 @@ function NavBar() {
           />
         </Link>
         <div className="flex md:order-2 gap-4 items-center w-auto">
-        <div className="hidden md:block">
+          <div className="hidden md:block">
             <DarkModeSwitch />
           </div>
-        <div className="hidden md:block">
-            <ContactButton/>
+          <div className="hidden md:block">
+            <ContactButton />
           </div>
-       
+
           {/* <ContactButton /> */}
           <button
             data-collapse-toggle="navbar-sticky"
@@ -74,7 +74,7 @@ function NavBar() {
                 href="/"
                 className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
               >
-              Home
+                Home
               </Link>
             </li>
             <li className="">
@@ -92,7 +92,10 @@ function NavBar() {
                 //  onMouseEnter={() => setIsSubMenuOpen(true)}
                 //   onMouseLeave={() => setIsSubMenuOpen(false)}
               >
-                <Link href={'/services'} className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300">
+                <Link
+                  href={"/services"}
+                  className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
+                >
                   Services
                 </Link>
                 {/* Submenu */}
@@ -107,19 +110,18 @@ function NavBar() {
                 Technology
               </a>
             </li>
-            
+
             <li className="block md:hidden">
-            <Link  href={pathname + '/?contact=inquiry'}
+              <Link
+                href={pathname + "/?contact=inquiry"}
                 className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white  dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
               >
                 Contact
               </Link>
             </li>
             <li className="flex md:hidden py-2 pl-3 pr-4 items-center justify-start w-fit gap-3 ">
-              
-              Color Mode: 
-            <DarkModeSwitch />
-
+              Color Mode:
+              <DarkModeSwitch />
             </li>
           </ul>
         </div>

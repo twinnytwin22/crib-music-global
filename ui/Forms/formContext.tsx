@@ -20,10 +20,10 @@ const store = useFormStore.getState();
 const FormContext = createContext<IFormProps | IFormContextProps | any>(store);
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
-  const params = useSearchParams()
-  const license = params.get('license')
+  const params = useSearchParams();
+  const license = params.get("license");
 
-  console.log(license)
+  console.log(license);
   const store = useFormStore();
   const {
     song_title,
@@ -50,15 +50,15 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     defaultValues,
   });
 
-  const isEmail = watch('email')
+  const isEmail = watch("email");
   // useEffect(() => {
   //   if(!license && (isEmail)){
   //     reset()
   //     setFormState(defaultValues)
   //   }
   // },[!license, defaultValues, isEmail, reset, setFormState])
-  const setMinMax = (min: number, max: number) => 
-  useFormStore.setState({ min, max})
+  const setMinMax = (min: number, max: number) =>
+    useFormStore.setState({ min, max });
   const setSong = (newSong: { id: string; song_title: string }) =>
     useFormStore.setState(newSong);
   const setFormQuestions = (newQuestionSet: FormQuestions[]) =>
@@ -72,28 +72,27 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
       setValue("song_id", newSong.id);
       setSong(newSong);
     },
-    [setSong, setValue]
+    [setSong, setValue],
   );
   const updateFormType = useCallback(
     (newFormType: string) => {
       setValue("form_type", newFormType);
       setFormType(newFormType);
     },
-    [setFormType, setValue]
+    [setFormType, setValue],
   );
   const updateFormQuestions = useCallback(
     (newFormQuestions: FormQuestions[]) => {
       setValue("form_questions", newFormQuestions);
       setFormQuestions(newFormQuestions);
     },
-    [setFormQuestions, setValue]
+    [setFormQuestions, setValue],
   );
   const isInRange = (s: number) => s >= min! && s <= max!;
 
-  const updateMinMax = useCallback(
-    (newMin: number, newMax: number) => {
-    setMinMax(newMin, newMax)
-  },[])
+  const updateMinMax = useCallback((newMin: number, newMax: number) => {
+    setMinMax(newMin, newMax);
+  }, []);
 
   const incrementStep = () => {
     const newStep = step + 1;
@@ -127,7 +126,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
       updateFormQuestions,
       updateFormType,
       updateSong,
-      updateMinMax
+      updateMinMax,
     }),
     [
       store,
@@ -146,8 +145,8 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
       updateSong,
       control,
       song_id,
-      updateMinMax
-    ]
+      updateMinMax,
+    ],
   );
 
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>;

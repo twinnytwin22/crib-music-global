@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 export interface Song {
   id: number | string;
@@ -38,7 +38,7 @@ const useSongStore = create<SongStore>((set) => ({
 
   setSongs: (filteredSongs) =>
     set(() => ({
-      filteredSongs
+      filteredSongs,
     })),
 
   filterSongs: () => {
@@ -53,7 +53,7 @@ const useSongStore = create<SongStore>((set) => ({
         const areKeywordsMatch =
           state.filteredKeywords.length === 0 ||
           state.filteredKeywords.some((keyword) =>
-            song.keywords.includes(keyword)
+            song.keywords.includes(keyword),
           );
         return isGenreMatch && isArtistMatch && areKeywordsMatch;
       }),

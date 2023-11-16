@@ -1,1 +1,1 @@
-export { default } from './LicenseButton';
+export { default } from "./LicenseButton";
