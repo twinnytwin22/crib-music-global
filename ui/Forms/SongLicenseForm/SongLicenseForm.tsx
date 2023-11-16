@@ -14,11 +14,12 @@ import {
 
 const SongLicenseForm = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const id = searchParams.get("id");
+  const id: string = searchParams.get("id")!;
   const business = searchParams.get("business");
-  const pathname = usePathname();
   const url = createQueryString(searchParams);
+
+  const router = useRouter();
+  const pathname = usePathname();
   const handleBusinessClick = () => {
     router.push(pathname + "?" + url("business", "song"), { scroll: false });
   };
@@ -26,17 +27,17 @@ const SongLicenseForm = () => {
     queryKey: ["songs"],
     queryFn: () => getAllSongs(),
     refetchOnMount: false,
-    enabled: !!id,
+    enabled: !!!id,
   });
   const song =
-    songs?.songs?.find((currentSong) => currentSong?.id === id) ||
-    songs?.find((currentSong) => currentSong?.id === id);
+    songs?.songs?.find((currentSong:{ id: string}) => currentSong?.id === id) ||
+    songs?.find((currentSong: {id: string}) => currentSong?.id === id);
   // console.log(songs, id)
   const renderStep1 = () => {
     //console.log(currentSong)
     return (
-      id &&
-      song && (
+      id! &&
+      song! && (
         <div className="py-8  px-4 mx-auto max-w-full">
           <h2 className="mb-4 text-2xl font-medium text-center text-zinc-900 dark:text-white font-owners">
             {song?.title} - {song?.artist_name}
