@@ -1,11 +1,9 @@
-import { useSearchParams } from "next/navigation";
 import {
   ReactNode,
   createContext,
   useCallback,
   useContext,
-  useEffect,
-  useMemo,
+  useMemo
 } from "react";
 import { useForm } from "react-hook-form";
 import useFormStore from "./SongLicenseForm/store";
@@ -20,10 +18,10 @@ const store = useFormStore.getState();
 const FormContext = createContext<IFormProps | IFormContextProps | any>(store);
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
-  const params = useSearchParams();
-  const license = params.get("license");
+  //const params = useSearchParams();
+  //const license = params.get("license");
 
-  console.log(license);
+  //console.log(license);
   const store = useFormStore();
   const {
     song_title,
@@ -34,7 +32,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     max,
     step,
     setStep,
-    setFormState,
+   // setFormState,
     defaultValues,
   } = useFormStore();
   const {
@@ -50,7 +48,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     defaultValues,
   });
 
-  const isEmail = watch("email");
+  //const isEmail = watch("email");
   // useEffect(() => {
   //   if(!license && (isEmail)){
   //     reset()

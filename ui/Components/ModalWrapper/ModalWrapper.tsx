@@ -14,6 +14,7 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
   const open = licenseWindowOpen || license || contact;
   const router = useRouter();
   const { reset, setStep } = useFormStateContext();
+  
   return (
     <div
       className={`fixed inset-0 z-[9999] flex items-center justify-center select-none  ${

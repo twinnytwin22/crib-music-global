@@ -1,22 +1,23 @@
 "use client";
-import { useHandleOutsideClick } from "@/lib/hooks/handleOutsideClick";
+import useGlobalStore from "app/context/global-ui/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import LicenseButton from "ui/Buttons/LicenseButton/LicenseButton";
 import PlayButton from "../PlayButton";
-import MenuItemMenu from "./MenuItemMenu";
 
 const MusicItem = ({ song }: any) => {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.id}`);
+  const {showModal, setShowModal, setSong} = useGlobalStore()
+//  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.id}`);
 
   const handleMenuClick = () => {
-    setIsOpen((prevState) => !prevState);
+    setSong(song)
+    setShowModal(true)
     // console.log(open)
   };
+
   return (
     <tr
       key={song.title}
@@ -64,14 +65,11 @@ const MusicItem = ({ song }: any) => {
       </td>
       </Suspense>
       <td
-        className={`collect-menu${song.id}`}
+        className={`relative`}
         onClick={handleMenuClick}
       >
         <BsThreeDots />
-        {isOpen && 
-        <div className="isolate z-50">
-        <MenuItemMenu song={song} />
-        </div>}
+    
       </td>
     </tr>
   );

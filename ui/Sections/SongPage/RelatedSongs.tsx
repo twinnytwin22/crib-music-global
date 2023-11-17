@@ -49,7 +49,7 @@ const RelatedMusicList = ({ songs }: any) => {
                 </tr>
               </thead>
 
-              <tbody className=" overflow-y-scroll relative ">
+              <tbody className=" relative ">
                 {currentSongs?.map((song, index: number) => (
                   <MusicItem key={index} song={song} />
                 ))}

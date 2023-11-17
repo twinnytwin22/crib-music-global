@@ -77,9 +77,12 @@ function SiteContextProvider({ children }: { children: React.ReactNode }) {
   const initialConsentStatus = getInitialConsentStatus();
   return (
     <SiteContext.Provider value={value}>
+   
       {children}
+
       <React.Fragment>
-        {!initialConsentStatus && !isLoading && (
+        { /* EVERYTHING HERE IS IT'S own component do not nest anything else here.  */
+        !initialConsentStatus && !isLoading && (
           <div className="fixed bottom-0 bg-black w-screen py-8 p-4 z-[9999] text-white">
             <div
               onClick={handleCloseCookieBar}
