@@ -24,7 +24,7 @@ function MenuItemMenu({ song }) {
             {song?.title} - {song?.artist_name}
           </h2>
         <li
-          className="w-full px-4 py-2 flex justify-between border-b border-zinc-200 rounded-t-lg dark:border-zinc-600 hover:dark:bg-zinc-700">
+          className="w-full px-4 py-2 hidden justify-between border-b border-zinc-200 rounded-t-lg dark:border-zinc-600 hover:dark:bg-zinc-700">
           Share on Twitter
           <FaTwitter />
         </li>
