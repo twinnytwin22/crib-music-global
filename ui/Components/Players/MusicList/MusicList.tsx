@@ -37,7 +37,7 @@ const MusicList = ({ songs }: any) => {
           new Set(songs.flatMap((song: any) => song?.genres || [].flat())),
         ).filter(Boolean);
         const artists: any = Array.from(
-          new Set(songs.map((song: any) => song?.artist_name)),
+          new Set(songs.map((song: any) => song?.artist_name.trim())),
         ).filter(Boolean);
         const moods: any = Array.from(
           new Set(songs.flatMap((song) => song?.moods || [])),
@@ -85,7 +85,7 @@ const MusicList = ({ songs }: any) => {
 
     const includesFilters =
       activeFilter.some((filteredGenre) => genres.includes(filteredGenre)) ||
-      activeFilter.some((artist) => artist_name.includes(artist)) ||
+      activeFilter.some((artist) => artist_name.trim().includes(artist)) ||
       activeFilter.some((filteredMood) => moods.includes(filteredMood));
 
     if (activeFilters.length === 0) {
