@@ -8,7 +8,7 @@ export const revalidate = 600;
 
 async function page() {
   const [songs, artists] = await Promise.all([getAllSongs(), getAllArtists()]);
-
+ 
   return (
     <div className="w-full relative py-28 mt-4 md:mt-0 min-h-full">
       <Suspense>
