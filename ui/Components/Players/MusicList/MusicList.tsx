@@ -14,15 +14,16 @@ const Pagination = dynamic(() => import("lib/hooks/pagination"), {
 
 const MusicList = ({ songs }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [openFilterWindow, setOpenFilterWindow] = useState(false);
+  const [filtersSet, setFiltersSet] = useState(false); // Track if filters have been set
   //  const pathname = usePathname()
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(25);
   const indexEnd = currentPage * itemsPerPage;
   const indexStart = indexEnd - itemsPerPage;
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
   const currentSongs = songs?.slice(indexStart, indexEnd);
-  const [openFilterWindow, setOpenFilterWindow] = useState(false);
-  const [filtersSet, setFiltersSet] = useState(false); // Track if filters have been set
+
   const handleOpenFilterWindow = () => setOpenFilterWindow(true);
 
   const { setActiveFilters, setFilters, activeFilters, filters, handleClear } =
@@ -34,21 +35,21 @@ const MusicList = ({ songs }: any) => {
       try {
         // const locationDataArray = await useLocationExtractor(events.map((event: any) => event.location));
         const genres: any = Array.from(
-          new Set(songs.flatMap((song: any) => song?.genres || [].flat())),
+          new Set(currentSongs.flatMap((song: any) => song?.genres || [].flat())),
         ).filter(Boolean);
         const artists: any = Array.from(
-          new Set(songs.map((song: any) => song?.artist_name.trim())),
+          new Set(currentSongs.map((song: any) => song?.artist_name.trim())),
         ).filter(Boolean);
         const moods: any = Array.from(
-          new Set(songs.flatMap((song) => song?.moods || [])),
+          new Set(currentSongs.flatMap((song) => song?.moods || [])),
         ).filter(Boolean);
 
-        // const instrumentalOnly: any = new Set(songs.map((song) => song?.instrumental).filter(Boolean)
+        // const instrumentalOnly: any = new Set(currentSongs.map((song) => song?.instrumental).filter(Boolean)
         // )
-        // const hasLyrics: any = new Set(songs.map((song) => song?.has_lyrics).filter(Boolean)
+        // const hasLyrics: any = new Set(currentSongs.map((song) => song?.has_lyrics).filter(Boolean)
         // )
         // console.log('hasLyrics:',hasLyrics, 'instrumental:', instrumentalOnly)
-        if (songs.length > 0) {
+        if (currentSongs.length > 0) {
           if (!filtersSet) {
             setFilters({
               genres,
@@ -67,19 +68,19 @@ const MusicList = ({ songs }: any) => {
     }
 
     fetchData();
-  }, [songs, setFilters, setActiveFilters, filtersSet]);
+  }, [currentSongs, setFilters, setActiveFilters, filtersSet]);
 
   function filterByInstrumental(song) {
     const { instrumental: instr } = song;
     return filters.instrumental ? instr : false;
   }
 
-  // A function to filter songs by has_lyrics
+  // A function to filter currentSongs by has_lyrics
   function filterByHasLyrics(song) {
     const { has_lyrics } = song;
     return filters.hasLyrics ? has_lyrics : false;
   }
-  const filteredSongs = songs.filter((song) => {
+  const filteredSongs = currentSongs.filter((song) => {
     const { genres, artist_name, moods, has_lyrics, instrumental } = song;
     const activeFilter = activeFilters.map((a) => a);
 
@@ -197,8 +198,8 @@ const MusicList = ({ songs }: any) => {
             aria-label="Table navigation"
           >
             <Pagination
-              itemsPerPage={itemsPerPage}
-              totalItems={currentSongs?.length}
+              itemsPerPage={itemsPerPage !== filteredSongs.length ? filteredSongs.length : itemsPerPage}
+              totalItems={itemsPerPage !== filteredSongs.length ? filteredSongs.length : songs.length }
               paginateBack={paginateBack}
               paginateFront={paginateFront}
               currentPage={currentPage}
