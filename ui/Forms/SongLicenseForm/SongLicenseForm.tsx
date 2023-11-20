@@ -30,7 +30,7 @@ const SongLicenseForm = () => {
     queryKey: ["songs"],
     queryFn: () => getAllSongs(),
     refetchOnMount: licenseWindowOpen,
-    enabled: !!!id && mounted,
+    enabled: mounted && id.length > 1,
   });
   const song =
     songs?.songs?.find((currentSong:{ id: string}) => currentSong?.id === id) ||
@@ -41,7 +41,10 @@ const SongLicenseForm = () => {
   const renderStep1 = () => {
 
     return (
-     !loading && isSuccess && song.title && (
+      <>
+      {loading && <></>}
+
+     {!loading && isSuccess && song.title && (
         <div className="py-8  px-4 mx-auto max-w-full">
           <h2 className="mb-4 text-2xl font-medium text-center text-zinc-900 dark:text-white font-owners">
             {song?.title} - {song?.artist_name}
@@ -114,8 +117,9 @@ const SongLicenseForm = () => {
             </div>
           </div>
         </div>
+  )}</>
       )
-    );
+    ;
   };
 
   const renderBusinessStep1 = () => {
@@ -143,6 +147,8 @@ const SongLicenseForm = () => {
       {!business && renderStep1()}
       {business && renderBusinessStep1()}
     </div>
+    
+    
   );
 };
 
