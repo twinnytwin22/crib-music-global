@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
+import LoadingContainer from "ui/Components/Loading/Loading";
 import BusinessLicenseForm from "./BusinessLicenseForm";
 import {
   forBusinessList,
@@ -42,7 +43,7 @@ const SongLicenseForm = () => {
 
     return (
       <>
-      {loading && <></>}
+      {loading && <div><LoadingContainer/></div>}
 
      {!loading && isSuccess && song.title && (
         <div className="py-8  px-4 mx-auto max-w-full">
