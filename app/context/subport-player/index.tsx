@@ -75,10 +75,11 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
 
   const updatePlayCount = async () => {
     try {
-      const { data: song }: any = await supabaseAdmin
+      const { data: song } = await supabaseAdmin
         .from("songs")
         .select("*")
-        .eq("id", metaData.id);
+        .eq("id", metaData.id)
+        .single()
       if (
         song &&
         metaData &&
@@ -86,7 +87,7 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
         metaData.play_count === song.play_count
       ) {
         const { data, error } = await supabaseAdmin.rpc("increment", {
-          sid: metaData?.id,
+          sid: metaData.id!!,
         });
         if (error) {
           return error;
