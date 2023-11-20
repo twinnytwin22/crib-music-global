@@ -77,7 +77,9 @@ function SongPage({ song, image, songs, artist }) {
               <p>{song.artist_name}</p>
             </Link>
             <div className="w-full h-16 overflow-hidden flex justify-between py-4 re items-center">
+              <Suspense>
               <AudioVisualizer audioFile={data} />
+              </Suspense>
               {/* {data && <AudioWaveForm audioFile={data}/>} */}
               <div>
                 <p>{formatDuration(song.duration)}</p>
@@ -121,7 +123,9 @@ function SongPage({ song, image, songs, artist }) {
           </div>
           <div className="md:w-2/3  md:pl-8">
             <h2 className="font-semibold text-lg">More Sounds</h2>
+            <Suspense>
             <RelatedMusicList songs={songs} />
+            </Suspense>
           </div>
         </div>
       </div>
