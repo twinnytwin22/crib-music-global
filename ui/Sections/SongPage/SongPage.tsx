@@ -5,7 +5,7 @@ import { getSong } from "@/utils/db";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, Suspense, useState } from "react";
 import { BsShareFill } from "react-icons/bs";
 import LicenseButton from "ui/Buttons/LicenseButton/LicenseButton";
 import ShareButton from "ui/Buttons/ShareButton/ShareButton";
@@ -64,8 +64,9 @@ function SongPage({ song, image, songs, artist }) {
                   className="relative"
                   onClick={() => setIsOpen(true)}
                 />
-
+                <Suspense>
                 <LicenseButton song={song} id={song.id} />
+                </Suspense>
                 {/* <ShareButton title={song.title}/> */}
               </div>
             </div>
