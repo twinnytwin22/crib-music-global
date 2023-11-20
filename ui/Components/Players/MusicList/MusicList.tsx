@@ -32,6 +32,8 @@ const MusicList = ({ songs }: any) => {
   useEffect(() => {
     // Call the useLocationExtractor function asynchronously
     async function fetchData() {
+      if(currentSongs) {
+
       try {
         // const locationDataArray = await useLocationExtractor(events.map((event: any) => event.location));
         const genres: any = Array.from(
@@ -65,10 +67,10 @@ const MusicList = ({ songs }: any) => {
       } catch (error) {
         console.error("Error:", error);
       }
-    }
+    }}
 
     fetchData();
-  }, [currentSongs, setFilters, setActiveFilters, filtersSet]);
+  }, [songs, setFilters, setActiveFilters, filtersSet]);
 
   function filterByInstrumental(song) {
     const { instrumental: instr } = song;

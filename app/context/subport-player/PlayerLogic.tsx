@@ -13,6 +13,11 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
   audioUrl: null,
   imageUrl: null,
   metaData: null,
+  playTime: 0,
+  playThreshold: 25,
+  setPlayTime: (playTime: number) => set({ playTime }),
+  increasePlayTime: (playTime: number) => set({ playTime: playTime + 1 }),
+
   ids: [],
   activeId: undefined,
   setId: (id: string) => set({ activeId: id }),
@@ -32,6 +37,15 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
 
   // Other state setters...
 }));
+
+export const handlePlayWithTracking = (
+  audioRef: React.RefObject<HTMLAudioElement>,
+  setIsPlaying: (isPlaying: boolean) => void,
+  setPlayTime: (playTime: number | null) => void | number,
+) => {
+  handlePlay(audioRef, setIsPlaying);
+  setPlayTime(0); // Reset play time when the song starts playing
+};
 
 export const usePlaybackTime = (audioRef: any) => {
   useEffect(() => {
@@ -192,8 +206,10 @@ export const handleUnMute = (
 export const handleTimeUpdate = (
   audioRef: React.RefObject<HTMLAudioElement>,
   setPosition: (position: number) => void,
+
 ) => {
   setPosition(audioRef.current?.currentTime || 0);
+
 };
 
 export const handleLoadedData = (

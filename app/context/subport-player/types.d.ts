@@ -1,5 +1,6 @@
 interface PlayerStore {
   currentTime: number;
+  playTime: number 
   position: number;
   duration: number;
   isPlaying: boolean;
@@ -12,9 +13,11 @@ interface PlayerStore {
   metaData: any[] | null;
   ids: string[];
   activeId?: string;
+   playThreshold: number
   setId: (id: string) => void;
   setIds: (ids: string[]) => void;
   reset: () => void;
+  setPlayTime: any
   setSongImage: (imageUrl: string | null) => void;
   setCurrentTime: (currentTime: number) => void;
   setPosition: (position: number) => void;

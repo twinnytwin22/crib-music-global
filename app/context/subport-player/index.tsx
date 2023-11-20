@@ -4,7 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useRef,
+  useRef
 } from "react";
 import WaveSurfer from "wavesurfer.js";
 import {
@@ -52,6 +52,7 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
     setSongImage,
     setMetaData,
     metaData,
+    setPlayTime, playTime,playThreshold
   } = usePlayerStore();
   const audioRef = useRef<any>(audio);
   // const audioContext = new (window.AudioContext)();
@@ -88,6 +89,7 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
 
   const play = () => {
     handlePlay(audioRef, setIsPlaying);
+    setPlayTime(0)
   };
 
   // Event handler for pause button
@@ -110,12 +112,12 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
     handleLoadedData(audioRef, setDuration);
   };
 
-  const seekChange = () => {
-    handleSeekChange(event, audioRef);
+  const seekChange = (e: any) => {
+    handleSeekChange(e, audioRef);
   };
 
-  const volumeChange = () => {
-    handleVolumeChange(event, audioRef, setVolume);
+  const volumeChange = (e: any) => {
+    handleVolumeChange(e, audioRef, setVolume);
   };
 
   const setMute = () => {
