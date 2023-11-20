@@ -44,7 +44,7 @@ function SongPage({ song, image, songs, artist }) {
         <div className="flex mx-auto items-center p-4">
           <div className="block min-w-[40px] min-h-[40px] relative rounded-md bg-zinc-500 w-fit mr-2">
             <Image
-              className="rounded aspect-square"
+              className="rounded aspect-square object-cover"
               alt={song?.title}
               src={image}
               width={220}
