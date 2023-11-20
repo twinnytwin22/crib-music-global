@@ -1,15 +1,16 @@
 "use client";
 import useGlobalStore from "app/context/global-ui/store";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 import { BsThreeDots } from "react-icons/bs";
-import LicenseButton from "ui/Buttons/LicenseButton/LicenseButton";
 import PlayButton from "../PlayButton";
+const LicenseButton = dynamic(() => import('ui/Buttons/LicenseButton/LicenseButton'), {ssr: false})
 
 const MusicItem = ({ song }: any) => {
   const router = useRouter();
-  const {showModal, setShowModal, setSong} = useGlobalStore()
+  const { setShowModal, setSong} = useGlobalStore()
 //  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.id}`);
 
   const handleMenuClick = () => {

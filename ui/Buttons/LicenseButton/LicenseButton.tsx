@@ -9,10 +9,13 @@ function LicenseButton({ id, song }) {
   const router = useRouter();
   const pathname = usePathname();
   const url = createQueryString(searchParams);
-  const handleSetId = () => {
-    useLicensingStore.setState({ licenseWindowOpen: true, id, song });
-    useLicensingStore.getState().id;
-    router.push(pathname + "?" + url("license", "song") + "&" + url("id", id), {
+  const handleSetId = async () => {
+    useLicensingStore.setState({ id, song });
+   // useLicensingStore.getState().id;
+   await new Promise(resolve => setTimeout(resolve, 1000));
+   useLicensingStore.setState({ licenseWindowOpen: true });
+
+   router.push(pathname + "?" + url("license", "song") + "&" + url("id", id), {
       scroll: false,
     });
   };

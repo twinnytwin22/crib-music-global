@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { Fragment, Suspense, useState } from "react";
 import { BsShareFill } from "react-icons/bs";
-import LicenseButton from "ui/Buttons/LicenseButton/LicenseButton";
 import ShareButton from "ui/Buttons/ShareButton/ShareButton";
 ///import AudioVisualizer from 'ui/Components/AudioVisualizer/Visualizer';
 import dynamic from "next/dynamic";
@@ -19,6 +18,8 @@ const AudioVisualizer = dynamic(
   () => import("ui/Components/AudioVisualizer/Visualizer"),
   { ssr: false },
 );
+
+const LicenseButton = dynamic(() => import('ui/Buttons/LicenseButton/LicenseButton'), {ssr: false})
 
 function SongPage({ song, image, songs, artist }) {
   const { data } = useQuery({

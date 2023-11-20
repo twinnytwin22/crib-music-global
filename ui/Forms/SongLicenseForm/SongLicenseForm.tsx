@@ -3,7 +3,7 @@ import { createQueryString } from "@/lib/hooks/createQueryString";
 import { getAllSongs } from "@/utils/db";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLicensingStore } from "ui/Buttons/LicenseButton/LicenseButtonStore";
 import BusinessLicenseForm from "./BusinessLicenseForm";
 import {
@@ -21,6 +21,8 @@ const SongLicenseForm = () => {
   const { licenseWindowOpen  } = useLicensingStore()
   const router = useRouter();
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true),[])
   const handleBusinessClick = () => {
     router.push(pathname + "?" + url("business", "song"), { scroll: false });
   };
@@ -28,7 +30,7 @@ const SongLicenseForm = () => {
     queryKey: ["songs"],
     queryFn: () => getAllSongs(),
     refetchOnMount: licenseWindowOpen,
-    enabled: !!!id,
+    enabled: !!!id && mounted,
   });
   const song =
     songs?.songs?.find((currentSong:{ id: string}) => currentSong?.id === id) ||
