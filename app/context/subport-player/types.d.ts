@@ -1,3 +1,8 @@
+interface SongMetaData {
+  id: string
+
+}
+
 interface PlayerStore {
   currentTime: number;
   playTime: number 
@@ -10,7 +15,7 @@ interface PlayerStore {
   prevVolume: number;
   audioUrl?: string | null | undefined;
   imageUrl: string | null;
-  metaData: any[] | null;
+  metaData:  any;
   ids: string[];
   activeId?: string;
    playThreshold: number
@@ -18,6 +23,7 @@ interface PlayerStore {
   setIds: (ids: string[]) => void;
   reset: () => void;
   setPlayTime: any
+  increasePlayTime: any
   setSongImage: (imageUrl: string | null) => void;
   setCurrentTime: (currentTime: number) => void;
   setPosition: (position: number) => void;

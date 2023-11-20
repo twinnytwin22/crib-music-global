@@ -1,6 +1,6 @@
+import { produce } from "immer";
 import { useEffect } from "react";
 import { create } from "zustand";
-
 export const usePlayerStore = create<PlayerStore>((set) => ({
   currentTime: 0,
   position: 0,
@@ -16,8 +16,13 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
   playTime: 0,
   playThreshold: 25,
   setPlayTime: (playTime: number) => set({ playTime }),
-  increasePlayTime: (playTime: number) => set({ playTime: playTime + 1 }),
-
+  increasePlayTime: () => {
+  set(
+    produce((state) => {
+       state.playTime += 1 
+      }
+      ))
+    },
   ids: [],
   activeId: undefined,
   setId: (id: string) => set({ activeId: id }),
@@ -37,6 +42,8 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
 
   // Other state setters...
 }));
+
+
 
 export const handlePlayWithTracking = (
   audioRef: React.RefObject<HTMLAudioElement>,
@@ -165,15 +172,21 @@ export const useInterval = (
   audioRef: any,
   setCurrentTime: (currentTime: number) => void,
   isPlaying: boolean,
+  increasePlayTime: any,
+  playTime: number,
+  playThreshold: number
 ) => {
   useEffect(() => {
     if (audioRef.current) {
       const intervalId = setInterval(() => {
         setCurrentTime(audioRef.current?.currentTime || 0);
+        if (isPlaying && (playTime <= playThreshold)){
+        increasePlayTime()
+        }
       }, 1000);
       return () => clearInterval(intervalId);
     }
-  }, [audioRef, setCurrentTime, isPlaying]);
+  }, [audioRef, setCurrentTime, isPlaying, playThreshold, playTime]);
 };
 
 export const handleVolumeChange = (

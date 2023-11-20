@@ -1,10 +1,12 @@
 "use client";
+import { supabaseAdmin } from "@/lib/site/constants";
+import { useQuery } from "@tanstack/react-query";
 import {
   Suspense,
   createContext,
   useCallback,
   useContext,
-  useRef
+  useRef,
 } from "react";
 import WaveSurfer from "wavesurfer.js";
 import {
@@ -52,7 +54,10 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
     setSongImage,
     setMetaData,
     metaData,
-    setPlayTime, playTime,playThreshold
+    setPlayTime,
+    playTime,
+    playThreshold,
+    increasePlayTime,
   } = usePlayerStore();
   const audioRef = useRef<any>(audio);
   // const audioContext = new (window.AudioContext)();
@@ -67,6 +72,47 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
       });
     }
   };
+
+  const updatePlayCount = async () => {
+    try {
+      const { data: song }: any = await supabaseAdmin
+        .from("songs")
+        .select("*")
+        .eq("id", metaData.id);
+      if (
+        song &&
+        metaData &&
+        playTime >= playThreshold &&
+        metaData.play_count === song.play_count
+      ) {
+        const { data, error } = await supabaseAdmin.rpc("increment", {
+          sid: metaData?.id,
+        });
+        if (error) {
+          return error;
+        }
+        return data;
+      } else {
+        return playTime;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const { data } = useQuery({
+    queryKey: ["data", playTime, playThreshold],
+    queryFn: updatePlayCount,
+    enabled: playTime >= playThreshold,
+  });
+  //console.log(metaData);
+
+  // console.log(metaData, 'QUERY DATA')
+  // useEffect(() => {
+  //   if (isPlaying && playTime <= playThreshold) {
+  //     increasePlayTime()
+  //   }
+  //   console.log(playTime)
+  // },[playTime, isPlaying])
   //  console.log("audioFile:", audioFile, 'audioUrl:', audioUrl)
 
   const mute = () => {
@@ -85,11 +131,11 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
     setPrevVolume,
   );
 
-  usePlaybackTime(audioRef);
+  // usePlaybackTime(audioRef);
 
   const play = () => {
     handlePlay(audioRef, setIsPlaying);
-    setPlayTime(0)
+    setPlayTime(0);
   };
 
   // Event handler for pause button
@@ -107,6 +153,7 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
 
   const timeUpdate = () => {
     handleTimeUpdate(audioRef, setPosition);
+    throw Error;
   };
   const dataLoad = () => {
     handleLoadedData(audioRef, setDuration);
@@ -133,8 +180,15 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
   };
 
   usePlaybackTime(audioRef);
-  useInterval(audioRef, setCurrentTime, isPlaying);
-
+  useInterval(
+    audioRef,
+    setCurrentTime,
+    isPlaying,
+    increasePlayTime,
+    playTime,
+    playThreshold,
+  );
+  console.log(playTime);
   const updateAudioUrl = useCallback(
     (newAudioUrl: string) => {
       setAudioUrl(newAudioUrl);
