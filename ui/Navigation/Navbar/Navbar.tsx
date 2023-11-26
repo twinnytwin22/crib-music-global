@@ -100,6 +100,22 @@ function NavBar() {
                 </Link>
                 {/* Submenu */}
               </div>
+            </li>  
+            <li  hidden className="relative">
+              {/* Services menu item with submenu */}
+              <div
+                className="relative group drop-dizzle font-work-sans"
+                //  onMouseEnter={() => setIsSubMenuOpen(true)}
+                //   onMouseLeave={() => setIsSubMenuOpen(false)}
+              >
+                <Link
+                  href={"/playlists"}
+                  className="block py-2 pl-3 pr-4 text-zinc-900 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 md:hover:bg-transparent md:hover:text-zinc-700 md:p-0 md:dark:hover:text-zinc-500 dark:text-white dark:hover:text-white md:dark:hover:bg-transparent dark:border-zinc-700 ease-in-out duration-300"
+                >
+                  Playlists
+                </Link>
+                {/* Submenu */}
+              </div>
             </li>
             <li className="hidden">
               {/* Other menu items */}
