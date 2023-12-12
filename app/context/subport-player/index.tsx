@@ -64,7 +64,7 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
   const wavesurfer = useRef<any>(null);
   const contextWaveFormRef = useRef<any>(null);
   const createWaveSurfer = () => {
-    if (contextWaveFormRef?.current) {
+    if (contextWaveFormRef?.current!!) {
       return new Promise((resolve) => {
         const options = formWaveSurferOptions(contextWaveFormRef?.current);
         const instance = WaveSurfer.create(options); // Set volume to 1 (full volume)

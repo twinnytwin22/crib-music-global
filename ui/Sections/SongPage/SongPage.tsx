@@ -25,7 +25,7 @@ function SongPage({ song, image, songs, artist }) {
   const { data } = useQuery({
     queryKey: ["data", song],
     queryFn: () => getSong(song),
-    enabled: !!song.music_file_url && !!AudioVisualizer,
+    enabled: !!song.music_file_url && !!LicenseButton,
     refetchOnWindowFocus: false,
   });
   const [isOpen, setIsOpen] = useState(false);
