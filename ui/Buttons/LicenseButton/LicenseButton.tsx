@@ -11,11 +11,11 @@ function LicenseButton({ id, song }) {
   const url = createQueryString(searchParams);
   const handleSetId = async () => {
     useLicensingStore.setState({ id, song });
-   // useLicensingStore.getState().id;
-   await new Promise(resolve => setTimeout(resolve, 1000));
-   useLicensingStore.setState({ licenseWindowOpen: true });
+    // useLicensingStore.getState().id;
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    useLicensingStore.setState({ licenseWindowOpen: true });
 
-   router.push(pathname + "?" + url("license", "song") + "&" + url("id", id), {
+    router.push(pathname + "?" + url("license", "song") + "&" + url("id", id), {
       scroll: false,
     });
   };
@@ -23,14 +23,15 @@ function LicenseButton({ id, song }) {
   return (
     <React.Fragment>
       <Suspense>
-      {id! && song! &&
-    <button
-      onClick={handleSetId}
-      className="bg-zinc-100 dark:hover:bg-zinc-950 dark:bg-black hover:bg-zinc-200 border border-zinc-200 dark:border-zinc-700 text-primary-800 ease-in-out duration-300 text-xs font-medium px-2 py-1.5 rounded"
-    >
-      License
-    </button>}
-    </Suspense>
+        {id! && song! && (
+          <button
+            onClick={handleSetId}
+            className="bg-zinc-100 dark:hover:bg-zinc-950 dark:bg-black hover:bg-zinc-200 border border-zinc-200 dark:border-zinc-700 text-primary-800 ease-in-out duration-300 text-xs font-medium px-2 py-1.5 rounded"
+          >
+            License
+          </button>
+        )}
+      </Suspense>
     </React.Fragment>
   );
 }

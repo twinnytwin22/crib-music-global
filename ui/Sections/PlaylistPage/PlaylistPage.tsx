@@ -27,7 +27,6 @@ function PlaylistPage({ image, playlist, songs }) {
               </h2>
               <p className="hidden">{playlist?.title}</p>
             </div>
-           
           </div>
         </div>
         <div className="w-full border-t border-zinc-300 dark:border-zinc-800 my-4" />

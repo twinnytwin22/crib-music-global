@@ -30,7 +30,7 @@ function PlayButton({ song, audio }: any) {
     title: song.title,
     artist_name: song.artist_name,
     id: song.id,
-    play_count: song.play_count
+    play_count: song.play_count,
   };
   const newImageUrl = getCoverImage(song?.cover_art_url);
   //const [mounted, setMounted] = React.useState(false);

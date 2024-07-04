@@ -19,7 +19,10 @@ const AudioVisualizer = dynamic(
   { ssr: false },
 );
 
-const LicenseButton = dynamic(() => import('ui/Buttons/LicenseButton/LicenseButton'), {ssr: false})
+const LicenseButton = dynamic(
+  () => import("ui/Buttons/LicenseButton/LicenseButton"),
+  { ssr: false },
+);
 
 function SongPage({ song, image, songs, artist }) {
   const { data } = useQuery({
@@ -66,7 +69,7 @@ function SongPage({ song, image, songs, artist }) {
                   onClick={() => setIsOpen(true)}
                 />
                 <Suspense>
-                <LicenseButton song={song} id={song.id} />
+                  <LicenseButton song={song} id={song.id} />
                 </Suspense>
                 {/* <ShareButton title={song.title}/> */}
               </div>
@@ -79,7 +82,7 @@ function SongPage({ song, image, songs, artist }) {
             </Link>
             <div className="w-full h-16 overflow-hidden flex justify-between py-4 re items-center">
               <Suspense>
-              <AudioVisualizer audioFile={data} />
+                <AudioVisualizer audioFile={data} />
               </Suspense>
               {/* {data && <AudioWaveForm audioFile={data}/>} */}
               <div>
@@ -125,7 +128,7 @@ function SongPage({ song, image, songs, artist }) {
           <div className="md:w-2/3  md:pl-8">
             <h2 className="font-semibold text-lg">More Sounds</h2>
             <Suspense>
-            <RelatedMusicList songs={songs} />
+              <RelatedMusicList songs={songs} />
             </Suspense>
           </div>
         </div>

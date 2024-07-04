@@ -17,12 +17,12 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
   playThreshold: 25,
   setPlayTime: (playTime: number) => set({ playTime }),
   increasePlayTime: () => {
-  set(
-    produce((state) => {
-       state.playTime += 1 
-      }
-      ))
-    },
+    set(
+      produce((state) => {
+        state.playTime += 1;
+      }),
+    );
+  },
   ids: [],
   activeId: undefined,
   setId: (id: string) => set({ activeId: id }),
@@ -42,8 +42,6 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
 
   // Other state setters...
 }));
-
-
 
 export const handlePlayWithTracking = (
   audioRef: React.RefObject<HTMLAudioElement>,
@@ -174,14 +172,14 @@ export const useInterval = (
   isPlaying: boolean,
   increasePlayTime: any,
   playTime: number,
-  playThreshold: number
+  playThreshold: number,
 ) => {
   useEffect(() => {
     if (audioRef.current) {
       const intervalId = setInterval(() => {
         setCurrentTime(audioRef.current?.currentTime || 0);
-        if (isPlaying && (playTime <= playThreshold)){
-        increasePlayTime()
+        if (isPlaying && playTime <= playThreshold) {
+          increasePlayTime();
         }
       }, 1000);
       return () => clearInterval(intervalId);
@@ -219,10 +217,8 @@ export const handleUnMute = (
 export const handleTimeUpdate = (
   audioRef: React.RefObject<HTMLAudioElement>,
   setPosition: (position: number) => void,
-
 ) => {
   setPosition(audioRef.current?.currentTime || 0);
-
 };
 
 export const handleLoadedData = (

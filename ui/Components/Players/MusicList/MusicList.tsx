@@ -32,42 +32,44 @@ const MusicList = ({ songs }: any) => {
   useEffect(() => {
     // Call the useLocationExtractor function asynchronously
     async function fetchData() {
-      if(currentSongs) {
+      if (currentSongs) {
+        try {
+          // const locationDataArray = await useLocationExtractor(events.map((event: any) => event.location));
+          const genres: any = Array.from(
+            new Set(
+              currentSongs.flatMap((song: any) => song?.genres || [].flat()),
+            ),
+          ).filter(Boolean);
+          const artists: any = Array.from(
+            new Set(currentSongs.map((song: any) => song?.artist_name.trim())),
+          ).filter(Boolean);
+          const moods: any = Array.from(
+            new Set(currentSongs.flatMap((song) => song?.moods || [])),
+          ).filter(Boolean);
 
-      try {
-        // const locationDataArray = await useLocationExtractor(events.map((event: any) => event.location));
-        const genres: any = Array.from(
-          new Set(currentSongs.flatMap((song: any) => song?.genres || [].flat())),
-        ).filter(Boolean);
-        const artists: any = Array.from(
-          new Set(currentSongs.map((song: any) => song?.artist_name.trim())),
-        ).filter(Boolean);
-        const moods: any = Array.from(
-          new Set(currentSongs.flatMap((song) => song?.moods || [])),
-        ).filter(Boolean);
-
-        // const instrumentalOnly: any = new Set(currentSongs.map((song) => song?.instrumental).filter(Boolean)
-        // )
-        // const hasLyrics: any = new Set(currentSongs.map((song) => song?.has_lyrics).filter(Boolean)
-        // )
-        // console.log('hasLyrics:',hasLyrics, 'instrumental:', instrumentalOnly)
-        if (currentSongs.length > 0) {
-          if (!filtersSet) {
-            setFilters({
-              genres,
-              artists,
-              moods,
-              instrumental: true,
-              hasLyrics: true,
-            });
-            setFiltersSet(true);
-            //  console.log(cities, states);
+          // const instrumentalOnly: any = new Set(currentSongs.map((song) => song?.instrumental).filter(Boolean)
+          // )
+          // const hasLyrics: any = new Set(currentSongs.map((song) => song?.has_lyrics).filter(Boolean)
+          // )
+          // console.log('hasLyrics:',hasLyrics, 'instrumental:', instrumentalOnly)
+          if (currentSongs.length > 0) {
+            if (!filtersSet) {
+              setFilters({
+                genres,
+                artists,
+                moods,
+                instrumental: true,
+                hasLyrics: true,
+              });
+              setFiltersSet(true);
+              //  console.log(cities, states);
+            }
           }
+        } catch (error) {
+          console.error("Error:", error);
         }
-      } catch (error) {
-        console.error("Error:", error);
       }
-    }}
+    }
 
     fetchData();
   }, [songs, setFilters, setActiveFilters, filtersSet]);
@@ -200,8 +202,16 @@ const MusicList = ({ songs }: any) => {
             aria-label="Table navigation"
           >
             <Pagination
-              itemsPerPage={itemsPerPage !== filteredSongs.length ? filteredSongs.length : itemsPerPage}
-              totalItems={itemsPerPage !== filteredSongs.length ? filteredSongs.length : songs.length }
+              itemsPerPage={
+                itemsPerPage !== filteredSongs.length
+                  ? filteredSongs.length
+                  : itemsPerPage
+              }
+              totalItems={
+                itemsPerPage !== filteredSongs.length
+                  ? filteredSongs.length
+                  : songs.length
+              }
               paginateBack={paginateBack}
               paginateFront={paginateFront}
               currentPage={currentPage}

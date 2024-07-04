@@ -3,7 +3,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useMemo
+  useMemo,
 } from "react";
 import { useForm } from "react-hook-form";
 import useFormStore from "./SongLicenseForm/store";
@@ -32,7 +32,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
     max,
     step,
     setStep,
-   // setFormState,
+    // setFormState,
     defaultValues,
   } = useFormStore();
   const {

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { MutatingDots } from "react-loader-spinner";
 
 export default function LoadingContainer() {
@@ -9,17 +9,17 @@ export default function LoadingContainer() {
           role="status"
           className=" h-screen items-center content-center flex mx-auto text-center justify-center"
         >
-          <MutatingDots 
-  height="100"
-  width="100"
-  color="#fca5a5"
-  secondaryColor= '#fca5a5'
-  radius='12.5'
-  ariaLabel="mutating-dots-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  visible={true}
- />
+          <MutatingDots
+            height="100"
+            width="100"
+            color="#fca5a5"
+            secondaryColor="#fca5a5"
+            radius="12.5"
+            ariaLabel="mutating-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
           <span className="sr-only">Loading...</span>
         </div>
       </div>

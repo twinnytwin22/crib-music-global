@@ -2,12 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import {
-  FaGlobe,
-  FaInstagram,
-  FaSpotify,
-  FaTwitter
-} from "react-icons/fa";
+import { FaGlobe, FaInstagram, FaSpotify, FaTwitter } from "react-icons/fa";
 import { SiApplemusic } from "react-icons/si";
 import RelatedMusicList from "../SongPage/RelatedSongs";
 function ArtistPage({ image, artist, songs }) {
@@ -37,21 +32,32 @@ function ArtistPage({ image, artist, songs }) {
             </div>
             <div className="flex  items-center space-x-2 md:space-x-4 w-full">
               {artist?.social_media_links?.spotify_url && (
-                <Link href={artist.social_media_links.spotify_url} target="_blank">
+                <Link
+                  href={artist.social_media_links.spotify_url}
+                  target="_blank"
+                >
                   <FaSpotify />
                 </Link>
               )}
               {artist?.social_media_links?.applemusic_url && (
-                <Link href={artist.social_media_links.applemusic_url} target="_blank">
+                <Link
+                  href={artist.social_media_links.applemusic_url}
+                  target="_blank"
+                >
                   <SiApplemusic />
                 </Link>
               )}
               {artist?.social_media_links?.soundcloud_url && (
-                <Link href={artist.social_media_links.soundcloud_url} target="_blank">
-                </Link>
+                <Link
+                  href={artist.social_media_links.soundcloud_url}
+                  target="_blank"
+                ></Link>
               )}
               {artist?.social_media_links?.instagram_url && (
-                <Link href={artist.social_media_links.instagram_url} target="_blank">
+                <Link
+                  href={artist.social_media_links.instagram_url}
+                  target="_blank"
+                >
                   <FaInstagram />
                 </Link>
               )}
@@ -61,7 +67,10 @@ function ArtistPage({ image, artist, songs }) {
                 </Link>
               )}
               {artist?.social_media_links?.website_url && (
-                <Link href={artist.social_media_links.website_url} target="_blank">
+                <Link
+                  href={artist.social_media_links.website_url}
+                  target="_blank"
+                >
                   <FaGlobe />
                 </Link>
               )}

@@ -6,16 +6,19 @@ import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import PlayButton from "../PlayButton";
-const LicenseButton = dynamic(() => import('ui/Buttons/LicenseButton/LicenseButton'), {ssr: false})
+const LicenseButton = dynamic(
+  () => import("ui/Buttons/LicenseButton/LicenseButton"),
+  { ssr: false },
+);
 
 const MusicItem = ({ song }: any) => {
   const router = useRouter();
-  const { setShowModal, setSong} = useGlobalStore()
-//  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.id}`);
+  const { setShowModal, setSong } = useGlobalStore();
+  //  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.id}`);
 
   const handleMenuClick = () => {
-    setSong(song)
-    setShowModal(true)
+    setSong(song);
+    setShowModal(true);
     // console.log(open)
   };
 
@@ -61,16 +64,12 @@ const MusicItem = ({ song }: any) => {
         </span>
       </td>
       <Suspense>
-      <td className="px-4 py-2">
-        <LicenseButton song={song} id={song.id} />
-      </td>
+        <td className="px-4 py-2">
+          <LicenseButton song={song} id={song.id} />
+        </td>
       </Suspense>
-      <td
-        className={`relative`}
-        onClick={handleMenuClick}
-      >
+      <td className={`relative`} onClick={handleMenuClick}>
         <BsThreeDots />
-    
       </td>
     </tr>
   );

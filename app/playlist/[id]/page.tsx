@@ -5,20 +5,19 @@ import Footer from "ui/Navigation/Footer";
 import PlaylistPage from "ui/Sections/PlaylistPage";
 
 //export const fetchCache = "force-cache";
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 const getAllPlaylists = async () => {
-
-const { data:playlists, error } = await supabaseAdmin
-.from("playlists")
-//.insert(updates)
-.select();
-if (playlists!){
-return playlists
-}
-}
+  const { data: playlists, error } = await supabaseAdmin
+    .from("playlists")
+    //.insert(updates)
+    .select();
+  if (playlists!) {
+    return playlists;
+  }
+};
 
 export async function generateStaticParams() {
-  const  playlists  = await getAllPlaylists();
+  const playlists = await getAllPlaylists();
   return playlists!.map((playlist: any) => ({
     id: playlist.id,
   }));
@@ -32,17 +31,19 @@ async function page({
   searchParams: any;
 }) {
   const { id } = params;
-  const  playlists  = await getAllPlaylists();
+  const playlists = await getAllPlaylists();
 
   // Check if there is a matching id for the given id
-  const playlist = playlists!.find((playlist: {id: string}) => playlist?.id === id);
+  const playlist = playlists!.find(
+    (playlist: { id: string }) => playlist?.id === id,
+  );
 
   if (playlist) {
     // const data = await getSong(playlist)≈≈
     // console.log(data)
     const { songs } = await getAllSongs();
-    const currentSongs = songs.filter(
-      (song) => playlist.ids.includes(song.id.trim()),
+    const currentSongs = songs.filter((song) =>
+      playlist.ids.includes(song.id.trim()),
     );
     const imageUrl = `/site_images/${playlist.image_url!}`.trim();
 

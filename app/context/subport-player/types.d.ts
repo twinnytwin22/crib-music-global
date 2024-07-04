@@ -1,11 +1,10 @@
 interface SongMetaData {
-  id: string
-
+  id: string;
 }
 
 interface PlayerStore {
   currentTime: number;
-  playTime: number 
+  playTime: number;
   position: number;
   duration: number;
   isPlaying: boolean;
@@ -15,15 +14,15 @@ interface PlayerStore {
   prevVolume: number;
   audioUrl?: string | null | undefined;
   imageUrl: string | null;
-  metaData:  any;
+  metaData: any;
   ids: string[];
   activeId?: string;
-   playThreshold: number
+  playThreshold: number;
   setId: (id: string) => void;
   setIds: (ids: string[]) => void;
   reset: () => void;
-  setPlayTime: any
-  increasePlayTime: any
+  setPlayTime: any;
+  increasePlayTime: any;
   setSongImage: (imageUrl: string | null) => void;
   setCurrentTime: (currentTime: number) => void;
   setPosition: (position: number) => void;

@@ -14,20 +14,19 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalUIProvider>
-      <SiteContextProvider>
-        <Suspense>
-          <ThemeProvider
-            enableSystem={true}
-            attribute="class"
-            defaultTheme="dark"
-          >
-            <SubportPlayer>
-              <FormProvider>{children}</FormProvider>
-            </SubportPlayer>
-          </ThemeProvider>
-        </Suspense>
-        
-      </SiteContextProvider>
+        <SiteContextProvider>
+          <Suspense>
+            <ThemeProvider
+              enableSystem={true}
+              attribute="class"
+              defaultTheme="dark"
+            >
+              <SubportPlayer>
+                <FormProvider>{children}</FormProvider>
+              </SubportPlayer>
+            </ThemeProvider>
+          </Suspense>
+        </SiteContextProvider>
       </GlobalUIProvider>
     </QueryClientProvider>
   );

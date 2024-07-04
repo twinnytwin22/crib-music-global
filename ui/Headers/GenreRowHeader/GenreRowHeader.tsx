@@ -1,20 +1,37 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
-function ArtistRowHeader({ artists }) {
+
+const genres = [
+  {
+    title: "Dance",
+    color: "bg-blue-600",
+    id: 1,
+  },
+  {
+    title: "Hip-Hop",
+    color: "bg-red-600",
+    id: 2,
+  },
+  {
+    title: "R&B",
+    color: "bg-purple-500",
+    id: 3,
+  },
+];
+function GenreRowHeader() {
   return (
     <div className=" select-none">
       <div className="relative flex mt-2 md:mt-0 gap-4 max-w-screen-2xl mx-auto w-full">
-        {artists?.artists.slice(0, 3).map((artist, i) => {
-          const url = `/artist_images/${artist.image_url!}`.trim();
-          const href = `/artist/${artist.id!}`;
+        {genres.map((genre, i) => {
+          //   const url = `/artist_images/${artist.image_url!}`.trim();
+          const href = `/artist/${genre.id!}`;
           return (
             <div
               key={i}
-              className=" aspect-video bg-zinc-500 h-full object-cover w-full overflow-hidden rounded relative  border border-zinc-200 dark:border-zinc-800"
+              className={`aspect-video ${genre.color} h-full object-cover w-full overflow-hidden rounded relative  border border-zinc-200 dark:border-zinc-800`}
             >
               <Link href={href} prefetch={false}>
-                <Image
+                {/* <Image
                   alt={artist.artist_name}
                   src={url}
                   className="object-cover hover:scale-110 duration-300 ease-in-out relative"
@@ -24,9 +41,9 @@ function ArtistRowHeader({ artists }) {
                   style={{
                     objectFit: "cover",
                   }}
-                />
+                /> */}
                 <h2 className="text-white absolute bottom-4 left-4 font-bold text-xs md:text-sm lg:text-lg font-owners">
-                  {artist.artist_name}
+                  {genre.title}
                 </h2>
               </Link>
             </div>
@@ -37,4 +54,4 @@ function ArtistRowHeader({ artists }) {
   );
 }
 
-export default ArtistRowHeader;
+export default GenreRowHeader;

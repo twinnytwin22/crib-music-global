@@ -100,8 +100,8 @@ function NavBar() {
                 </Link>
                 {/* Submenu */}
               </div>
-            </li>  
-            <li  hidden className="relative">
+            </li>
+            <li hidden className="relative">
               {/* Services menu item with submenu */}
               <div
                 className="relative group drop-dizzle font-work-sans"

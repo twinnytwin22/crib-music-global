@@ -79,7 +79,7 @@ export const SubportPlayer = ({ children }: { children: React.ReactNode }) => {
         .from("songs")
         .select("*")
         .eq("id", metaData.id)
-        .single()
+        .single();
       if (
         song &&
         metaData &&
