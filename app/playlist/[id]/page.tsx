@@ -7,7 +7,7 @@ import PlaylistPage from "ui/Sections/PlaylistPage";
 //export const fetchCache = "force-cache";
 export const dynamic = "force-dynamic";
 const getAllPlaylists = async () => {
-  const { data: playlists, error } = await supabaseAdmin
+  const { data: playlists, error }: any = await supabaseAdmin
     .from("playlists")
     //.insert(updates)
     .select();
