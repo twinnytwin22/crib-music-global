@@ -1,4 +1,5 @@
 "use client";
+import useSlug from "@/lib/hooks/useSlug";
 import Link from "next/link";
 
 const genres = [
@@ -19,12 +20,14 @@ const genres = [
   },
 ];
 function GenreRowHeader() {
+  const {createSlug} = useSlug()
+
   return (
-    <div className=" select-none">
+    <div className=" select-none hidden">
       <div className="relative flex mt-2 md:mt-0 gap-4 max-w-screen-2xl mx-auto w-full">
         {genres.map((genre, i) => {
           //   const url = `/artist_images/${artist.image_url!}`.trim();
-          const href = `/artist/${genre.id!}`;
+          const href = `/genre/${createSlug(genre.title)!}`;
           return (
             <div
               key={i}

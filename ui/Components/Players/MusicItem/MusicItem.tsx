@@ -1,4 +1,5 @@
 "use client";
+import useSlug from "@/lib/hooks/useSlug";
 import useGlobalStore from "app/context/global-ui/store";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -15,6 +16,7 @@ const MusicItem = ({ song }: any) => {
   const router = useRouter();
   const { setShowModal, setSong } = useGlobalStore();
   //  useHandleOutsideClick(isOpen, setIsOpen, `collect-menu${song.id}`);
+  const {createSlug} = useSlug()
 
   const handleMenuClick = () => {
     setSong(song);
@@ -59,8 +61,15 @@ const MusicItem = ({ song }: any) => {
         {song?.artist_name}
       </td>
       <td className="px-4 py-2">
-        <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-          {song.genres[0]}/{song.moods[0]}
+        <span 
+        
+        onClick={() => router.push(`/genre/${createSlug(song.genres[0])}`)}
+
+        className="bg-primary-100 text-primary-800 text-xs font-medium py-0.5 rounded  cursor-pointer dark:bg-primary-900 dark:text-primary-300 hover:brightness-125">
+          {song.genres[0]}
+        </span>
+        <span className="bg-primary-100 text-primary-800 text-xs font-medium py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+          /{song.moods[0]}
         </span>
       </td>
       <Suspense>
