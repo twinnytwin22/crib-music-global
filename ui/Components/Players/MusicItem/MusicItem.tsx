@@ -64,11 +64,13 @@ const MusicItem = ({ song }: any) => {
         <span 
         
         onClick={() => router.push(`/genre/${createSlug(song.genres[0])}`)}
-
         className="bg-primary-100 text-primary-800 text-xs font-medium py-0.5 rounded  cursor-pointer dark:bg-primary-900 dark:text-primary-300 hover:brightness-125">
           {song.genres[0]}
         </span>
-        <span className="bg-primary-100 text-primary-800 text-xs font-medium py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+        <span 
+        onClick={() => router.push(`/mood/${createSlug(song.moods[0])}`)}
+        className="bg-primary-100 text-primary-800 text-xs font-medium py-0.5 rounded  cursor-pointer dark:bg-primary-900 dark:text-primary-300 hover:brightness-125">
+
           /{song.moods[0]}
         </span>
       </td>
